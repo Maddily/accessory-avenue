@@ -1,0 +1,112 @@
+.nav {
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+}
+
+.logo {
+  height: 100%;
+}
+
+.nav-buttons {
+  composes: nav;
+  padding: 0;
+  margin: 0;
+  gap: 50px;
+  align-items: center;
+  list-style-type: none;
+  display: none;
+}
+
+.nav-button-container {
+  height: 100%;
+  align-content: center;
+  padding: 0 5px;
+  position: relative;
+  transition: background-color 250ms ease-out;
+}
+
+.nav-button-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: black;
+  transition: width 250ms ease-out;
+}
+
+.nav-button-container:hover::after {
+  width: 100%;
+}
+
+.nav-button-container:hover {
+  cursor: pointer;
+  background-color: rgba(239, 239, 239, 0.3);
+}
+
+.cart-menu-close-container {
+  display: flex;
+  gap: 20px;
+}
+
+.cart {
+  position: relative;
+  color: black;
+}
+
+.cart-number {
+  position: absolute;
+  background-color: #dfdfdf;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  align-content: center;
+}
+
+.menu-icon {
+  cursor: pointer;
+}
+
+.x {
+  composes: menu-icon;
+}
+
+@media (min-width: 400px) {
+  .nav {
+    padding: 0 30px;
+  }
+}
+
+@media (min-width: 500px) {
+  .nav-buttons {
+    display: flex;
+  }
+
+  .menu-icon {
+    display: none;
+  }
+}
+
+@media (min-width: 600px) {
+  .nav {
+    padding: 0 40px;
+  }
+}
+
+@media (min-width: 800px) {
+  .nav {
+    padding: 0 60px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .nav {
+    padding: 0 80px;
+  }
+}
