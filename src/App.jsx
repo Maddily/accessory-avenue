@@ -2,6 +2,7 @@ import { useState } from 'react';
 import useScreenResize from './hooks/useScreenWidth';
 import Nav from './components/Nav/Nav';
 import Menu from './components/Menu/Menu';
+import Footer from './components/Footer/Footer';
 import './styles/normalize.css';
 import './styles/App.css';
 
@@ -19,6 +20,7 @@ function App() {
     <>
       <Nav menuOpen={menuOpen} menuOpenSetter={(value) => setMenuOpen(value)} />
       {menuOpen && <Menu />}
+      <Footer />
     </>
   );
 }
