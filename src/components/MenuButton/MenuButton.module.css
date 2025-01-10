@@ -1,0 +1,8 @@
+.menu-button {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: black;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 2;
+}
