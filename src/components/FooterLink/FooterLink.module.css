@@ -1,0 +1,11 @@
+.footer-link {
+  text-decoration: none;
+  color: #B8B6B6;
+  text-transform: uppercase;
+  font-size: 0.6rem;
+  transition: color 300ms ease-out;
+}
+
+.footer-link:hover {
+  color: white;
+}
