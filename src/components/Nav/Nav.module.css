@@ -53,22 +53,6 @@
   gap: 20px;
 }
 
-.cart {
-  position: relative;
-  color: black;
-}
-
-.cart-number {
-  position: absolute;
-  background-color: #dfdfdf;
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  align-content: center;
-}
-
 .menu-icon {
   cursor: pointer;
 }

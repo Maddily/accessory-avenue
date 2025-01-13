@@ -1,11 +1,10 @@
 import logo from '../../assets/images/logo.jpg';
 import styles from './Nav.module.css';
 import NavButton from '../NavButton/NavButton';
-import { Link } from 'react-router-dom';
-import { ShoppingCart } from 'lucide-react';
 import Icon from '@mdi/react';
 import { mdiMenu, mdiClose } from '@mdi/js';
 import PropTypes from 'prop-types';
+import Cart from '../Cart/Cart';
 
 /**
  * Renders a nav contaning the logo, nav links and cart button.
@@ -27,10 +26,7 @@ export default function Nav({ menuOpen, menuOpenSetter }) {
         </li>
       </ul>
       <div className={styles['cart-menu-close-container']}>
-        <Link to="/" className={styles.cart}>
-          <ShoppingCart />
-          <span className={styles['cart-number']}>0</span>
-        </Link>
+        <Cart />
         {/* Render a menu or a close menu button */}
         {menuOpen ? (
           <Icon
