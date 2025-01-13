@@ -32,7 +32,7 @@ export default function Nav({ menuOpen, menuOpenSetter }) {
           <Icon
             path={mdiClose}
             size={1}
-            title="Close Menu"
+            title="Close menu"
             className={styles.x}
             onClick={() => {
               menuOpenSetter(false);
