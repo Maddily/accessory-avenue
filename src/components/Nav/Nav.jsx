@@ -15,7 +15,7 @@ import Cart from '../Cart/Cart';
  */
 export default function Nav({ menuOpen, menuOpenSetter }) {
   return (
-    <nav className={styles.nav}>
+    <nav aria-label='header navigation' className={styles.nav}>
       <img className={styles.logo} src={logo} alt="logo" />
       <ul className={styles['nav-buttons']}>
         <li className={styles['nav-button-container']}>
