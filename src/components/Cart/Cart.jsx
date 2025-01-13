@@ -1,5 +1,6 @@
 import { ShoppingCart } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styles from './Cart.module.css';
 
 /**
@@ -8,12 +9,16 @@ import styles from './Cart.module.css';
  *
  * @returns {JSX.Element}
  */
-export default function Cart() {
+export default function Cart({ path }) {
   return (
-    <Link aria-label='cart' to="/" className={styles.cart}>
-      <ShoppingCart />
+    <Link aria-label="cart" to={path} className={styles.cart}>
+      <ShoppingCart title="Cart" />
       {/* Refactor so the number is displayed only if higher than 0 */}
-      <span className={styles['cart-number']}>0</span>
+      <span aria-label='number of items in cart' className={styles['cart-number']}>0</span>
     </Link>
   );
 }
+
+Cart.propTypes = {
+  path: PropTypes.string,
+};
