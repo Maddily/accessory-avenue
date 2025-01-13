@@ -26,7 +26,7 @@ export default function Nav({ menuOpen, menuOpenSetter }) {
         </li>
       </ul>
       <div className={styles['cart-menu-close-container']}>
-        <Cart />
+        <Cart path='/' />
         {/* Render a menu or a close menu button */}
         {menuOpen ? (
           <Icon
