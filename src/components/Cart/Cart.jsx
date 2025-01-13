@@ -10,7 +10,7 @@ import styles from './Cart.module.css';
  */
 export default function Cart() {
   return (
-    <Link to="/" className={styles.cart}>
+    <Link aria-label='cart' to="/" className={styles.cart}>
       <ShoppingCart />
       {/* Refactor so the number is displayed only if higher than 0 */}
       <span className={styles['cart-number']}>0</span>
