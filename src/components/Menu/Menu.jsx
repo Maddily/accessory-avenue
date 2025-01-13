@@ -8,7 +8,7 @@ import MenuButton from '../MenuButton/MenuButton';
  */
 export default function Menu() {
   return (
-    <nav className={styles.menu}>
+    <nav aria-label='menu navigation' className={styles.menu}>
       <ul className={styles['menu-buttons']}>
         <li className={styles['menu-button-container']}>
           <MenuButton value="home" path="/" />
