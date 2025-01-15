@@ -1,0 +1,35 @@
+.container {
+  background: rgba(216, 216, 216, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #333333;
+  margin-bottom: 50px;
+  gap: 2.5rem;
+  padding: 2rem 0;
+}
+
+.heading {
+  text-transform: capitalize;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.testimonials {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  width: 90%;
+}
+
+@media (min-width: 410px) {
+  .heading {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 800px) {
+  .heading {
+    font-size: 2.5rem;
+  }
+}
