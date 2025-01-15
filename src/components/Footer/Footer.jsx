@@ -18,7 +18,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles['footer-content']}>
         <div className={styles['footer-section']}>
-          <h2 className={styles['footer-heading']}>the accessory avenue</h2>
+          <h3 className={styles['footer-heading']}>the accessory avenue</h3>
           <div className={styles['contact-icon-and-p']}>
             <Icon path={mdiMapMarker} size={0.7} />
             <p>
@@ -38,7 +38,7 @@ export default function Footer() {
         </div>
 
         <div className={styles['footer-section']}>
-          <h2 className={styles['footer-heading']}>sitemap</h2>
+          <h3 className={styles['footer-heading']}>sitemap</h3>
           <ul className={styles['footer-link-list']}>
             <li>
               <FooterLink value="home" path="/" />
@@ -50,7 +50,7 @@ export default function Footer() {
         </div>
 
         <div className={styles['footer-section']}>
-          <h2 className={styles['footer-heading']}>payment methods</h2>
+          <h3 className={styles['footer-heading']}>payment methods</h3>
           <div className={styles['payment-icons-container']}>
             <img
               className={styles['payment-icon']}
