@@ -80,7 +80,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <p className={styles.copyright}>&#169; 2024 The Accessory Avenue. All rights reserved.</p>
+      <p className={styles.copyright}>&#169; 2025 The Accessory Avenue. All rights reserved.</p>
     </footer>
   );
 }
