@@ -1,5 +1,5 @@
 import styles from './About.module.css';
-import about from '../../../../assets/images/about1.png';
+import about from '../../../../assets/images/about.png';
 
 /**
  * Renders about section.
