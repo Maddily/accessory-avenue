@@ -1,4 +1,4 @@
-import Stars from '../Stars/Stars';
+import Stars from '../../../../components/Stars/Stars';
 import styles from './FeaturedProducts.module.css';
 import AddToCart from '../../../../components/AddToCart/AddToCart';
 
