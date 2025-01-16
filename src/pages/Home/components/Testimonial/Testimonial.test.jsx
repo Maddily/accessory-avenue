@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Testimonial from './Testimonial';
 
@@ -17,20 +17,20 @@ describe('Testimonial', () => {
   });
 
   it('renders a quote icon', () => {
-    const quoteIcon = screen.getByRole('presentation', { name: 'quote icon' });
+    const quoteIcon = within(container).queryByRole('presentation', { name: 'quote icon' });
 
-    expect(container).toContainElement(quoteIcon);
+    expect(quoteIcon).toBeTruthy();
   });
 
   it('renders the review of a customer', () => {
-    const review = screen.getByRole('paragraph', { name: 'review' });
+    const review = within(container).queryByRole('paragraph', { name: 'review' });
 
-    expect(container).toContainElement(review);
+    expect(review).toBeTruthy();
   });
 
   it('renders the name of the customer', () => {
-    const name = screen.getByRole('paragraph', { name: 'customer name' });
+    const name = within(container).queryByRole('paragraph', { name: 'customer name' });
 
-    expect(container).toContainElement(name);
+    expect(name).toBeTruthy();
   });
 });
