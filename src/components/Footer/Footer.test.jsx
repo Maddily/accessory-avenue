@@ -1,7 +1,11 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Footer from './Footer';
+import FooterLink from '../FooterLink/FooterLink';
+
+vi.mock('../FooterLink/FooterLink');
+FooterLink.mockImplementation(() => <div>Footer Link</div>);
 
 describe('Footer', () => {
   let footer;
@@ -36,12 +40,9 @@ describe('Footer', () => {
     const heading = screen.getByRole('heading', {
       name: /sitemap/i,
     });
-    expect(footer).toContainElement(heading);
 
-    const homeButton = within(footer).queryByRole('link', {
-      name: /home/i,
-    });
-    expect(homeButton).not.toBeNull();
+    expect(footer).toContainElement(heading);
+    expect(screen.queryAllByText('Footer Link').length).toBeGreaterThan(0);
   });
 
   it('renders payment methods', () => {
