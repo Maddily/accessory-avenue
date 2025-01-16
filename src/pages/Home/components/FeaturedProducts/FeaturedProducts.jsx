@@ -1,6 +1,5 @@
-import Stars from '../../../../components/Stars/Stars';
+import FeaturedProduct from '../FeaturedProduct/FeaturedProduct';
 import styles from './FeaturedProducts.module.css';
-import AddToCart from '../../../../components/AddToCart/AddToCart';
 
 const products = [
   {
@@ -47,28 +46,9 @@ export default function FeaturedProducts() {
     <section className={styles.container}>
       <h2 className={styles.heading}>featured products</h2>
       <div className={styles.products}>
-        {products.map((product) => {
-          return (
-            <div className={styles.product} key={product.id}>
-              <img
-                className={styles.image}
-                src={product.image}
-                alt={product.title}
-              />
-              <h3 className={styles['product-title']}>{product.title}</h3>
-              <div className={styles.rating}>
-                <span>
-                  <Stars rating={product.rating} title={product.title} />
-                </span>
-                <span>{product.rating}</span>
-              </div>
-              <div className={styles['card-footer']}>
-                <p className={styles.price}>${product.price}</p>
-                <AddToCart />
-              </div>
-            </div>
-          );
-        })}
+        {products.map((product) => (
+          <FeaturedProduct key={product.id} product={product} />
+        ))}
       </div>
     </section>
   );
