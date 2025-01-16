@@ -19,19 +19,19 @@ describe('Hero', () => {
   });
 
   it('renders a headline', () => {
-    const heading = within(container).getByRole('heading');
+    const heading = within(container).queryByRole('heading');
 
     expect(heading).toBeTruthy();
   });
 
   it('renders a paragraph', () => {
-    const p = within(container).getByRole('paragraph');
+    const p = within(container).queryByRole('paragraph');
 
     expect(p).toBeTruthy();
   });
 
   it('renders a CTA button that redirects to the shop page', async () => {
-    const cta = within(container).getByRole('link', { name: /shop now/i });
+    const cta = within(container).queryByRole('link', { name: /shop now/i });
 
     expect(cta).toBeTruthy();
 
@@ -41,7 +41,7 @@ describe('Hero', () => {
   });
 
   it('renders an image', () => {
-    const image = within(container).getByRole('img');
+    const image = within(container).queryByRole('img');
 
     expect(image).toBeTruthy();
   });

@@ -21,13 +21,13 @@ describe('PromoBanner', () => {
   });
 
   it('renders a heading', () => {
-    const heading = within(banner).getByRole('heading');
+    const heading = within(banner).queryByRole('heading');
 
     expect(heading).toBeTruthy();
   });
 
   it('renders a CTA button that links to shop page', async () => {
-    const cta = within(banner).getByRole('link', { name: /shop now/i });
+    const cta = within(banner).queryByRole('link', { name: /shop now/i });
 
     expect(cta).toBeTruthy();
 

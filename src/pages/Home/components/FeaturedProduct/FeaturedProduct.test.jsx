@@ -26,7 +26,7 @@ describe('FeaturedProduct', () => {
   });
 
   it('renders the image of the product', () => {
-    const image = within(product).getByRole('img', {
+    const image = within(product).queryByRole('img', {
       name: /beats flex wireless earphones/i,
     });
 
@@ -34,7 +34,7 @@ describe('FeaturedProduct', () => {
   });
 
   it('renders the name of the product', () => {
-    const name = within(product).getByRole('heading', {
+    const name = within(product).queryByRole('heading', {
       name: /beats flex wireless earphones/i,
     });
 
@@ -42,21 +42,21 @@ describe('FeaturedProduct', () => {
   });
 
   it('renders the rating', () => {
-    const starRating = within(product).getByLabelText('star rating');
-    const rating = within(product).getByLabelText('rating');
+    const starRating = within(product).queryByLabelText('star rating');
+    const rating = within(product).queryByLabelText('rating');
 
     expect(starRating).toBeTruthy();
     expect(rating).toBeTruthy();
   });
 
   it('renders the price of the product', () => {
-    const price = within(product).getByRole('paragraph', { name: 'price' });
+    const price = within(product).queryByRole('paragraph', { name: 'price' });
 
     expect(price).toBeTruthy();
   });
 
   it('renders an Add to cart button', () => {
-    const button = within(product).getByRole('button', { name: /add to cart/i });
+    const button = within(product).queryByRole('button', { name: /add to cart/i });
 
     expect(button).toBeTruthy();
   });
