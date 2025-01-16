@@ -21,7 +21,7 @@ export default function Footer() {
           <h3 className={styles['footer-heading']}>the accessory avenue</h3>
           <div className={styles['contact-icon-and-p']}>
             <Icon path={mdiMapMarker} size={0.7} />
-            <p>
+            <p aria-label='address'>
               1234 Elm Street, Suite 567
               <br />
               Silicon Bay, CA 90210
@@ -29,11 +29,11 @@ export default function Footer() {
           </div>
           <div className={styles['contact-icon-and-p']}>
             <Icon path={mdiPhone} size={0.7} />
-            <p>(555) 123-4567</p>
+            <p aria-label='phone'>(555) 123-4567</p>
           </div>
           <div className={styles['contact-icon-and-p']}>
             <Icon path={mdiEmail} size={0.7} />
-            <p>support@accessoryavenue.com</p>
+            <p aria-label='email'>support@accessoryavenue.com</p>
           </div>
         </div>
 
@@ -80,7 +80,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <p className={styles.copyright}>&#169; 2025 The Accessory Avenue. All rights reserved.</p>
+      <p aria-label='copyright statement' className={styles.copyright}>&#169; 2025 The Accessory Avenue. All rights reserved.</p>
     </footer>
   );
 }
