@@ -12,7 +12,7 @@ export default function PromoBanner() {
       <h2 className={styles['promo-heading']}>
         Free Shipping on Orders Over $50!
       </h2>
-      <Link to="/" className={styles.cta} type="button">
+      <Link to="/shop" className={styles.cta} type="button">
         <span className={styles.underline}>shop now</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
