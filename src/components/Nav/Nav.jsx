@@ -15,7 +15,7 @@ import Cart from '../Cart/Cart';
  */
 export default function Nav({ menuOpen, menuOpenSetter }) {
   return (
-    <nav aria-label='header navigation' className={styles.nav}>
+    <nav aria-label="header navigation" className={styles.nav}>
       <img className={styles.logo} src={logo} alt="logo" />
       <ul className={styles['nav-buttons']}>
         <li className={styles['nav-button-container']}>
@@ -26,10 +26,11 @@ export default function Nav({ menuOpen, menuOpenSetter }) {
         </li>
       </ul>
       <div className={styles['cart-menu-close-container']}>
-        <Cart path='/' />
+        <Cart path="/" />
         {/* Render a menu or a close menu button */}
         {menuOpen ? (
           <Icon
+            tabIndex={0}
             path={mdiClose}
             size={1}
             title="Close menu"
@@ -40,6 +41,7 @@ export default function Nav({ menuOpen, menuOpenSetter }) {
           />
         ) : (
           <Icon
+            tabIndex={0}
             path={mdiMenu}
             size={1}
             title="Menu"
