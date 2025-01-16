@@ -8,9 +8,9 @@ import Testimonial from '../Testimonial/Testimonial';
  */
 export default function Testimonials() {
   return (
-    <section className={styles.container}>
+    <section aria-label='testimonial section' className={styles.container}>
       <h2 className={styles.heading}>what our customers say</h2>
-      <div className={styles.testimonials}>
+      <div aria-label='testimonials container' className={styles.testimonials}>
         <Testimonial
           review="Amazing quality and fast shipping!"
           customerName="Alex R."
