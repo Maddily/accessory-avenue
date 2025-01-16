@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 import Hero from './Hero';
@@ -19,21 +19,21 @@ describe('Hero', () => {
   });
 
   it('renders a headline', () => {
-    const heading = screen.getByRole('heading');
+    const heading = within(container).getByRole('heading');
 
-    expect(container).toContainElement(heading);
+    expect(heading).toBeTruthy();
   });
 
   it('renders a paragraph', () => {
-    const p = screen.getByRole('paragraph');
+    const p = within(container).getByRole('paragraph');
 
-    expect(container).toContainElement(p);
+    expect(p).toBeTruthy();
   });
 
   it('renders a CTA button that redirects to the shop page', async () => {
-    const cta = screen.getByRole('link', { name: /shop now/i });
+    const cta = within(container).getByRole('link', { name: /shop now/i });
 
-    expect(container).toContainElement(cta);
+    expect(cta).toBeTruthy();
 
     await user.click(cta);
 
@@ -41,8 +41,8 @@ describe('Hero', () => {
   });
 
   it('renders an image', () => {
-    const image = screen.getByRole('img');
+    const image = within(container).getByRole('img');
 
-    expect(container).toContainElement(image);
+    expect(image).toBeTruthy();
   });
 });
