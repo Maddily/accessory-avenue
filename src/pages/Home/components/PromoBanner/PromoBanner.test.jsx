@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 import PromoBanner from './PromoBanner';
@@ -21,15 +21,15 @@ describe('PromoBanner', () => {
   });
 
   it('renders a heading', () => {
-    const heading = screen.getByRole('heading');
+    const heading = within(banner).getByRole('heading');
 
-    expect(banner).toContainElement(heading);
+    expect(heading).toBeTruthy();
   });
 
   it('renders a CTA button that links to shop page', async () => {
-    const cta = screen.getByRole('link', { name: /shop now/i });
+    const cta = within(banner).getByRole('link', { name: /shop now/i });
 
-    expect(banner).toContainElement(cta);
+    expect(cta).toBeTruthy();
 
     await user.click(cta);
 
