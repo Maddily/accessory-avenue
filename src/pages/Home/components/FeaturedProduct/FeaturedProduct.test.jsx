@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import FeaturedProduct from './FeaturedProduct';
 
@@ -26,38 +26,38 @@ describe('FeaturedProduct', () => {
   });
 
   it('renders the image of the product', () => {
-    const image = screen.getByRole('img', {
+    const image = within(product).getByRole('img', {
       name: /beats flex wireless earphones/i,
     });
 
-    expect(product).toContainElement(image);
+    expect(image).toBeTruthy();
   });
 
   it('renders the name of the product', () => {
-    const name = screen.getByRole('heading', {
+    const name = within(product).getByRole('heading', {
       name: /beats flex wireless earphones/i,
     });
 
-    expect(product).toContainElement(name);
+    expect(name).toBeTruthy();
   });
 
   it('renders the rating', () => {
-    const starRating = screen.getByLabelText('star rating');
-    const rating = screen.getByLabelText('rating');
+    const starRating = within(product).getByLabelText('star rating');
+    const rating = within(product).getByLabelText('rating');
 
-    expect(product).toContainElement(starRating);
-    expect(product).toContainElement(rating);
+    expect(starRating).toBeTruthy();
+    expect(rating).toBeTruthy();
   });
 
   it('renders the price of the product', () => {
-    const price = screen.getByRole('paragraph', { name: 'price' });
+    const price = within(product).getByRole('paragraph', { name: 'price' });
 
-    expect(product).toContainElement(price);
+    expect(price).toBeTruthy();
   });
 
   it('renders an Add to cart button', () => {
-    const button = screen.getByRole('button', { name: /add to cart/i });
+    const button = within(product).getByRole('button', { name: /add to cart/i });
 
-    expect(product).toContainElement(button);
+    expect(button).toBeTruthy();
   });
 });
