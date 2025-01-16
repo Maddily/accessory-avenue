@@ -9,10 +9,10 @@ import styles from './Hero.module.css';
  */
 export default function Hero() {
   return (
-    <section className={styles['hero-container']}>
+    <section aria-label='hero' className={styles['hero-container']}>
       <article className={styles['hero-text']}>
         <h1 className={styles['hero-heading']}>upgrade your everyday tech</h1>
-        <p>
+        <p aria-label='hero paragraph'>
           Premium accessories designed to complement your devices with style and
           functionality.
         </p>
