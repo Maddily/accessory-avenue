@@ -22,15 +22,13 @@ describe('Footer', () => {
     });
     expect(footer).toContainElement(heading);
 
-    const address = screen.getByText(
-      /1234 elm street, suite 567silicon bay, ca 90210/i
-    );
+    const address = screen.getByRole('paragraph', { name: 'address' });
     expect(footer).toContainElement(address);
 
-    const phone = screen.getByText(/\(555\) 123-4567/i);
+    const phone = screen.getByRole('paragraph', { name: 'phone' });
     expect(footer).toContainElement(phone);
 
-    const email = screen.getByText(/support@accessoryavenue\.com/i);
+    const email = screen.getByRole('paragraph', { name: 'email' });
     expect(footer).toContainElement(email);
   });
 
@@ -58,9 +56,9 @@ describe('Footer', () => {
   });
 
   it('renders copyright statement', () => {
-    const copyrightStatement = screen.getByText(
-      /© 2025 the accessory avenue\. all rights reserved\./i
-    );
+    const copyrightStatement = screen.getByRole('paragraph', {
+      name: 'copyright statement',
+    });
 
     expect(footer).toContainElement(copyrightStatement);
   });
