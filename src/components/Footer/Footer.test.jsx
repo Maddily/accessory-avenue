@@ -5,7 +5,7 @@ import Footer from './Footer';
 import FooterLink from '../FooterLink/FooterLink';
 
 vi.mock('../FooterLink/FooterLink');
-FooterLink.mockImplementation(() => <div>Footer Link</div>);
+FooterLink.mockImplementation(() => <div data-testid='footerLink'>Footer Link</div>);
 
 describe('Footer', () => {
   let footer;
@@ -42,7 +42,7 @@ describe('Footer', () => {
     });
 
     expect(footer).toContainElement(heading);
-    expect(screen.queryAllByText('Footer Link').length).toBeGreaterThan(0);
+    expect(screen.queryAllByTestId('footerLink').length).toBeGreaterThan(0);
   });
 
   it('renders payment methods', () => {
