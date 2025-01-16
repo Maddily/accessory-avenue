@@ -16,7 +16,7 @@ export default function Hero() {
           Premium accessories designed to complement your devices with style and
           functionality.
         </p>
-        <Link to='/' className={styles.cta} type="button">
+        <Link to='/shop' className={styles.cta} type="button">
           shop now
         </Link>
       </article>
