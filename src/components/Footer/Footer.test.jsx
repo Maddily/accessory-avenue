@@ -59,7 +59,7 @@ describe('Footer', () => {
 
   it('renders copyright statement', () => {
     const copyrightStatement = screen.getByText(
-      /© 2024 the accessory avenue\. all rights reserved\./i
+      /© 2025 the accessory avenue\. all rights reserved\./i
     );
 
     expect(footer).toContainElement(copyrightStatement);
