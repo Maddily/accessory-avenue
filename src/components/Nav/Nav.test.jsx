@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Nav from './Nav';
 
@@ -14,11 +14,11 @@ describe('Nav', () => {
     const headerNav = screen.getByRole('navigation', {
       name: 'header navigation',
     });
-    const logo = screen.getByRole('img', {
+    const logo = within(headerNav).queryByRole('img', {
       name: 'logo',
     });
 
-    expect(headerNav).toContainElement(logo);
+    expect(logo).toBeTruthy();
   });
 
   it('renders nav buttons', () => {
@@ -31,9 +31,9 @@ describe('Nav', () => {
     const headerNav = screen.getByRole('navigation', {
       name: 'header navigation',
     });
-    const homeButton = screen.getByRole('link', { name: 'home' });
+    const homeButton = within(headerNav).queryByRole('link', { name: 'home' });
 
-    expect(headerNav).toContainElement(homeButton);
+    expect(homeButton).toBeTruthy();
   });
 
   it('renders a menu button in place of close menu button when the menu is collapsed', () => {
@@ -46,10 +46,10 @@ describe('Nav', () => {
     const headerNav = screen.getByRole('navigation', {
       name: 'header navigation',
     });
-    const menuButton = screen.getByLabelText(/menu/i);
-    const closeButton = screen.queryByLabelText(/close menu/i);
+    const menuButton = within(headerNav).queryByLabelText(/menu/i);
+    const closeButton = within(headerNav).queryByLabelText(/close menu/i);
 
-    expect(headerNav).toContainElement(menuButton);
+    expect(menuButton).toBeTruthy();
     expect(closeButton).toBeNull();
   });
 
@@ -63,11 +63,11 @@ describe('Nav', () => {
     const headerNav = screen.getByRole('navigation', {
       name: 'header navigation',
     });
-    const menuButton = screen.queryByLabelText(/^menu$/i);
-    const closeButton = screen.getByLabelText(/close menu/i);
+    const menuButton = within(headerNav).queryByLabelText(/^menu$/i);
+    const closeButton = within(headerNav).getByLabelText(/close menu/i);
 
     expect(menuButton).toBeNull();
-    expect(headerNav).toContainElement(closeButton);
+    expect(closeButton).toBeTruthy();
   });
 
   it('renders a cart button', () => {
@@ -80,10 +80,10 @@ describe('Nav', () => {
     const headerNav = screen.getByRole('navigation', {
       name: 'header navigation',
     });
-    const cartButton = screen.getByRole('link', {
+    const cartButton = within(headerNav).getByRole('link', {
       name: /cart/i,
     });
 
-    expect(headerNav).toContainElement(cartButton);
+    expect(cartButton).toBeTruthy();
   });
 });
