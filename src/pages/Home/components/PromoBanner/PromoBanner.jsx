@@ -8,7 +8,7 @@ import styles from './PromoBanner.module.css';
  */
 export default function PromoBanner() {
   return (
-    <article className={styles.promo}>
+    <article aria-label='promotional banner' className={styles.promo}>
       <h2 className={styles['promo-heading']}>
         Free Shipping on Orders Over $50!
       </h2>
