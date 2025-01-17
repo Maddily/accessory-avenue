@@ -1,7 +1,11 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Testimonials from './Testimonials';
+import Testimonial from '../Testimonial/Testimonial';
+
+vi.mock('../Testimonial/Testimonial');
+Testimonial.mockImplementation(() => <div data-testid="testimonial"></div>);
 
 describe('Testimonial', () => {
   let container;
