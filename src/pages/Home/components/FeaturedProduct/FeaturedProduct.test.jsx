@@ -1,7 +1,23 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import FeaturedProduct from './FeaturedProduct';
+import Stars from '../../../../components/Stars/Stars';
+import AddToCart from '../../../../components/AddToCart/AddToCart';
+
+vi.mock('../../../../components/Stars/Stars');
+vi.mock('../../../../components/AddToCart/AddToCart');
+
+Stars.mockImplementation(() => (
+  <>
+    <span data-testid="star">star</span>
+    <span data-testid="star">star</span>
+    <span data-testid="star">star</span>
+    <span data-testid="star">star</span>
+    <span data-testid="star">star</span>
+  </>
+));
+AddToCart.mockImplementation(() => <button data-testid="add-to-cart"></button>);
 
 describe('FeaturedProduct', () => {
   let product;
@@ -56,7 +72,9 @@ describe('FeaturedProduct', () => {
   });
 
   it('renders an Add to cart button', () => {
-    const button = within(product).queryByRole('button', { name: /add to cart/i });
+    const button = within(product).queryByRole('button', {
+      name: /add to cart/i,
+    });
 
     expect(button).toBeTruthy();
   });
