@@ -72,10 +72,8 @@ describe('FeaturedProduct', () => {
   });
 
   it('renders an Add to cart button', () => {
-    const button = within(product).queryByRole('button', {
-      name: /add to cart/i,
-    });
+    const button = screen.getByTestId('add-to-cart');
 
-    expect(button).toBeTruthy();
+    expect(button).toBeInTheDocument();
   });
 });
