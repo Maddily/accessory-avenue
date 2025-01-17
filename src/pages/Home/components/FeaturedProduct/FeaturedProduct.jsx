@@ -11,17 +11,21 @@ import AddToCart from '../../../../components/AddToCart/AddToCart';
  */
 export default function FeaturedProduct({ product }) {
   return (
-    <article tabIndex={0} aria-label='product' className={styles.product}>
+    <article tabIndex={0} aria-label="product" className={styles.product}>
       <img className={styles.image} src={product.image} alt={product.title} />
       <h3 className={styles['product-title']}>{product.title}</h3>
       <div className={styles.rating}>
-        <span aria-label='star rating'>
+        <span aria-labelledby="product-rating" aria-label="star rating">
           <Stars rating={product.rating} title={product.title} />
         </span>
-        <span aria-label='rating'>{product.rating}</span>
+        <span id="product-rating" aria-label="rating">
+          {product.rating}
+        </span>
       </div>
       <div className={styles['card-footer']}>
-        <p aria-label='price' className={styles.price}>${product.price}</p>
+        <p aria-label="price" className={styles.price}>
+          ${product.price}
+        </p>
         <AddToCart />
       </div>
     </article>
