@@ -27,7 +27,7 @@ describe('FeaturedProducts', () => {
   });
 
   it('renders products', () => {
-    const products = screen.getAllByRole('article', { name: 'product' });
+    const products = screen.getAllByTestId('product');
 
     expect(products.length).not.toEqual(0);
   });
