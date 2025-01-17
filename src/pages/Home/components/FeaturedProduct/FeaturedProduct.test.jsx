@@ -58,10 +58,10 @@ describe('FeaturedProduct', () => {
   });
 
   it('renders the rating', () => {
-    const starRating = within(product).queryByLabelText('star rating');
+    const stars = screen.getAllByTestId('star');
     const rating = within(product).queryByLabelText('rating');
 
-    expect(starRating).toBeTruthy();
+    expect(stars.length).toEqual(5);
     expect(rating).toBeTruthy();
   });
 
