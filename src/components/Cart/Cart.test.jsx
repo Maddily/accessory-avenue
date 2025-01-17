@@ -1,8 +1,12 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 import Cart from './Cart';
+
+vi.mock('lucide-react', () => ({
+  ShoppingCart: vi.fn(() => <svg data-testid='shopping-cart-icon'></svg>)
+}));
 
 describe('Cart', () => {
   let cartLink;
@@ -17,7 +21,7 @@ describe('Cart', () => {
     cartLink = screen.getByRole('link', { name: 'cart' });
   });
 
-  it('renders a link that redirects to the correct path', async () => {
+  it('renders the cart link with the correct path', async () => {
     const user = userEvent.setup();
 
     await user.click(cartLink);
