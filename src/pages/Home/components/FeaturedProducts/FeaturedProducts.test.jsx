@@ -1,7 +1,13 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import FeaturedProducts from './FeaturedProducts';
+import FeaturedProduct from '../FeaturedProduct/FeaturedProduct';
+
+vi.mock('../FeaturedProduct/FeaturedProduct');
+FeaturedProduct.mockImplementation(() => (
+  <div data-testid="product">product</div>
+));
 
 describe('FeaturedProducts', () => {
   beforeEach(() => {
