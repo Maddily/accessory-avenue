@@ -31,9 +31,7 @@ describe('Cart', () => {
   });
 
   it('renders the number of items in the cart', () => {
-    const numberOfItems = screen.getByRole('generic', {
-      name: 'number of items in cart',
-    });
+    const numberOfItems = screen.getByLabelText('number of items in cart');
 
     expect(cartLink).toContainElement(numberOfItems);
   });
