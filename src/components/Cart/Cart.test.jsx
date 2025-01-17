@@ -1,6 +1,5 @@
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 import Cart from './Cart';
 
@@ -22,11 +21,7 @@ describe('Cart', () => {
   });
 
   it('renders the cart link with the correct path', async () => {
-    const user = userEvent.setup();
-
-    await user.click(cartLink);
-
-    expect(window.location.href).toMatch(/cart/);
+    expect(cartLink).toHaveAttribute('href', '/cart');
   });
 
   it('renders the number of items in the cart', () => {
