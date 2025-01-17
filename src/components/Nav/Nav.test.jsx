@@ -1,7 +1,15 @@
-import { describe, it, expect } from 'vitest';
+import { vi, describe, it, expect } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Nav from './Nav';
+import NavButton from '../NavButton/NavButton';
+import Cart from '../Cart/Cart';
+
+vi.mock('../NavButton/NavButton');
+vi.mock('../Cart/Cart');
+
+NavButton.mockImplementation(() => <button data-testid='navButton'>Nav button</button>);
+Cart.mockImplementation(() => <button data-testid='cart'>Cart</button>);
 
 describe('Nav', () => {
   it('renders a logo', () => {
@@ -28,12 +36,9 @@ describe('Nav', () => {
       </BrowserRouter>
     );
 
-    const headerNav = screen.getByRole('navigation', {
-      name: 'header navigation',
-    });
-    const homeButton = within(headerNav).queryByRole('link', { name: 'home' });
+    const navButtons = screen.queryAllByTestId('navButton');
 
-    expect(homeButton).toBeTruthy();
+    expect(navButtons.length).toBeGreaterThan(0);
   });
 
   it('renders a menu button in place of close menu button when the menu is collapsed', () => {
@@ -77,13 +82,8 @@ describe('Nav', () => {
       </BrowserRouter>
     );
 
-    const headerNav = screen.getByRole('navigation', {
-      name: 'header navigation',
-    });
-    const cartButton = within(headerNav).getByRole('link', {
-      name: /cart/i,
-    });
+    const cartButton = screen.getByTestId('cart');
 
-    expect(cartButton).toBeTruthy();
+    expect(cartButton).toBeInTheDocument();
   });
 });
