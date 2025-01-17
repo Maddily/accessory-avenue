@@ -22,7 +22,7 @@ export default function Nav({ menuOpen, menuOpenSetter }) {
           <NavButton value="home" path="/" />
         </li>
         <li className={styles['nav-button-container']}>
-          <NavButton value="shop" path="/" />
+          <NavButton value="shop" path="/shop" />
         </li>
       </ul>
       <div className={styles['cart-menu-close-container']}>
