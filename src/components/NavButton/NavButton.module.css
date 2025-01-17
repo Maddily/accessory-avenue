@@ -4,4 +4,7 @@
   color: black;
   letter-spacing: 1px;
   font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
