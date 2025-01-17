@@ -33,17 +33,35 @@ export default function Stars({ rating, title }) {
           case 1:
             return (
               <Icon
-                aria-label='star'
-                color='gold'
+                aria-labelledby="product-rating"
+                aria-label="star"
+                color="gold"
                 key={i + title}
                 path={mdiStar}
                 size={0.9}
               />
             );
           case 0.5:
-            return <Icon aria-label='star half' color='gold' key={i + title} path={mdiStarHalfFull} size={0.9} />;
+            return (
+              <Icon
+                aria-labelledby="product-rating"
+                aria-label="star half"
+                color="gold"
+                key={i + title}
+                path={mdiStarHalfFull}
+                size={0.9}
+              />
+            );
           default:
-            return <Icon aria-label='empty star' key={i + title} path={mdiStarOutline} size={0.9} />;
+            return (
+              <Icon
+                aria-labelledby="product-rating"
+                aria-label="empty star"
+                key={i + title}
+                path={mdiStarOutline}
+                size={0.9}
+              />
+            );
         }
       })}
     </>
