@@ -27,9 +27,7 @@ describe('Testimonial', () => {
   });
 
   it('renders testimonials', () => {
-    const testimonials = within(container).queryAllByRole('article', {
-      name: 'testimonial',
-    });
+    const testimonials = screen.getAllByTestId('testimonial');
 
     expect(testimonials.length).toBeGreaterThan(0);
   });
