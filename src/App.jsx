@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import useScreenResize from './hooks/useScreenWidth';
 import Nav from './components/Nav/Nav';
 import Menu from './components/Menu/Menu';
@@ -20,6 +21,7 @@ function App() {
     <>
       <Nav menuOpen={menuOpen} menuOpenSetter={(value) => setMenuOpen(value)} />
       {menuOpen && <Menu />}
+      <Outlet />
       <Footer />
     </>
   );
