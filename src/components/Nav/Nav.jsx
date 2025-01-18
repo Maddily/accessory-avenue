@@ -30,6 +30,7 @@ export default function Nav({ menuOpen, menuOpenSetter }) {
         {/* Render a menu or a close menu button */}
         {menuOpen ? (
           <Icon
+            color="#fff"
             tabIndex={0}
             path={mdiClose}
             size={1}
@@ -41,6 +42,7 @@ export default function Nav({ menuOpen, menuOpenSetter }) {
           />
         ) : (
           <Icon
+            color="#fff"
             tabIndex={0}
             path={mdiMenu}
             size={1}
