@@ -5,6 +5,7 @@
   padding: 20px 0 15px 15px;
   animation: expand 400ms ease-in-out;
   transform-origin: top;
+  background: #000;
 }
 
 .menu-buttons {
@@ -26,6 +27,10 @@
   position: relative;
 }
 
+.menu-button-container:hover a {
+  color: #000;
+}
+
 .menu-button-container::after {
   content: '';
   position: absolute;
@@ -33,7 +38,7 @@
   left: 0;
   width: 0;
   height: 100%;
-  background-color: rgba(239, 239, 239, 0.7);
+  background: #fff;
   transition: width 250ms ease-out;
   border-radius: 3px;
 }
@@ -44,22 +49,6 @@
 
 .menu-button-container:hover::after {
   width: 100%;
-}
-
-.cart {
-  position: relative;
-  color: black;
-}
-
-.cart-number {
-  position: absolute;
-  background-color: #dfdfdf;
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  align-content: center;
 }
 
 @media (min-width: 400px) {
