@@ -8,7 +8,7 @@ import PromoBanner from '../PromoBanner/PromoBanner';
  *
  * @returns {JSX.Element}
  */
-export function HomeContent() {
+export default function HomeContent() {
   return (
     <>
       <Hero />
