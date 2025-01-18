@@ -1,0 +1,40 @@
+.shop-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+  align-self: center;
+  width: 100%;
+}
+
+.heading {
+  text-transform: capitalize;
+  margin: 30px auto;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 180px);
+  gap: 10px;
+  justify-content: center;
+  justify-items: center;
+  padding: 0 10px;
+  width: 90%;
+}
+
+@media (min-width: 1000px) {
+  .heading {
+    font-size: 2.5rem;
+  }
+
+  .products {
+    width: 80%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .products {
+    width: 70%;
+    gap: 15px;
+  }
+}
