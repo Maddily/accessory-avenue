@@ -55,7 +55,7 @@ export default function Product({ imageUrl, title, rating, price }) {
         </p>
       </div>
       <div className={styles['input-container']}>
-        <label htmlFor="product-count" className={styles['visually-hidden']}>
+        <label htmlFor={title} className={styles['visually-hidden']}>
           Product count
         </label>
         <button
@@ -75,7 +75,7 @@ export default function Product({ imageUrl, title, rating, price }) {
           className={styles.input}
           type="number"
           name="product count"
-          id="product-count"
+          id={title}
           min={0}
           value={count}
           onChange={stepHandler}
