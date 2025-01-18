@@ -86,16 +86,34 @@
   .nav {
     padding: 0 40px;
   }
+
+  .nav-buttons {
+    margin: 0 5rem 0 auto;
+  }
 }
 
 @media (min-width: 800px) {
   .nav {
     padding: 0 60px;
   }
+
+  .nav-buttons {
+    margin: 0 7rem 0 auto;
+  }
+}
+
+@media (min-width: 1000px) {
+  .nav-buttons {
+    margin: 0 10rem 0 auto;
+  }
 }
 
 @media (min-width: 1200px) {
   .nav {
     padding: 0 80px;
+  }
+
+  .nav-buttons {
+    margin: 0 15rem 0 auto;
   }
 }
