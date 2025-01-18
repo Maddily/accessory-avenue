@@ -59,6 +59,7 @@
 
 .menu-icon {
   cursor: pointer;
+  outline: none;
 }
 
 .x {
