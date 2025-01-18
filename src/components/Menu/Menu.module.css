@@ -6,6 +6,7 @@
   animation: expand 400ms ease-in-out;
   transform-origin: top;
   background: #000;
+  margin-bottom: auto;
 }
 
 .menu-buttons {
