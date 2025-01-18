@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styles from './FeaturedProduct.module.css';
 import Stars from '../../../../components/Stars/Stars';
-import AddToCart from '../../../../components/AddToCart/AddToCart';
+import AddToCart from '../AddToCart/AddToCart';
 
 /**
  * Renders a product.
