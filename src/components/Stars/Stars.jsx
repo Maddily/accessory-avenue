@@ -57,6 +57,7 @@ export default function Stars({ rating, title }) {
               <Icon
                 aria-labelledby="product-rating"
                 aria-label="empty star"
+                color='gold'
                 key={i + title}
                 path={mdiStarOutline}
                 size={0.9}
