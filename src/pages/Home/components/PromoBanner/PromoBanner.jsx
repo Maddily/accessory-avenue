@@ -17,7 +17,7 @@ export default function PromoBanner() {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="30"
-          height="10"
+          height="30"
           viewBox="0 0 46 16"
         >
           <path
