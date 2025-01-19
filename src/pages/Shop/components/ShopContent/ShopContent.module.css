@@ -14,7 +14,7 @@
 
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 180px);
+  grid-template-columns: repeat(auto-fit, 200px);
   gap: 10px;
   justify-content: center;
   justify-items: center;
@@ -36,5 +36,6 @@
   .products {
     width: 70%;
     gap: 15px;
+    grid-template-columns: repeat(auto-fit, 220px);
   }
 }
