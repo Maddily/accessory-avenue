@@ -5,7 +5,7 @@
   justify-content: space-between;
   gap: 10px;
   border-radius: 3px;
-  width: 180px;
+  width: 200px;
   border: 1px solid #f2f2f2;
   padding-bottom: 8px;
   box-shadow: -1px 1px #f2f2f2;
@@ -102,10 +102,15 @@
   background: #527e7c;
   color: #fff;
   cursor: pointer;
-  /* align-self: flex-start;
-  margin-left: 8px; */
 }
 
 .add-to-cart:hover {
   background: #4a7270;
+}
+
+
+@media (min-width: 1200px) {
+  .product {
+    width: 220px;
+  }
 }
