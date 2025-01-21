@@ -26,7 +26,7 @@ export default function ShopContent() {
     );
 
   return (
-    <div className={styles['shop-content']}>
+    <section className={styles['shop-content']}>
       <h1 className={styles.heading}>our products</h1>
       <div className={styles.products}>
         {products.map((product) => (
@@ -39,6 +39,6 @@ export default function ShopContent() {
           />
         ))}
       </div>
-    </div>
+    </section>
   );
 }
