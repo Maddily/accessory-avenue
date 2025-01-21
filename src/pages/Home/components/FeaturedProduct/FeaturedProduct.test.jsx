@@ -3,10 +3,10 @@ import { render, screen, within } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import FeaturedProduct from './FeaturedProduct';
 import Stars from '../../../../components/Stars/Stars';
-import AddToCart from '../../../../components/AddToCart/AddToCart';
+import AddToCart from '../AddToCart/AddToCart';
 
 vi.mock('../../../../components/Stars/Stars');
-vi.mock('../../../../components/AddToCart/AddToCart');
+vi.mock('../AddToCart/AddToCart');
 
 Stars.mockImplementation(() => (
   <>
