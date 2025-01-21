@@ -1,7 +1,6 @@
-import { useLoaderData } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import styles from './ShopContent.module.css';
 import Product from '../Product/Product';
+import useShopContent from './useShopContent';
 import { ThreeDots } from 'react-loader-spinner';
 
 /**
@@ -10,15 +9,7 @@ import { ThreeDots } from 'react-loader-spinner';
  * @returns {JSX.Element}
  */
 export default function ShopContent() {
-  const [loading, setLoading] = useState(true);
-  const { products } = useLoaderData();
-
-  // Set loading state to false two seconds after the component is mounted
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
+  const { loading, products } = useShopContent();
 
   if (loading)
     return (
