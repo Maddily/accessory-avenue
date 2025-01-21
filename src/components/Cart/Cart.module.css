@@ -1,15 +1,11 @@
 .cart {
-  position: relative;
-  color: black;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 }
 
 .cart-number {
-  position: absolute;
-  background-color: #dfdfdf;
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
-  transform: translate(-50%, -50%);
+  color: #fff;
   text-align: center;
-  align-content: center;
+  font-size: 0.7rem;
 }

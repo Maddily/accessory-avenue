@@ -14,8 +14,7 @@ export default function Cart({ path }) {
   return (
     <Link aria-label="cart" to={path} className={styles.cart}>
       <Icon title='Go to cart' color='#fff' path={mdiCart} size={1.2} />
-      {/* Refactor so the number is displayed only if higher than 0 */}
-      <span aria-label='number of items in cart' className={styles['cart-number']}>0</span>
+      <span aria-label='number of items in cart' className={styles['cart-number']}>(0)</span>
     </Link>
   );
 }
