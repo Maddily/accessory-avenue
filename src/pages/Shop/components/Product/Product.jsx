@@ -19,7 +19,7 @@ export default function Product({ imageUrl, title, rating, price }) {
 
   function stepHandler(e) {
     if (e.type === 'change') {
-      const value = e.target.value;
+      const value = +e.target.value;
 
       if (value >= 0) {
         setCount(value);
@@ -56,13 +56,14 @@ export default function Product({ imageUrl, title, rating, price }) {
       </div>
       <div className={styles['input-container']}>
         <label htmlFor={title} className={styles['visually-hidden']}>
-          Product count
+          product count
         </label>
         <button
           className={styles['step-down-button']}
           type="button"
           onClick={stepHandler}
           data-step="down"
+          aria-label='decrease'
         >
           <Icon
             title="Decrease"
@@ -85,6 +86,7 @@ export default function Product({ imageUrl, title, rating, price }) {
           type="button"
           onClick={stepHandler}
           data-step="up"
+          aria-label='increase'
         >
           <Icon
             title="Increase"
