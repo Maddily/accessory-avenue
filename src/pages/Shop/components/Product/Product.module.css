@@ -108,6 +108,22 @@
   background: #4a7270;
 }
 
+.quantity-in-cart {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #565959;
+  font-weight: bold;
+  margin-top: auto;
+}
+
+.remove {
+  background: transparent;
+  border: none;
+  color: #2162a1;
+  cursor: pointer;
+  padding: 0;
+}
+
 
 @media (min-width: 1200px) {
   .product {
