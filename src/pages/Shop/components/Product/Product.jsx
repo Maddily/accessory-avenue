@@ -14,7 +14,7 @@ import styles from './Product.module.css';
 export default function Product(props) {
   const {
     quantity,
-    stepHandler,
+    updateQuantity,
     addToCartHandler,
     removeFromCart,
     quantityInCart,
@@ -45,7 +45,7 @@ export default function Product(props) {
         <button
           className={styles['step-down-button']}
           type="button"
-          onClick={stepHandler}
+          onClick={updateQuantity}
           data-step="down"
           aria-label="decrease"
         >
@@ -63,12 +63,12 @@ export default function Product(props) {
           id={title}
           min={0}
           value={quantity}
-          onChange={stepHandler}
+          onChange={updateQuantity}
         />
         <button
           className={styles['step-up-button']}
           type="button"
-          onClick={stepHandler}
+          onClick={updateQuantity}
           data-step="up"
           aria-label="increase"
         >
