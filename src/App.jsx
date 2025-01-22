@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
+import useCart from './components/Cart/useCart';
 import useScreenResize from './hooks/useScreenWidth';
 import Nav from './components/Nav/Nav';
 import Menu from './components/Menu/Menu';
@@ -9,6 +10,8 @@ import './styles/App.css';
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { productsInCart, updateProductsInCart } = useCart();
+
   /**
    * If screen is resized to 500px in width or higher,
    * menuOpen is set to false (only if it's set to open).
@@ -19,9 +22,15 @@ function App() {
 
   return (
     <>
-      <Nav menuOpen={menuOpen} menuOpenSetter={(value) => setMenuOpen(value)} />
+      <Nav
+        menuOpen={menuOpen}
+        menuOpenSetter={(value) => setMenuOpen(value)}
+        productsInCart={productsInCart}
+      />
       {menuOpen && <Menu />}
-      <Outlet />
+      <Outlet
+        context={[productsInCart, updateProductsInCart]}
+      />
       <Footer />
     </>
   );
