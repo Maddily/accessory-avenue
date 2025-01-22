@@ -13,7 +13,7 @@ import Cart from '../Cart/Cart';
  * @param {function(boolean)} menuOpenSetter - Sets menuOpen state.
  * @returns {JSX.Element}
  */
-export default function Nav({ menuOpen, menuOpenSetter }) {
+export default function Nav({ menuOpen, menuOpenSetter, productsInCart }) {
   return (
     <nav aria-label="header navigation" className={styles.nav}>
       <img className={styles.logo} src={logo} alt="logo" />
@@ -26,7 +26,7 @@ export default function Nav({ menuOpen, menuOpenSetter }) {
         </li>
       </ul>
       <div className={styles['cart-menu-close-container']}>
-        <Cart path="/" />
+        <Cart productsInCart={productsInCart} />
         {/* Render a menu or a close menu button */}
         {menuOpen ? (
           <Icon
@@ -61,4 +61,5 @@ export default function Nav({ menuOpen, menuOpenSetter }) {
 Nav.propTypes = {
   menuOpen: PropTypes.bool,
   menuOpenSetter: PropTypes.func,
+  productsInCart: PropTypes.array,
 };
