@@ -3,9 +3,16 @@
   text-transform: uppercase;
   color: #fff;
   letter-spacing: 1px;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   display: flex;
   align-items: center;
   height: 100%;
   padding: 0 5px;
+  height: 90px;
+}
+
+@media (min-width: 800px) {
+  .nav-button {
+    font-size: 0.9rem;
+  }
 }
