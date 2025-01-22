@@ -2,6 +2,7 @@ import styles from './ShopContent.module.css';
 import Product from '../Product/Product';
 import useShopContent from './useShopContent';
 import { ThreeDots } from 'react-loader-spinner';
+import { useOutletContext } from 'react-router-dom';
 
 /**
  * Renders shopping data: a heading and products
@@ -10,6 +11,7 @@ import { ThreeDots } from 'react-loader-spinner';
  */
 export default function ShopContent() {
   const { loading, products } = useShopContent();
+  const [productsInCart, updateProductsInCart] = useOutletContext();
 
   if (loading)
     return (
@@ -32,10 +34,13 @@ export default function ShopContent() {
         {products.map((product) => (
           <Product
             key={product.id}
+            id={product.id}
             imageUrl={product.thumbnail}
             title={product.title}
             rating={product.rating}
             price={product.price}
+            productsInCart={productsInCart}
+            updateProductsInCart={updateProductsInCart}
           />
         ))}
       </div>
