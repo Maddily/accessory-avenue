@@ -13,7 +13,7 @@ import styles from './Cart.module.css';
  */
 export default function Cart({ productsInCart }) {
   return (
-    <Link aria-label="cart" to='/' className={styles.cart}>
+    <Link aria-label="cart" to='/cart' className={styles.cart}>
       <Icon title="Go to cart" color="#fff" path={mdiCart} size={1.2} />
       <span
         aria-label="number of items in cart"
