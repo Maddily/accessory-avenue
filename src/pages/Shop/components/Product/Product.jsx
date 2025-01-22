@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import useProduct from './useProduct';
 import PropTypes from 'prop-types';
 import Icon from '@mdi/react';
 import { mdilMinusCircle, mdilPlusCircle } from '@mdi/light-js';
@@ -8,34 +8,18 @@ import styles from './Product.module.css';
 /**
  * Renders a product's details.
  *
- * @param {string} imageUrl - The image url of a product
- * @param {string} title - The title of a product
- * @param {number} rating - The rating of the product
- * @param {number} price - The price of the product
+ * @param {object} props - product and cart data.
  * @returns {JSX.Element}
  */
-export default function Product({ imageUrl, title, rating, price }) {
-  const [count, setCount] = useState(0);
-
-  function stepHandler(e) {
-    if (e.type === 'change') {
-      const value = +e.target.value;
-
-      if (value >= 0) {
-        setCount(value);
-      } else {
-        setCount(0);
-      }
-
-      return;
-    }
-
-    const step = e.target.closest('button')?.dataset.step;
-
-    step === 'down' && count > 0 && setCount((count) => count - 1);
-
-    step === 'up' && setCount((count) => count + 1);
-  }
+export default function Product(props) {
+  const {
+    quantity,
+    stepHandler,
+    addToCartHandler,
+    removeFromCart,
+    quantityInCart,
+  } = useProduct(props);
+  const { imageUrl, title, rating, price } = props;
 
   return (
     <article className={styles.product}>
@@ -56,14 +40,14 @@ export default function Product({ imageUrl, title, rating, price }) {
       </div>
       <div className={styles['input-container']}>
         <label htmlFor={title} className={styles['visually-hidden']}>
-          product count
+          product quantity
         </label>
         <button
           className={styles['step-down-button']}
           type="button"
           onClick={stepHandler}
           data-step="down"
-          aria-label='decrease'
+          aria-label="decrease"
         >
           <Icon
             title="Decrease"
@@ -75,10 +59,10 @@ export default function Product({ imageUrl, title, rating, price }) {
         <input
           className={styles.input}
           type="number"
-          name="product count"
+          name="product quantity"
           id={title}
           min={0}
-          value={count}
+          value={quantity}
           onChange={stepHandler}
         />
         <button
@@ -86,7 +70,7 @@ export default function Product({ imageUrl, title, rating, price }) {
           type="button"
           onClick={stepHandler}
           data-step="up"
-          aria-label='increase'
+          aria-label="increase"
         >
           <Icon
             title="Increase"
@@ -96,7 +80,11 @@ export default function Product({ imageUrl, title, rating, price }) {
           />
         </button>
       </div>
-      <button className={styles['add-to-cart']} type="button">
+      <button
+        type="button"
+        className={styles['add-to-cart']}
+        onClick={addToCartHandler}
+      >
         Add to cart
       </button>
     </article>
@@ -104,6 +92,7 @@ export default function Product({ imageUrl, title, rating, price }) {
 }
 
 Product.propTypes = {
+  id: PropTypes.number,
   imageUrl: PropTypes.string,
   title: PropTypes.string,
   rating: PropTypes.number,
