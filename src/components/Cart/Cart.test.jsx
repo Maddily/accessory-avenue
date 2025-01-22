@@ -9,7 +9,7 @@ describe('Cart', () => {
   beforeEach(() => {
     render(
       <BrowserRouter>
-        <Cart path="cart" />
+        <Cart productsInCart={[{ id: 1 }, { id: 2 }]} />
       </BrowserRouter>
     );
 
@@ -24,5 +24,6 @@ describe('Cart', () => {
     const numberOfItems = screen.getByLabelText('number of items in cart');
 
     expect(cartLink).toContainElement(numberOfItems);
+    expect(numberOfItems.textContent).toMatch(/2/);
   });
 });
