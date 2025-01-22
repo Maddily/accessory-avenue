@@ -87,6 +87,17 @@ export default function Product(props) {
       >
         Add to cart
       </button>
+      {quantityInCart && (
+        <p className={styles['quantity-in-cart']}>
+          {quantityInCart} in cart <span style={{fontWeight: 'normal'}}>-</span>{' '}
+          <button
+            onClick={() => removeFromCart(props.id)}
+            className={styles.remove}
+          >
+            Remove
+          </button>
+        </p>
+      )}
     </article>
   );
 }
