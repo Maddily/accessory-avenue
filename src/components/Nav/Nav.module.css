@@ -2,13 +2,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 15px;
+  padding: 5px 15px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.08), 0 2px 4px 0 rgba(0, 0, 0, 0.12);
   background: #000;
 }
 
 .logo {
-  height: 90px;
+  height: 45px;
 }
 
 .nav-buttons {
@@ -27,7 +27,6 @@
 .nav-button-container {
   height: 100%;
   align-content: center;
-  /* padding: 0 5px; */
   position: relative;
   transition: background-color 250ms ease-out;
 }
@@ -69,11 +68,15 @@
 
 @media (min-width: 400px) {
   .nav {
-    padding: 0 30px;
+    padding: 5px 30px;
   }
 }
 
 @media (min-width: 500px) {
+  .nav {
+    padding: 0 30px;
+  }
+
   .nav-buttons {
     display: flex;
   }
@@ -84,6 +87,10 @@
 }
 
 @media (min-width: 600px) {
+  .logo {
+    height: 50px;
+  }
+
   .nav {
     padding: 0 40px;
   }
@@ -94,6 +101,10 @@
 }
 
 @media (min-width: 800px) {
+  .logo {
+    height: 60px;
+  }
+
   .nav {
     padding: 0 60px;
   }
