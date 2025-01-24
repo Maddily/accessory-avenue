@@ -12,6 +12,16 @@ vi.mock('./useShopContent', () => ({
   default: vi.fn(),
 }));
 
+vi.mock('react-router-dom', () => ({
+  useOutletContext: vi.fn(() => [
+    [
+      { id: 1, name: 'product1' },
+      { id: 2, name: 'product2' },
+    ],
+    vi.fn(),
+  ]),
+}));
+
 vi.mock('../Product/Product');
 Product.mockImplementation(() => <div data-testid="product"></div>);
 
