@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Icon from '@mdi/react';
 import { mdilMinusCircle, mdilPlusCircle } from '@mdi/light-js';
 import Stars from '../../../../components/Stars/Stars';
+import QuantityInCart from '../QuantityInCart/QuantityInCart';
 import styles from './Product.module.css';
 
 /**
@@ -87,17 +88,11 @@ export default function Product(props) {
       >
         Add to cart
       </button>
-      {quantityInCart && (
-        <p className={styles['quantity-in-cart']}>
-          {quantityInCart} in cart <span style={{fontWeight: 'normal'}}>-</span>{' '}
-          <button
-            onClick={() => removeFromCart(props.id)}
-            className={styles.remove}
-          >
-            Remove
-          </button>
-        </p>
-      )}
+      <QuantityInCart
+        id={props.id}
+        quantityInCart={quantityInCart}
+        removeFromCart={removeFromCart}
+      />
     </article>
   );
 }
