@@ -95,7 +95,7 @@ export default function useProduct({
 
   const quantityInCart = productsInCart.find(
     (productInCart) => productInCart.id === id
-  )?.quantity;
+  )?.quantity || 0;
 
   return {
     quantity,
