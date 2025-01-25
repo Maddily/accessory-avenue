@@ -3,7 +3,7 @@ import App from '../App';
 import HomeContent from '../pages/Home/components/HomeContent/HomeContent';
 import ShopContent from '../pages/Shop/components/ShopContent/ShopContent';
 import { productsLoader } from './loaders';
-import ErrorPage from '../components/ErrorPage/ErrorPage';
+import ErrorPage from '../pages/Error/ErrorPage/ErrorPage';
 
 const routes = [
   {
