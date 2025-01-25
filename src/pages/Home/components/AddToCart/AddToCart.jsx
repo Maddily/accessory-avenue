@@ -1,13 +1,24 @@
 import styles from './AddToCart.module.css';
+import { useOutletContext } from 'react-router-dom';
+import useProduct from '../../../Shop/components/Product/useProduct';
+import PropTypes from 'prop-types';
 
 /**
  * Renders a cart button.
  *
  * @returns {JSX.Element}
  */
-export default function AddToCart() {
+export default function AddToCart({ product }) {
+  const [productsInCart, updateProductsInCart] = useOutletContext();
+  const { addToCartHandler } = useProduct({
+    ...product,
+    productsInCart,
+    updateProductsInCart,
+    isFeaturedProduct: true,
+  });
+
   return (
-    <button type="button" className={styles.cart}>
+    <button onClick={addToCartHandler} type="button" className={styles.cart}>
       <svg
         aria-label="button"
         xmlns="http://www.w3.org/2000/svg"
@@ -28,3 +39,7 @@ export default function AddToCart() {
     </button>
   );
 }
+
+AddToCart.propTypes = {
+  product: PropTypes.object,
+};
