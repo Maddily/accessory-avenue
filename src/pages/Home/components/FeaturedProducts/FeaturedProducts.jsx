@@ -3,35 +3,35 @@ import styles from './FeaturedProducts.module.css';
 
 const products = [
   {
-    id: 1,
+    id: 100,
     title: 'Apple Airpods',
     price: 129.99,
     rating: 4.38,
-    image:
+    imageUrl:
       'https://cdn.dummyjson.com/products/images/mobile-accessories/Apple%20Airpods/thumbnail.png',
   },
   {
-    id: 2,
+    id: 102,
     title: 'Apple Airpower Wireless Charger',
     price: 79.99,
     rating: 4.51,
-    image:
+    imageUrl:
       'https://cdn.dummyjson.com/products/images/mobile-accessories/Apple%20Airpower%20Wireless%20Charger/thumbnail.png',
   },
   {
-    id: 3,
+    id: 107,
     title: 'Beats Flex Wireless Earphones',
     price: 49.99,
     rating: 4.17,
-    image:
-      'https://cdn.dummyjson.com/products/images/mobile-accessories/Apple%20HomePod%20Mini%20Cosmic%20Grey/thumbnail.png',
+    imageUrl:
+      'https://cdn.dummyjson.com/products/images/mobile-accessories/Beats%20Flex%20Wireless%20Earphones/thumbnail.png',
   },
   {
-    id: 4,
+    id: 112,
     title: 'TV Studio Camera Pedestal',
     price: 499.99,
     rating: 4.05,
-    image:
+    imageUrl:
       'https://cdn.dummyjson.com/products/images/mobile-accessories/TV%20Studio%20Camera%20Pedestal/thumbnail.png',
   },
 ];
