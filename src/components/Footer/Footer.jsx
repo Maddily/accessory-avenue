@@ -44,7 +44,7 @@ export default function Footer() {
               <FooterLink value="home" path="/" />
             </li>
             <li>
-              <FooterLink value="shop" path="/" />
+              <FooterLink value="shop" path="/shop" />
             </li>
           </ul>
         </div>
