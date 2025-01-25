@@ -26,7 +26,7 @@ export default function FeaturedProduct({ product }) {
         <p aria-label="price" className={styles.price}>
           ${product.price}
         </p>
-        <AddToCart />
+        <AddToCart product={product} />
       </div>
     </article>
   );
