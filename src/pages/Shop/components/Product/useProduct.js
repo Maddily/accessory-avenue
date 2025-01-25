@@ -12,7 +12,7 @@ import { useState } from 'react';
  * @param {number} price - The price of the product.
  * @param {array} productsInCart - The products added to cart.
  * @param {function} updateProductsInCart - Updates the products added to cart.
- * 
+ *
  * @returns quantity state and updateQuantity.
  */
 export default function useProduct({
@@ -23,6 +23,7 @@ export default function useProduct({
   price,
   productsInCart,
   updateProductsInCart,
+  isFeaturedProduct = false,
 }) {
   const [quantity, setQuantity] = useState(0);
   let updatedProduct = { id, imageUrl, title, rating, price, quantity };
@@ -55,15 +56,29 @@ export default function useProduct({
 
   // Adds a product to the cart.
   function addToCartHandler() {
-    if (quantity === 0) return;
+    if (quantity === 0) {
+      if (!isFeaturedProduct) {
+        return;
+      }
+    }
 
     const existingProduct = productsInCart.find(
       (productInCart) => productInCart.id === id
     );
 
+    /**
+     * If this is a featured product rendered in the
+     * home page, where the quantity can't be specified
+     * with an input field, make the quantity 1.
+     */
+    if (isFeaturedProduct) {
+      updatedProduct.quantity = 1;
+    }
+
     // If product is in the cart, update its quantity
     if (existingProduct) {
       const existingProductQuantity = existingProduct.quantity;
+
       updatedProduct.quantity += existingProductQuantity;
 
       updateProductsInCart(
@@ -93,9 +108,9 @@ export default function useProduct({
     updateProductsInCart(updatedProducts);
   }
 
-  const quantityInCart = productsInCart.find(
-    (productInCart) => productInCart.id === id
-  )?.quantity || 0;
+  const quantityInCart =
+    productsInCart.find((productInCart) => productInCart.id === id)?.quantity ||
+    0;
 
   return {
     quantity,
