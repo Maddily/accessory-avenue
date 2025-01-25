@@ -12,7 +12,7 @@ import AddToCart from '../AddToCart/AddToCart';
 export default function FeaturedProduct({ product }) {
   return (
     <article tabIndex={0} aria-label="product" className={styles.product}>
-      <img className={styles.image} src={product.image} alt={product.title} />
+      <img className={styles.image} src={product.imageUrl} alt={product.title} />
       <h3 className={styles['product-title']}>{product.title}</h3>
       <div className={styles.rating}>
         <span aria-labelledby="product-rating" aria-label="star rating">
