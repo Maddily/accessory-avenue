@@ -80,7 +80,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <p aria-label='copyright statement' className={styles.copyright}>&#169; 2025 The Accessory Avenue. All rights reserved.</p>
+      <p aria-label='copyright statement' className={styles.copyright}>&#169; {new Date().getFullYear()} The Accessory Avenue. All rights reserved.</p>
     </footer>
   );
 }
