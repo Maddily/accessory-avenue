@@ -29,6 +29,8 @@
   align-content: center;
   position: relative;
   transition: background-color 250ms ease-out;
+  min-width: 50px;
+  justify-items: center;
 }
 
 .nav-button-container::after {
