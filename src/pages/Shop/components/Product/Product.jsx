@@ -85,6 +85,7 @@ export default function Product(props) {
         type="button"
         className={styles['add-to-cart']}
         onClick={addToCartHandler}
+        disabled={!quantity}
       >
         Add to cart
       </button>
