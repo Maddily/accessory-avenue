@@ -21,10 +21,8 @@
 }
 
 .menu-button-container {
-  height: 100%;
   align-content: center;
   width: 80%;
-  padding: 10px 4px 10px 4px;
   position: relative;
 }
 
