@@ -24,6 +24,9 @@ export default function Nav({ menuOpen, menuOpenSetter, productsInCart }) {
         <li className={styles['nav-button-container']}>
           <NavButton value="shop" path="/shop" />
         </li>
+        <li className={styles['nav-button-container']}>
+          <NavButton value="faqs" path="/faqs" />
+        </li>
       </ul>
       <div className={styles['cart-menu-close-container']}>
         <Cart productsInCart={productsInCart} />

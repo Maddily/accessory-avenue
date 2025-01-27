@@ -16,6 +16,9 @@ export default function Menu() {
         <li className={styles['menu-button-container']}>
           <MenuButton value="shop" path="/shop" />
         </li>
+        <li className={styles['menu-button-container']}>
+          <MenuButton value="faqs" path="/faqs" />
+        </li>
       </ul>
     </nav>
   );
