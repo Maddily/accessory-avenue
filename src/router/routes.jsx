@@ -4,6 +4,7 @@ import HomeContent from '../pages/Home/components/HomeContent/HomeContent';
 import ShopContent from '../pages/Shop/components/ShopContent/ShopContent';
 import { productsLoader } from './loaders';
 import ErrorPage from '../pages/Error/components/ErrorPage/ErrorPage';
+import FaqsContent from '../pages/FAQS/components/FaqsContent/FaqsContent';
 
 const routes = [
   {
@@ -33,6 +34,10 @@ const routes = [
           />
         ),
       },
+      {
+        path: '/faqs',
+        element: <FaqsContent />
+      }
     ],
   },
 ];
