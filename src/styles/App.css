@@ -6,6 +6,7 @@ body {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   letter-spacing: 0.7px;
   height: 100vh;
+  overflow: auto;
 }
 
 #root {
