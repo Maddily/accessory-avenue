@@ -17,27 +17,46 @@ export default function Question({ question, answer }) {
   return (
     <article className={styles.question}>
       <div className={styles['question-chevron-container']}>
-        <h3 className={`${styles['question-heading']} ${visible ? styles.colored : ''}`}>{question}</h3>
+        <h3
+          className={`${styles['question-heading']} ${
+            visible ? styles.colored : ''
+          }`}
+        >
+          {question}
+        </h3>
         {visible && (
-          <Icon
+          <button
             className={styles.chevron}
             onClick={() => setVisible(!visible)}
-            path={mdilChevronUp}
-            size={1}
-            title='Hide'
-          />
+          >
+            <Icon
+              aria-label="expand button"
+              path={mdilChevronUp}
+              size={1}
+              title="Hide"
+            />
+          </button>
         )}
         {!visible && (
-          <Icon
+          <button
             className={styles.chevron}
             onClick={() => setVisible(!visible)}
-            path={mdilChevronDown}
-            size={1}
-            title='Expand'
-          />
+          >
+            <Icon
+              aria-label="hide button"
+              path={mdilChevronDown}
+              size={1}
+              title="Expand"
+            />
+          </button>
         )}
       </div>
-      <p className={`${styles.answer} ${visible ? styles.visible : ''}`}>{answer}</p>
+      <p
+        aria-label="answer"
+        className={`${styles.answer} ${visible ? styles.visible : ''}`}
+      >
+        {answer}
+      </p>
     </article>
   );
 }
