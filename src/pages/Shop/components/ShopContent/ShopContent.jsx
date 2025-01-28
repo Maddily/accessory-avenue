@@ -1,6 +1,7 @@
 import styles from './ShopContent.module.css';
 import Product from '../Product/Product';
 import useShopContent from './useShopContent';
+import useLoading from '../../../../hooks/useLoading';
 import { ThreeDots } from 'react-loader-spinner';
 import { useOutletContext } from 'react-router-dom';
 
@@ -10,7 +11,8 @@ import { useOutletContext } from 'react-router-dom';
  * @returns {JSX.Element}
  */
 export default function ShopContent() {
-  const { loading, products } = useShopContent();
+  const { products } = useShopContent();
+  const { loading } = useLoading();
   const [productsInCart, updateProductsInCart] = useOutletContext();
 
   if (loading)
