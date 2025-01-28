@@ -32,29 +32,35 @@ export default function Nav({ menuOpen, menuOpenSetter, productsInCart }) {
         <Cart productsInCart={productsInCart} />
         {/* Render a menu or a close menu button */}
         {menuOpen ? (
-          <Icon
-            color="#fff"
-            tabIndex={0}
-            path={mdiClose}
-            size={1}
-            title="Close menu"
+          <button
             className={styles.x}
             onClick={() => {
               menuOpenSetter(false);
             }}
-          />
+          >
+            <Icon
+              color="#fff"
+              tabIndex={0}
+              path={mdiClose}
+              size={1}
+              title="Close menu"
+            />
+          </button>
         ) : (
-          <Icon
-            color="#fff"
-            tabIndex={0}
-            path={mdiMenu}
-            size={1}
-            title="Menu"
+          <button
             className={styles['menu-icon']}
             onClick={() => {
               menuOpenSetter(true);
             }}
-          />
+          >
+            <Icon
+              color="#fff"
+              tabIndex={0}
+              path={mdiMenu}
+              size={1}
+              title="Menu"
+            />
+          </button>
         )}
       </div>
     </nav>
