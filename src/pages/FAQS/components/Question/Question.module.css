@@ -44,6 +44,7 @@
   max-height: 0;
   overflow: hidden;
   transition: max-height 300ms ease-out, padding 300ms ease-out;
+  will-change: max-height, padding;
 }
 
 .visible {
