@@ -3,11 +3,18 @@ import { render, screen } from '@testing-library/react';
 import ShopContent from './ShopContent';
 import Product from '../Product/Product';
 import useShopContent from './useShopContent';
+import useLoading from '../../../../hooks/useLoading';
 
 vi.mock('react-loader-spinner', () => ({
   ThreeDots: vi.fn(() => <div data-testid="loading-animation"></div>),
 }));
+
 vi.mock('./useShopContent', () => ({
+  __esModule: true,
+  default: vi.fn(),
+}));
+
+vi.mock('../../../../hooks/useLoading', () => ({
   __esModule: true,
   default: vi.fn(),
 }));
@@ -27,8 +34,11 @@ Product.mockImplementation(() => <div data-testid="product"></div>);
 
 describe('ShopContent', () => {
   beforeEach(() => {
-    vi.mocked(useShopContent).mockReturnValue({
+    vi.mocked(useLoading).mockReturnValue({
       loading: false,
+    });
+
+    vi.mocked(useShopContent).mockReturnValue({
       products: [
         { id: 1, name: 'product1' },
         { id: 2, name: 'product2' },
@@ -39,9 +49,8 @@ describe('ShopContent', () => {
   });
 
   it('renders loading component', () => {
-    vi.mocked(useShopContent).mockReturnValueOnce({
+    vi.mocked(useLoading).mockReturnValueOnce({
       loading: true,
-      products: [],
     });
 
     render(<ShopContent />);
