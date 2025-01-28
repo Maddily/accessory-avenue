@@ -46,6 +46,9 @@ export default function Footer() {
             <li>
               <FooterLink value="shop" path="/shop" />
             </li>
+            <li>
+              <FooterLink value="faqs" path="/faqs" />
+            </li>
           </ul>
         </div>
 
