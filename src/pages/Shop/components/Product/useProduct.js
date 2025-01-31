@@ -24,8 +24,9 @@ export default function useProduct({
   productsInCart,
   updateProductsInCart,
   isFeaturedProduct = false,
+  currentQuantity = 0,
 }) {
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(currentQuantity);
   let updatedProduct = { id, imageUrl, title, rating, price, quantity };
 
   /**
@@ -43,15 +44,72 @@ export default function useProduct({
         setQuantity(0);
       }
 
+      /**
+       * if currentQuantity prop is given, this is the cart page.
+       * quantity state and productsInCart are updated in a different
+       * manner in this case.
+       */
+      if (currentQuantity > 0) {
+        if (value > 0) {
+          callUpdateProductsInCart(value);
+        } else {
+          removeFromCart(id);
+        }
+      }
+
       return;
     }
 
     // If the increase/decrease buttons are clicked.
     const step = e.target.closest('button')?.dataset.step;
 
-    step === 'down' && quantity > 0 && setQuantity((quantity) => quantity - 1);
+    if (step === 'down') {
+      /**
+       * if currentQuantity prop is given, this is the cart page.
+       * quantity state and productsInCart are updated in a different
+       * manner in this case.
+       */
+      if (currentQuantity > 0) {
+        if (quantity > 1) {
+          callUpdateProductsInCart(quantity - 1);
+        } else {
+          removeFromCart(id);
+        }
+      }
 
-    step === 'up' && setQuantity((quantity) => quantity + 1);
+      quantity > 0 && setQuantity((quantity) => quantity - 1);
+    }
+
+    if (step === 'up') {
+      /**
+       * if currentQuantity prop is given, this is the cart page.
+       * quantity state and productsInCart are updated in a different
+       * manner in this case.
+       */
+      if (currentQuantity > 0) {
+        callUpdateProductsInCart(quantity + 1);
+      }
+
+      setQuantity((quantity) => quantity + 1);
+    }
+  }
+
+  /**
+   * A helper for the cart page that calls
+   * updateProductsInCart function, which, in turn,
+   * calls setProductsInCart to update productsInCart state.
+   *
+   * @param {number} newQuantity - The product's quantity after updating
+   */
+  function callUpdateProductsInCart(newQuantity) {
+    updateProductsInCart(
+      productsInCart.map((productInCart) => {
+        if (productInCart.id === id) {
+          return { ...updatedProduct, quantity: newQuantity };
+        }
+        return productInCart;
+      })
+    );
   }
 
   // Adds a product to the cart.
