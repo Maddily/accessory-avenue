@@ -5,6 +5,7 @@ import ShopContent from '../pages/Shop/components/ShopContent/ShopContent';
 import { productsLoader } from './loaders';
 import ErrorPage from '../pages/Error/components/ErrorPage/ErrorPage';
 import FaqsContent from '../pages/FAQS/components/FaqsContent/FaqsContent';
+import CartContent from '../pages/Cart/components/CartContent/CartContent';
 
 const faqGroups = [
   {
@@ -120,8 +121,12 @@ const routes = [
       },
       {
         path: '/faqs',
-        element: <FaqsContent faqGroups={faqGroups} />
-      }
+        element: <FaqsContent faqGroups={faqGroups} />,
+      },
+      {
+        path: '/cart',
+        element: <CartContent />,
+      },
     ],
   },
 ];
