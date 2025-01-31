@@ -43,10 +43,38 @@ thead tr {
   display: none;
 }
 
-.cart th:nth-of-type(2), .cart th:last-of-type {
+.cart th:nth-of-type(2),
+.cart th:last-of-type {
   text-align: right;
 }
 
+.empty-cart {
+  text-align: center;
+}
+
+.empty-cart-heading {
+  font-size: 2rem;
+  margin-bottom: 100px;
+}
+
+.home-link {
+  text-decoration: none;
+  background: #527e7c;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 1.1rem;
+  padding: 15px 20px;
+}
+
+.home-link:hover {
+  background: #4a7270;
+}
+
+@media (min-width: 500px) {
+  .empty-cart-heading {
+    font-size: 3rem;
+  }
+}
 @media (min-width: 750px) {
   .cart {
     padding: 0 38px;
@@ -72,10 +100,20 @@ thead tr {
   .total1 {
     display: none;
   }
+
+  .empty-cart-heading {
+    font-size: 3.5rem;
+  }
 }
 
 @media (min-width: 800px) {
   .heading {
     font-size: 3rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .empty-cart-heading {
+    font-size: 4rem;
   }
 }
