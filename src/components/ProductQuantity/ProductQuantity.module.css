@@ -1,0 +1,49 @@
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 8px;
+  margin-top: auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.input {
+  display: inline-flex;
+  border: 1px solid #e4e4e4;
+  border-radius: 3px;
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  width: 60%;
+  outline: none;
+  text-align: center;
+}
+
+.input::-webkit-inner-spin-button,
+.input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.step-down-button {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  width: fit-content;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.step-up-button {
+  composes: step-down-button;
+}
