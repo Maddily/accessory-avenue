@@ -13,6 +13,7 @@
 .cart-items {
   width: 100%;
   border-collapse: separate;
+  border-bottom: 1px solid rgba(18, 18, 18, 0.2);
 }
 
 .visually-hidden {
