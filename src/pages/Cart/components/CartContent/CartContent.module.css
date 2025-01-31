@@ -56,6 +56,8 @@ thead tr {
 .empty-cart-heading {
   font-size: 2rem;
   margin-bottom: 100px;
+  text-transform: uppercase;
+  color: #333333;
 }
 
 .home-link {
