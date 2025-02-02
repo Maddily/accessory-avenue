@@ -2,12 +2,29 @@ import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { render, screen, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Product from './Product';
+import useProduct from './useProduct';
 import Stars from '../../../../components/Stars/Stars';
+import ProductQuantity from '../ProductQuantity/ProductQuantity';
+import QuantityInCart from '../QuantityInCart/QuantityInCart';
 
+vi.mock('./useProduct');
 vi.mock('../../../../components/Stars/Stars');
+vi.mock('../ProductQuantity/ProductQuantity');
+vi.mock('../QuantityInCart/QuantityInCart');
+
 Stars.mockImplementation(() => <div data-testid="stars"></div>);
 
+ProductQuantity.mockImplementation(() => (
+  <div data-testid="product quantity"></div>
+));
+
+QuantityInCart.mockImplementation(() => (
+  <div data-testid="quantity in cart"></div>
+));
+
 describe('Product', () => {
+  let user;
+
   const props = {
     id: 1,
     imageUrl: 'url',
@@ -17,17 +34,21 @@ describe('Product', () => {
     productsInCart: [{ id: 2 }, { id: 3 }],
     updateProductsInCart: vi.fn(),
   };
-  let user, input, increase, decrease, addToCartButton;
+
+  const useProductMock = {
+    quantity: 1,
+    updateQuantity: vi.fn(),
+    addToCartHandler: vi.fn(),
+    removeFromCart: vi.fn(),
+    quantityInCart: 0,
+  };
 
   beforeEach(() => {
-    render(<Product {...props} />);
-
     user = userEvent.setup();
 
-    input = screen.getByLabelText('product quantity');
-    decrease = screen.getByRole('button', { name: 'decrease' });
-    increase = screen.getByRole('button', { name: 'increase' });
-    addToCartButton = screen.getByRole('button', { name: /add to cart/i });
+    useProduct.mockReturnValue(useProductMock);
+
+    render(<Product {...props} />);
   });
 
   afterEach(() => {
@@ -66,48 +87,39 @@ describe('Product', () => {
     expect(price.textContent).toEqual('$10');
   });
 
-  it('renders an input field to specify the quantity', () => {
-    expect(input).toBeInTheDocument();
+  it('renders ProductQuantity component', () => {
+    const productQuantity = screen.getByTestId('product quantity');
+
+    expect(productQuantity).toBeInTheDocument();
+    expect(ProductQuantity).toHaveBeenCalledWith(
+      expect.objectContaining({
+        title: props.title,
+        updateQuantity: useProductMock.updateQuantity,
+        quantity: useProductMock.quantity,
+      }),
+      {}
+    );
   });
 
-  it('does not decrease the quantity below 0 when a number below 0 is entered', () => {
-    user.type(input, '-1');
+  it('renders QuantityInCart component', () => {
+    const quantityInCart = screen.getByTestId('quantity in cart');
 
-    expect(input.value).toEqual('0');
+    expect(quantityInCart).toBeInTheDocument();
+    expect(QuantityInCart).toHaveBeenCalledWith(
+      expect.objectContaining({
+        id: props.id,
+        quantityInCart: useProductMock.quantityInCart,
+        removeFromCart: useProductMock.removeFromCart,
+      }),
+      {}
+    );
   });
 
-  it('renders buttons to increase and decrease the quantity', () => {
-    expect(decrease).toBeInTheDocument();
-    expect(increase).toBeInTheDocument();
-  });
+  it('calls addToCartHandler when the "Add to cart" button is clicked', async () => {
+    const addToCart = screen.getByRole('button', { name: /add to cart/i });
 
-  it('does not decrease the quantity below 0 when the decrease button is clicked', async () => {
-    expect(input.value).toEqual('0');
+    await user.click(addToCart);
 
-    await user.click(decrease);
-
-    expect(input.value).toEqual('0');
-  });
-
-  it('decreases the quantity when the decrease button is clicked', async () => {
-    await user.type(input, '5');
-    await user.click(decrease);
-
-    expect(input.value).toEqual('4');
-  });
-
-  it('increases the quantity when the increase button is clicked', async () => {
-    await user.type(input, '5');
-    await user.click(increase);
-
-    expect(input.value).toEqual('6');
-  });
-
-  it('Resets the displayed quantity to zero when Add to cart button is clicked', async () => {
-    await user.type(input, '5');
-    expect(input.value).toEqual('5');
-
-    await user.click(addToCartButton);
-    expect(input.value).toEqual('0');
+    expect(useProductMock.addToCartHandler).toHaveBeenCalled();
   });
 });
