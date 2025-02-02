@@ -2,7 +2,7 @@ import useProduct from './useProduct';
 import PropTypes from 'prop-types';
 import Stars from '../../../../components/Stars/Stars';
 import QuantityInCart from '../QuantityInCart/QuantityInCart';
-import ProductQuantity from '../../../../components/ProductQuantity/ProductQuantity';
+import ProductQuantity from '../ProductQuantity/ProductQuantity';
 import styles from './Product.module.css';
 
 /**
