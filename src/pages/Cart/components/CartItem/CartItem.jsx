@@ -24,9 +24,9 @@ export default function CartItem({ productInCart }) {
       </td>
       <td className={styles['product-details']}>
         <h2 className={styles['product-title']}>{productInCart.title}</h2>
-        <p className={styles['product-price']}>${productInCart.price}</p>
+        <p aria-label='product price' className={styles['product-price']}>${productInCart.price}</p>
       </td>
-      <td className={styles['total1-data']}>
+      <td aria-label='total price' className={styles['total1-data']}>
         ${productInCart.quantity * productInCart.price}
       </td>
       <td className={styles['quantity-data']}>
@@ -39,7 +39,7 @@ export default function CartItem({ productInCart }) {
           quantity={quantity}
         />
       </td>
-      <td className={styles['total2-data']}>
+      <td aria-label='total price' className={styles['total2-data']}>
         ${productInCart.quantity * productInCart.price}
       </td>
     </tr>
