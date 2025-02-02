@@ -3,6 +3,14 @@ import { mdilMinusCircle, mdilPlusCircle } from '@mdi/light-js';
 import PropTypes from 'prop-types';
 import styles from './ProductQuantity.module.css';
 
+/**
+ *
+ * @param {number} id - The id of a product.
+ * @param {string} title - The title of a product
+ * @param {function} updateQuantity - Updates the quantity of a product.
+ * @param {number} quantity - The quantity of a product.
+ * @returns
+ */
 export default function ProductQuantity({
   id,
   title,
