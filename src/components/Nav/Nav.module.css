@@ -7,6 +7,11 @@
   background: #000;
 }
 
+.logo-link {
+  display: flex;
+  align-items: center;
+}
+
 .logo {
   height: 45px;
 }
