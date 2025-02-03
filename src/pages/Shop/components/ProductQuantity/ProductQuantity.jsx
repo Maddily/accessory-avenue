@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import styles from './ProductQuantity.module.css';
 
 /**
+ * Renders an input field for quantity input along
+ * with two buttons to decrease/increase the quantity.
  *
  * @param {number} id - The id of a product.
  * @param {string} title - The title of a product
  * @param {function} updateQuantity - Updates the quantity of a product.
  * @param {number} quantity - The quantity of a product.
- * @returns
+ * @returns {JSX.Element}
  */
 export default function ProductQuantity({
   id,
