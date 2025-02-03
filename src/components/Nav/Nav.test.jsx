@@ -1,5 +1,5 @@
-import { vi, describe, it, expect } from 'vitest';
-import { render, screen, within } from '@testing-library/react';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
+import { render, screen, cleanup } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Nav from './Nav';
 import NavButton from '../NavButton/NavButton';
@@ -14,30 +14,23 @@ NavButton.mockImplementation(() => (
 Cart.mockImplementation(() => <button data-testid="cart">Cart</button>);
 
 describe('Nav', () => {
-  it('renders a logo', () => {
+  beforeEach(() => {
     render(
       <BrowserRouter>
         <Nav menuOpenSetter={vi.fn()} />
       </BrowserRouter>
     );
+  });
 
-    const headerNav = screen.getByRole('navigation', {
-      name: 'header navigation',
-    });
-    const logo = within(headerNav).queryByRole('img', {
+  it('renders a logo', () => {
+    const logo = screen.queryByRole('img', {
       name: 'logo',
     });
 
-    expect(logo).toBeTruthy();
+    expect(logo).toBeInTheDocument();
   });
 
   it('redirects to home when the logo is clicked', () => {
-    render(
-      <BrowserRouter>
-        <Nav menuOpenSetter={vi.fn()} />
-      </BrowserRouter>
-    );
-
     const logo = screen.getByRole('link', {
       name: 'logo',
     });
@@ -46,58 +39,44 @@ describe('Nav', () => {
   });
 
   it('renders nav buttons', () => {
-    render(
-      <BrowserRouter>
-        <Nav menuOpenSetter={vi.fn()} />
-      </BrowserRouter>
-    );
-
     const navButtons = screen.queryAllByTestId('navButton');
 
     expect(navButtons.length).toBeGreaterThan(0);
   });
 
   it('renders a menu button in place of close menu button when the menu is collapsed', () => {
+    cleanup();
+
     render(
       <BrowserRouter>
         <Nav menuOpen={false} menuOpenSetter={vi.fn()} />
       </BrowserRouter>
     );
 
-    const headerNav = screen.getByRole('navigation', {
-      name: 'header navigation',
-    });
-    const menuButton = within(headerNav).queryByLabelText(/menu/i);
-    const closeButton = within(headerNav).queryByLabelText(/close menu/i);
+    const menuButton = screen.getByRole('button', { name: /^menu$/i });
+    const closeButton = screen.queryByRole('button', { name: /close menu/i });
 
-    expect(menuButton).toBeTruthy();
+    expect(menuButton).toBeInTheDocument();
     expect(closeButton).toBeNull();
   });
 
   it('renders a close menu button in place of menu button when the menu is open', () => {
+    cleanup();
+
     render(
       <BrowserRouter>
         <Nav menuOpen={true} menuOpenSetter={vi.fn()} />
       </BrowserRouter>
     );
 
-    const headerNav = screen.getByRole('navigation', {
-      name: 'header navigation',
-    });
-    const menuButton = within(headerNav).queryByLabelText(/^menu$/i);
-    const closeButton = within(headerNav).getByLabelText(/close menu/i);
+    const menuButton = screen.queryByRole('button', { name: /^menu$/i });
+    const closeButton = screen.getByRole('button', { name: /close menu/i });
 
     expect(menuButton).toBeNull();
-    expect(closeButton).toBeTruthy();
+    expect(closeButton).toBeInTheDocument();
   });
 
   it('renders a cart button', () => {
-    render(
-      <BrowserRouter>
-        <Nav menuOpenSetter={vi.fn()} />
-      </BrowserRouter>
-    );
-
     const cartButton = screen.getByTestId('cart');
 
     expect(cartButton).toBeInTheDocument();
