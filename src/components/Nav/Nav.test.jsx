@@ -15,7 +15,7 @@ describe('Nav', () => {
   it('renders a logo', () => {
     render(
       <BrowserRouter>
-        <Nav />
+        <Nav menuOpenSetter={vi.fn()} />
       </BrowserRouter>
     );
 
@@ -32,7 +32,7 @@ describe('Nav', () => {
   it('renders nav buttons', () => {
     render(
       <BrowserRouter>
-        <Nav />
+        <Nav menuOpenSetter={vi.fn()} />
       </BrowserRouter>
     );
 
@@ -44,7 +44,7 @@ describe('Nav', () => {
   it('renders a menu button in place of close menu button when the menu is collapsed', () => {
     render(
       <BrowserRouter>
-        <Nav menuOpen={false} />
+        <Nav menuOpen={false} menuOpenSetter={vi.fn()} />
       </BrowserRouter>
     );
 
@@ -61,7 +61,7 @@ describe('Nav', () => {
   it('renders a close menu button in place of menu button when the menu is open', () => {
     render(
       <BrowserRouter>
-        <Nav menuOpen={true} />
+        <Nav menuOpen={true} menuOpenSetter={vi.fn()} />
       </BrowserRouter>
     );
 
@@ -78,7 +78,7 @@ describe('Nav', () => {
   it('renders a cart button', () => {
     render(
       <BrowserRouter>
-        <Nav />
+        <Nav menuOpenSetter={vi.fn()} />
       </BrowserRouter>
     );
 
