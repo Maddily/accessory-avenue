@@ -17,7 +17,7 @@ describe('Nav', () => {
   beforeEach(() => {
     render(
       <BrowserRouter>
-        <Nav menuOpenSetter={vi.fn()} />
+        <Nav menuOpenSetter={vi.fn()} productsInCart={[{ id: 1 }, { id: 2 }]} />
       </BrowserRouter>
     );
   });
@@ -49,7 +49,11 @@ describe('Nav', () => {
 
     render(
       <BrowserRouter>
-        <Nav menuOpen={false} menuOpenSetter={vi.fn()} />
+        <Nav
+          menuOpen={false}
+          menuOpenSetter={vi.fn()}
+          productsInCart={[{ id: 1 }, { id: 2 }]}
+        />
       </BrowserRouter>
     );
 
@@ -65,7 +69,11 @@ describe('Nav', () => {
 
     render(
       <BrowserRouter>
-        <Nav menuOpen={true} menuOpenSetter={vi.fn()} />
+        <Nav
+          menuOpen={true}
+          menuOpenSetter={vi.fn()}
+          productsInCart={[{ id: 1 }, { id: 2 }]}
+        />
       </BrowserRouter>
     );
 
