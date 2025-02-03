@@ -4,6 +4,12 @@ import useProduct from '../../../Shop/components/Product/useProduct';
 import styles from './CartItem.module.css';
 import PropTypes from 'prop-types';
 
+/**
+ * Renders cart item image, title, price and quantity.
+ *
+ * @param {object} productInCart - The data of a product added to the cart.
+ * @returns {JSX.Element}
+ */
 export default function CartItem({ productInCart }) {
   const [productsInCart, updateProductsInCart] = useOutletContext();
   const currentQuantity = productInCart.quantity;
