@@ -9,7 +9,7 @@ describe('Cart', () => {
   beforeEach(() => {
     render(
       <BrowserRouter>
-        <Cart productsInCart={[{ id: 1 }, { id: 2 }]} />
+        <Cart noOfProductsInCart={2} />
       </BrowserRouter>
     );
 
