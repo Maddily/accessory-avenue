@@ -1,13 +1,15 @@
+.cart-container {
+  margin-bottom: 50px;
+}
+
 .cart {
   padding: 0 15px;
-  margin-bottom: 50px;
 }
 
 .heading {
   text-transform: uppercase;
   text-align: center;
   color: #333333;
-  margin-bottom: 80px;
 }
 
 .cart-items {
@@ -24,7 +26,6 @@
 
 thead tr {
   border-bottom: 1px solid rgba(18, 18, 18, 0.2);
-  margin-bottom: 2rem;
   display: flex;
   justify-content: space-between;
 }
