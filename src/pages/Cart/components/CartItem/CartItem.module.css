@@ -2,12 +2,10 @@
   display: grid;
   grid-template: repeat(2, auto) / repeat(4, 1fr);
   gap: 1.5rem;
-  margin-bottom: 50px;
   border-bottom: 1px solid rgba(18, 18, 18, 0.1);
 }
 
 .cart-item:last-of-type {
-  margin-bottom: 0;
   border-bottom: none;
 }
 
@@ -64,14 +62,22 @@
     display: none;
   }
 
-  .total2-data {
+  .cart-item .total2-data {
     display: table-cell;
+    padding-top: 30px;
+  }
+}
+
+@media (min-width: 900px) {
+  .product-title {
+    font-size: 1.5rem;
   }
 }
 
 @media (min-width: 800px) {
-  .product-title {
-    font-size: 1.5rem;
+  .cart-item .total2-data {
+    font-size: 1rem;
+    padding-top: 32px;
   }
 }
 
@@ -86,10 +92,5 @@
 
   .product-price {
     font-size: 0.85rem;
-  }
-
-  .total1-data,
-  .total2-data {
-    font-size: 1rem;
   }
 }
