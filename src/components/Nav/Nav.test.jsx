@@ -8,8 +8,10 @@ import Cart from '../Cart/Cart';
 vi.mock('../NavButton/NavButton');
 vi.mock('../Cart/Cart');
 
-NavButton.mockImplementation(() => <button data-testid='navButton'>Nav button</button>);
-Cart.mockImplementation(() => <button data-testid='cart'>Cart</button>);
+NavButton.mockImplementation(() => (
+  <button data-testid="navButton">Nav button</button>
+));
+Cart.mockImplementation(() => <button data-testid="cart">Cart</button>);
 
 describe('Nav', () => {
   it('renders a logo', () => {
@@ -27,6 +29,20 @@ describe('Nav', () => {
     });
 
     expect(logo).toBeTruthy();
+  });
+
+  it('redirects to home when the logo is clicked', () => {
+    render(
+      <BrowserRouter>
+        <Nav menuOpenSetter={vi.fn()} />
+      </BrowserRouter>
+    );
+
+    const logo = screen.getByRole('link', {
+      name: 'logo',
+    });
+
+    expect(logo).toHaveAttribute('href', '/');
   });
 
   it('renders nav buttons', () => {
