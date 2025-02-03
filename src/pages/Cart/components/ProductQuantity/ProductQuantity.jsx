@@ -4,6 +4,20 @@ import { mdilMinusCircle, mdilPlusCircle, mdilDelete } from '@mdi/light-js';
 import PropTypes from 'prop-types';
 import styles from './ProductQuantity.module.css';
 
+/**
+ * Renders an input field for quantity input along
+ * with two buttons to decrease/increase the quantity,
+ * and a button to delete the product from the cart.
+ *
+ * @param {number} id - The id of a product.
+ * @param {string} title - The title of a product.
+ * @param {function} updateQuantity - A function to update the quantity.
+ * @param {array} productsInCart - The products added to the cart.
+ * @param {function} updateProductsInCart - A function to update the
+ * products added to the cart.
+ * @param {number} quantity - The quantity of the product added to the cart.
+ * @returns {JSX.Element}
+ */
 export default function ProductQuantity({
   id,
   title,
