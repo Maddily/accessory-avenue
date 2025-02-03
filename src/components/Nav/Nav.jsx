@@ -4,6 +4,7 @@ import NavButton from '../NavButton/NavButton';
 import Icon from '@mdi/react';
 import { mdiMenu, mdiClose } from '@mdi/js';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Cart from '../Cart/Cart';
 import useNav from './useNav';
 
@@ -19,7 +20,9 @@ export default function Nav({ menuOpen, menuOpenSetter, productsInCart }) {
 
   return (
     <nav aria-label="header navigation" className={styles.nav}>
-      <img className={styles.logo} src={logo} alt="logo" />
+      <Link to='/'>
+        <img className={styles.logo} src={logo} alt="logo" />
+      </Link>
       <ul className={styles['nav-buttons']}>
         <li className={styles['nav-button-container']}>
           <NavButton value="home" path="/" />
