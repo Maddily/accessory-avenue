@@ -5,6 +5,7 @@ import Icon from '@mdi/react';
 import { mdiMenu, mdiClose } from '@mdi/js';
 import PropTypes from 'prop-types';
 import Cart from '../Cart/Cart';
+import useNav from './useNav';
 
 /**
  * Renders a nav contaning the logo, nav links and cart button.
@@ -14,6 +15,8 @@ import Cart from '../Cart/Cart';
  * @returns {JSX.Element}
  */
 export default function Nav({ menuOpen, menuOpenSetter, productsInCart }) {
+  useNav(menuOpenSetter);
+
   return (
     <nav aria-label="header navigation" className={styles.nav}>
       <img className={styles.logo} src={logo} alt="logo" />
