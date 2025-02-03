@@ -77,7 +77,11 @@
   }
 }
 
-@media (min-width: 500px) {
+@media (min-width: 600px) {
+  .logo {
+    height: 50px;
+  }
+
   .nav {
     padding: 0 30px;
   }
@@ -91,20 +95,6 @@
   }
 }
 
-@media (min-width: 600px) {
-  .logo {
-    height: 50px;
-  }
-
-  .nav {
-    padding: 0 40px;
-  }
-
-  .nav-buttons {
-    margin: 0 5rem 0 auto;
-  }
-}
-
 @media (min-width: 800px) {
   .logo {
     height: 60px;
@@ -112,10 +102,6 @@
 
   .nav {
     padding: 0 60px;
-  }
-
-  .nav-buttons {
-    margin: 0 7rem 0 auto;
   }
 }
 
@@ -128,9 +114,5 @@
 @media (min-width: 1200px) {
   .nav {
     padding: 0 80px;
-  }
-
-  .nav-buttons {
-    margin: 0 15rem 0 auto;
   }
 }
