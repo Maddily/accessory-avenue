@@ -1,12 +1,16 @@
 import { vi, describe, it, expect, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import CartContent from './CartContent';
 import useLoading from '../../../../hooks/useLoading';
 import CartItem from '../CartItem/CartItem';
+import CartFooter from '../CartFooter/CartFooter';
 import { useOutletContext } from 'react-router-dom';
 
 vi.mock('../CartItem/CartItem');
-CartItem.mockImplementation(() => <div data-testid="cart item"></div>);
+CartItem.mockImplementation(() => <div data-testid="cart-item"></div>);
+
+vi.mock('../CartFooter/CartFooter');
+CartFooter.mockImplementation(() => <div data-testid="cart-footer"></div>);
 
 vi.mock('react-loader-spinner', () => ({
   ThreeDots: vi.fn(() => <div data-testid="loading-animation"></div>),
@@ -86,8 +90,26 @@ describe('CartContent', () => {
   });
 
   it('renders cart items', () => {
-    const cartItems = screen.getAllByTestId('cart item');
+    const cartItems = screen.getAllByTestId('cart-item');
 
     expect(cartItems.length).toEqual(2);
+  });
+
+  it('renders a cart footer', () => {
+    const cartFooter = screen.getByTestId('cart-footer');
+
+    expect(cartFooter).toBeInTheDocument();
+  });
+
+  it('does not render a cart footer when there are no products added to the cart', () => {
+    cleanup();
+
+    vi.mocked(useOutletContext).mockReturnValueOnce([[], vi.fn()]);
+
+    render(<CartContent />);
+
+    const cartFooter = screen.queryByTestId('cart-footer');
+
+    expect(cartFooter).toBeNull();
   });
 });
