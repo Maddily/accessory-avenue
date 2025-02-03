@@ -35,7 +35,7 @@ export default function Nav({ menuOpen, menuOpenSetter, productsInCart }) {
         </li>
       </ul>
       <div className={styles['cart-menu-close-container']}>
-        <Cart productsInCart={productsInCart} />
+        <Cart noOfProductsInCart={productsInCart.length} />
         {/* Render a menu or a close menu button */}
         {menuOpen ? (
           <button
