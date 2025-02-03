@@ -4,7 +4,7 @@ import FaqsGroup from './FaqsGroup';
 import Question from '../Question/Question';
 
 vi.mock('../Question/Question');
-Question.mockImplementation(() => <div data-testId="question"></div>);
+Question.mockImplementation(() => <div data-testid="question"></div>);
 
 describe('FaqsGroup', () => {
   const questionsAndAnswers = [

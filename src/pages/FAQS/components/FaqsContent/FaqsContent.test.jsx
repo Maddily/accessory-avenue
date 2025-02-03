@@ -14,7 +14,7 @@ vi.mock('react-loader-spinner', () => ({
 }));
 
 vi.mock('../FaqsGroup/FaqsGroup');
-FaqsGroup.mockImplementation(() => <div data-testId="group"></div>);
+FaqsGroup.mockImplementation(() => <div data-testid="group"></div>);
 
 describe('FaqsContent', () => {
   const faqGroups = [
