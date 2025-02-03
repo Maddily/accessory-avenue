@@ -11,7 +11,7 @@ import styles from './Cart.module.css';
  * @param {array} productsInCart - The product objects added to cart.
  * @returns {JSX.Element}
  */
-export default function Cart({ productsInCart }) {
+export default function Cart({ noOfProductsInCart }) {
   return (
     <Link aria-label="cart" to='/cart' className={styles.cart}>
       <Icon title="Go to cart" color="#fff" path={mdiCart} size={1.2} />
@@ -19,12 +19,12 @@ export default function Cart({ productsInCart }) {
         aria-label="number of items in cart"
         className={styles['cart-number']}
       >
-        ({productsInCart.length})
+        ({noOfProductsInCart})
       </span>
     </Link>
   );
 }
 
 Cart.propTypes = {
-  productsInCart: PropTypes.array,
+  noOfProductsInCart: PropTypes.number,
 };
