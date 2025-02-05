@@ -7,7 +7,7 @@ import CartFooter from '../CartFooter/CartFooter';
 import { useOutletContext } from 'react-router-dom';
 
 vi.mock('../CartItem/CartItem');
-CartItem.mockImplementation(() => <div data-testid="cart-item"></div>);
+CartItem.mockImplementation(() => <tr data-testid="cart-item"></tr>);
 
 vi.mock('../CartFooter/CartFooter');
 CartFooter.mockImplementation(() => <div data-testid="cart-footer"></div>);
