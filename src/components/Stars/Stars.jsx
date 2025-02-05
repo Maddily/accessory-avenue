@@ -33,7 +33,6 @@ export default function Stars({ rating, title }) {
           case 1:
             return (
               <Icon
-                aria-labelledby="product-rating"
                 aria-label="star"
                 color="gold"
                 key={i + title}
@@ -44,7 +43,6 @@ export default function Stars({ rating, title }) {
           case 0.5:
             return (
               <Icon
-                aria-labelledby="product-rating"
                 aria-label="star half"
                 color="gold"
                 key={i + title}
@@ -55,7 +53,6 @@ export default function Stars({ rating, title }) {
           default:
             return (
               <Icon
-                aria-labelledby="product-rating"
                 aria-label="empty star"
                 color='gold'
                 key={i + title}
