@@ -21,6 +21,7 @@ export default function Question({ question, answer }) {
           className={`${styles['question-heading']} ${
             visible ? styles.colored : ''
           }`}
+          onClick={() => setVisible(!visible)}
         >
           {question}
         </h3>
