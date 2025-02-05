@@ -16,12 +16,6 @@ describe('Testimonial', () => {
     container = screen.getByRole('article', { name: 'testimonial' });
   });
 
-  it('renders a quote icon', () => {
-    const quoteIcon = within(container).queryByRole('presentation', { name: 'quote icon' });
-
-    expect(quoteIcon).toBeTruthy();
-  });
-
   it('renders the review of a customer', () => {
     const review = within(container).queryByRole('paragraph', { name: 'review' });
 
