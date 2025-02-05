@@ -12,10 +12,14 @@ import PropTypes from 'prop-types';
  */
 export default function Testimonial({ review, customerName }) {
   return (
-    <article aria-label='testimonial' className={styles.container}>
-      <Icon aria-label='quote icon' path={mdiFormatQuoteOpen} size={1} />
-      <p aria-label='review'><q>{review}</q></p>
-      <p aria-label='customer name' className={styles['customer-name']}>— {customerName}</p>
+    <article aria-label="testimonial" className={styles.container}>
+      <Icon aria-hidden="true" path={mdiFormatQuoteOpen} size={1} />
+      <p aria-label="review">
+        <q>{review}</q>
+      </p>
+      <p aria-label="customer name" className={styles['customer-name']}>
+        — {customerName}
+      </p>
     </article>
   );
 }
