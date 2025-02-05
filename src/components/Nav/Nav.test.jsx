@@ -32,7 +32,7 @@ describe('Nav', () => {
 
   it('redirects to home when the logo is clicked', () => {
     const logo = screen.getByRole('link', {
-      name: 'logo',
+      name: /go to home page/i,
     });
 
     expect(logo).toHaveAttribute('href', '/');
