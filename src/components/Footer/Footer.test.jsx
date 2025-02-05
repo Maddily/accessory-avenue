@@ -1,39 +1,32 @@
 import { vi, describe, it, expect, beforeEach } from 'vitest';
-import { render, screen, within } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { render, screen } from '@testing-library/react';
 import Footer from './Footer';
 import FooterLink from '../FooterLink/FooterLink';
+import ContactDetail from '../ContactDetail/ContactDetail';
 
 vi.mock('../FooterLink/FooterLink');
-FooterLink.mockImplementation(() => <div data-testid='footerLink'>Footer Link</div>);
+vi.mock('../ContactDetail/ContactDetail');
+
+FooterLink.mockImplementation(() => (
+  <div data-testid="footerLink">Footer Link</div>
+));
+ContactDetail.mockImplementation(() => (
+  <div data-testid="contact-detail"></div>
+));
 
 describe('Footer', () => {
-  let footer;
-
   beforeEach(() => {
-    render(
-      <BrowserRouter>
-        <Footer />
-      </BrowserRouter>
-    );
-
-    footer = screen.getByRole('contentinfo');
+    render(<Footer />);
   });
 
   it('renders contact section', () => {
     const heading = screen.getByRole('heading', {
       name: /the accessory avenue/i,
     });
-    expect(footer).toContainElement(heading);
+    expect(heading).toBeInTheDocument();
 
-    const address = screen.getByRole('paragraph', { name: 'address' });
-    expect(footer).toContainElement(address);
-
-    const phone = screen.getByRole('paragraph', { name: 'phone' });
-    expect(footer).toContainElement(phone);
-
-    const email = screen.getByRole('paragraph', { name: 'email' });
-    expect(footer).toContainElement(email);
+    const contactDetails = screen.getAllByTestId('contact-detail');
+    expect(contactDetails.length).toEqual(3);
   });
 
   it('renders sitemap', () => {
@@ -41,7 +34,7 @@ describe('Footer', () => {
       name: /sitemap/i,
     });
 
-    expect(footer).toContainElement(heading);
+    expect(heading).toBeInTheDocument();
     expect(screen.queryAllByTestId('footerLink').length).toBeGreaterThan(0);
   });
 
@@ -49,9 +42,9 @@ describe('Footer', () => {
     const heading = screen.getByRole('heading', {
       name: /payment methods/i,
     });
-    expect(footer).toContainElement(heading);
+    expect(heading).toBeInTheDocument();
 
-    const paymentMethodIcons = within(footer).queryAllByRole('img');
+    const paymentMethodIcons = screen.queryAllByRole('img');
 
     expect(paymentMethodIcons.length).toEqual(5);
   });
@@ -61,6 +54,6 @@ describe('Footer', () => {
       name: 'copyright statement',
     });
 
-    expect(footer).toContainElement(copyrightStatement);
+    expect(copyrightStatement).toBeInTheDocument();
   });
 });
