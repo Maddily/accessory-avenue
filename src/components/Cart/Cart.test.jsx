@@ -13,7 +13,7 @@ describe('Cart', () => {
       </BrowserRouter>
     );
 
-    cartLink = screen.getByRole('link', { name: 'cart' });
+    cartLink = screen.getByRole('link', { name: /cart/ });
   });
 
   it('renders the cart link with the correct path', async () => {
