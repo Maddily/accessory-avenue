@@ -1,0 +1,13 @@
+.contact-detail-heading {
+  text-transform: capitalize;
+  font-size: 0.7rem;
+  color: #fff;
+  margin: 0;
+}
+
+.icon-and-label {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin: 0 0 5px -2px;
+}
