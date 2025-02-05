@@ -30,7 +30,13 @@ export default function Product(props) {
           <span aria-labelledby="product-rating" aria-label="star rating">
             <Stars rating={rating} title={title} />
           </span>
-          <span id="product-rating" aria-label="rating">
+          <span
+            id={`rating-label-${title}`}
+            className={styles['visually-hidden']}
+          >
+            the rating of {title} is {rating}
+          </span>
+          <span id="product-rating" aria-labelledby={`rating-label-${title}`}>
             {rating}
           </span>
         </div>
