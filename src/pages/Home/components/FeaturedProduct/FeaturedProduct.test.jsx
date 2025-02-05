@@ -20,10 +20,10 @@ Stars.mockImplementation(() => (
 AddToCart.mockImplementation(() => <button data-testid="add-to-cart"></button>);
 
 describe('FeaturedProduct', () => {
-  let product;
+  let product, productData;
 
   beforeEach(() => {
-    const productData = {
+    productData = {
       id: 3,
       title: 'Beats Flex Wireless Earphones',
       price: 49.99,
@@ -59,7 +59,7 @@ describe('FeaturedProduct', () => {
 
   it('renders the rating', () => {
     const stars = screen.getAllByTestId('star');
-    const rating = within(product).queryByLabelText('rating');
+    const rating = within(product).queryByText(productData.rating);
 
     expect(stars.length).toEqual(5);
     expect(rating).toBeTruthy();
