@@ -8,8 +8,9 @@
 }
 
 .heading {
-  text-transform: capitalize;
+  text-transform: uppercase;
   margin: 30px auto;
+  color: #333333;
 }
 
 .products {
