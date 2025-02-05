@@ -22,6 +22,12 @@ export default function Question({ question, answer }) {
             visible ? styles.colored : ''
           }`}
           onClick={() => setVisible(!visible)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              setVisible(!visible);
+            }
+          }}
+          tabIndex={0}
         >
           {question}
         </h3>
