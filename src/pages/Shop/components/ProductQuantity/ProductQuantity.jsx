@@ -29,11 +29,11 @@ export default function ProductQuantity({
         type="button"
         onClick={updateQuantity}
         data-step="down"
-        aria-label="decrease"
+        aria-label={'decrease quantity of ' + title}
         data-productid={id}
       >
         <Icon
-          title="Decrease"
+          title={'decrease quantity of ' + title}
           className={styles['minus']}
           path={mdilMinusCircle}
           size={1}
@@ -54,11 +54,11 @@ export default function ProductQuantity({
         type="button"
         onClick={updateQuantity}
         data-step="up"
-        aria-label="increase"
+        aria-label={'increase quantity of ' + title}
         data-productid={id}
       >
         <Icon
-          title="Increase"
+          title={'increase quantity of ' + title}
           className={styles['plus']}
           path={mdilPlusCircle}
           size={1}
