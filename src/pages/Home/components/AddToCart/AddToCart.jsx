@@ -18,9 +18,8 @@ export default function AddToCart({ product }) {
   });
 
   return (
-    <button onClick={addToCartHandler} type="button" className={styles.cart}>
+    <button onClick={addToCartHandler} type="button" className={styles.cart} aria-label='add to cart'>
       <svg
-        aria-label="button"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="24"
