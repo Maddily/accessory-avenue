@@ -19,7 +19,7 @@ export default function Cart({ noOfProductsInCart }) {
         aria-label="number of items in cart"
         className={styles['cart-number']}
       >
-        ({noOfProductsInCart})
+        {noOfProductsInCart}
       </span>
     </Link>
   );
