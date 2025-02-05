@@ -20,7 +20,7 @@ export default function Nav({ menuOpen, menuOpenSetter, productsInCart }) {
 
   return (
     <nav aria-label="header navigation" className={styles.nav}>
-      <Link to='/' className={styles['logo-link']}>
+      <Link aria-label='Go to home page' to='/' className={styles['logo-link']}>
         <img className={styles.logo} src={logo} alt="logo" />
       </Link>
       <ul className={styles['nav-buttons']}>
