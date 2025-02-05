@@ -15,7 +15,11 @@ export default function QuantityInCart({ id, quantityInCart, removeFromCart }) {
     quantityInCart > 0 && (
       <p aria-label="quantity in cart" className={styles['quantity-in-cart']}>
         {quantityInCart} in cart <span style={{ fontWeight: 'normal' }}>-</span>{' '}
-        <button onClick={() => removeFromCart(id)} className={styles.remove}>
+        <button
+          aria-label="remove from cart"
+          onClick={() => removeFromCart(id)}
+          className={styles.remove}
+        >
           Remove
         </button>
       </p>
