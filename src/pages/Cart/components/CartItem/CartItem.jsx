@@ -33,7 +33,7 @@ export default function CartItem({ productInCart }) {
         <p aria-label='product price' className={styles['product-price']}>${productInCart.price}</p>
       </td>
       <td aria-label='total price' className={styles['total1-data']}>
-        ${productInCart.quantity * productInCart.price}
+        ${(productInCart.quantity * productInCart.price).toFixed(2)}
       </td>
       <td className={styles['quantity-data']}>
         <ProductQuantity
@@ -46,7 +46,7 @@ export default function CartItem({ productInCart }) {
         />
       </td>
       <td aria-label='total price' className={styles['total2-data']}>
-        ${productInCart.quantity * productInCart.price}
+        ${(productInCart.quantity * productInCart.price).toFixed(2)}
       </td>
     </tr>
   );
