@@ -18,6 +18,7 @@
   margin: 1rem auto;
   position: relative;
   z-index: 5;
+  cursor: pointer;
 }
 
 .colored {
