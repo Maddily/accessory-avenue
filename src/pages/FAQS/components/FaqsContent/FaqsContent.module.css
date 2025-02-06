@@ -3,7 +3,7 @@
 }
 
 .faq-heading {
-  background: url('../../../../assets/images/dark-leaves.jpg');
+  background: url('../../../../assets/images/heading-bg-768.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -14,4 +14,34 @@
   color: #fff;
   text-transform: uppercase;
   line-height: 4rem;
+}
+
+@media (min-width: 641px) {
+  .faq-heading {
+    background: url('../../../../assets/images/heading-bg-1280.jpg');
+  }
+}
+
+@media (min-width: 1281px) {
+  .faq-heading {
+    background: url('../../../../assets/images/heading-bg-1920.jpg');
+  }
+}
+
+@supports (background-image: url('image.webp')) {
+  .faq-heading {
+    background: url('../../../../assets/images/heading-bg-768.webp');
+  }
+
+  @media (min-width: 641px) {
+    .faq-heading {
+      background: url('../../../../assets/images/heading-bg-1280.webp');
+    }
+  }
+
+  @media (min-width: 1281px) {
+    .faq-heading {
+      background: url('../../../../assets/images/heading-bg-1920.webp');
+    }
+  }
 }
