@@ -31,21 +31,29 @@ export default function ShopContent() {
 
   return (
     <section className={styles['shop-content']}>
-      <h1 className={styles.heading}>our products</h1>
-      <div className={styles.products}>
-        {products.map((product) => (
-          <Product
-            key={product.id}
-            id={product.id}
-            imageUrl={product.thumbnail}
-            title={product.title}
-            rating={product.rating}
-            price={product.price}
-            productsInCart={productsInCart}
-            updateProductsInCart={updateProductsInCart}
-          />
-        ))}
-      </div>
+      {products.length === 0 ? (
+        <h1 className={styles.heading}>
+          No products are in stock at the moment.
+        </h1>
+      ) : (
+        <>
+          <h1 className={styles.heading}>our products</h1>
+          <div className={styles.products}>
+            {products.map((product) => (
+              <Product
+                key={product.id}
+                id={product.id}
+                imageUrl={product.thumbnail}
+                title={product.title}
+                rating={product.rating}
+                price={product.price}
+                productsInCart={productsInCart}
+                updateProductsInCart={updateProductsInCart}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </section>
   );
 }
