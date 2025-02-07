@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 /**
  * A hook responsible for setting menuOpen state to false
- * if it's open when the screen is resized to 500px or higher.
+ * if it's open when the screen is resized to 600px or higher.
  *
  * @param {boolean} menuOpen - Indicates if the dropdown menu is open
  * @param {function(boolean)} setMenuOpen - Sets menuOpen state
@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 export default function useScreenResize(menuOpen, setMenuOpen) {
   useEffect(() => {
     function handleResize() {
-      window.innerWidth >= 500 && menuOpen && setMenuOpen(false);
+      window.innerWidth >= 600 && menuOpen && setMenuOpen(false);
     }
 
     window.addEventListener('resize', handleResize);
