@@ -1,5 +1,5 @@
 import { vi, describe, it, expect, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen , cleanup} from '@testing-library/react';
 import ShopContent from './ShopContent';
 import Product from '../Product/Product';
 import useShopContent from './useShopContent';
@@ -67,5 +67,20 @@ describe('ShopContent', () => {
   it('renders products when not loading', () => {
     const products = screen.getAllByTestId('product');
     expect(products.length).toBe(2);
+  });
+
+  it('renders a message when there are no products', () => {
+    vi.mocked(useShopContent).mockReturnValueOnce({
+      products: [],
+    });
+
+    cleanup();
+    render(<ShopContent />);
+
+    const heading = screen.getByRole('heading', {
+      name: /No products are in stock at the moment./i,
+    });
+
+    expect(heading).toBeInTheDocument();
   });
 });
