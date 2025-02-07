@@ -14,10 +14,10 @@ function App() {
   const { productsInCart, updateProductsInCart } = useCart();
 
   /**
-   * If screen is resized to 500px in width or higher,
+   * If screen is resized to 600px in width or higher,
    * menuOpen is set to false (only if it's set to open).
    * This makes sure that if the screen is resized again
-   * below 500px, the menu is collapsed.
+   * below 600px, the menu is collapsed.
    */
   useScreenResize(menuOpen, setMenuOpen);
 
