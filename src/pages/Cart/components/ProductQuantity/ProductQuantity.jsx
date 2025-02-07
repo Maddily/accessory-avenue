@@ -43,7 +43,7 @@ export default function ProductQuantity({
           type="button"
           onClick={updateQuantity}
           data-step="down"
-          aria-label="decrease"
+          aria-label={'decrease quantity of ' + title}
           data-productid={id}
         >
           <Icon
@@ -68,7 +68,7 @@ export default function ProductQuantity({
           type="button"
           onClick={updateQuantity}
           data-step="up"
-          aria-label="increase"
+          aria-label={'increase quantity of ' + title}
           data-productid={id}
         >
           <Icon
