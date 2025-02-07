@@ -33,8 +33,8 @@ describe('ProductQuantity', () => {
     render(<ProductQuantity {...props} />);
 
     input = screen.getByLabelText('product quantity');
-    decrease = screen.getByRole('button', { name: 'decrease' });
-    increase = screen.getByRole('button', { name: 'increase' });
+    decrease = screen.getByRole('button', { name: /decrease/ });
+    increase = screen.getByRole('button', { name: /increase/ });
   });
 
   it('renders an input field to specify the quantity', () => {
