@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import useCart from './components/Cart/useCart';
-import useScreenResize from './hooks/useScreenWidth';
+import useCart from './hooks/useCart';
+import useScreenResize from './hooks/useScreenResize';
 import Nav from './components/Nav/Nav';
 import Menu from './components/Menu/Menu';
 import Footer from './components/Footer/Footer';
