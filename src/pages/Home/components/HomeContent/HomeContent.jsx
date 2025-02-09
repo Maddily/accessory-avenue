@@ -3,7 +3,7 @@ import FeaturedProducts from '../FeaturedProducts/FeaturedProducts';
 import Testimonials from '../Testimonials/Testimonials';
 import PromoBanner from '../PromoBanner/PromoBanner';
 import useLoading from '../../../../hooks/useLoading';
-import { ThreeDots } from 'react-loader-spinner';
+import Skeletonhome from '../SkeletonHome/SkeletonHome';
 
 /**
  * Renders components associated with home page.
@@ -13,21 +13,9 @@ import { ThreeDots } from 'react-loader-spinner';
 export default function HomeContent() {
   const { loading } = useLoading();
 
-  if (loading)
-    return (
-      <ThreeDots
-        visible={true}
-        height="80"
-        width="80"
-        color="#5a9592"
-        radius="9"
-        ariaLabel="three-dots-loading"
-        wrapperStyle={{}}
-        wrapperClass="loader"
-      />
-    );
-
-  return (
+  return loading ? (
+    <Skeletonhome />
+  ) : (
     <>
       <Hero />
       <FeaturedProducts />
