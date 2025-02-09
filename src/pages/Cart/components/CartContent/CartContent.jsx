@@ -1,8 +1,8 @@
 import { useOutletContext } from 'react-router-dom';
 import CartItem from '../CartItem/CartItem';
 import useLoading from '../../../../hooks/useLoading';
-import { ThreeDots } from 'react-loader-spinner';
 import CartFooter from '../CartFooter/CartFooter';
+import SkeletonCart from '../SkeletonCart/SkeletonCart';
 import { useCartContent } from './useCartContent';
 import { Link } from 'react-router-dom';
 import styles from './CartContent.module.css';
@@ -19,21 +19,9 @@ export default function CartContent() {
   const [productsInCart] = useOutletContext();
   const total = useCartContent(productsInCart);
 
-  if (loading)
-    return (
-      <ThreeDots
-        visible={true}
-        height="80"
-        width="80"
-        color="#5a9592"
-        radius="9"
-        ariaLabel="three-dots-loading"
-        wrapperStyle={{}}
-        wrapperClass="loader"
-      />
-    );
-
-  return (
+  return loading && productsInCart ? (
+    <SkeletonCart itemsCount={productsInCart.length} />
+  ) : (
     <section className={styles['cart-container']}>
       <article className={styles.cart} aria-label="cart">
         {productsInCart.length === 0 ? (
