@@ -7,6 +7,9 @@
   transform-origin: top;
   background: #000;
   margin-bottom: auto;
+  position: sticky;
+  top: 55px;
+  z-index: 99;
 }
 
 .menu-buttons {
