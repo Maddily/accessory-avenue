@@ -2,8 +2,8 @@ import styles from './ShopContent.module.css';
 import Product from '../Product/Product';
 import useShopContent from './useShopContent';
 import useLoading from '../../../../hooks/useLoading';
-import { ThreeDots } from 'react-loader-spinner';
 import { useOutletContext } from 'react-router-dom';
+import SkeletonShop from '../SkeletonShop/SkeletonShop';
 
 /**
  * Renders shopping data: a heading and products
@@ -15,19 +15,7 @@ export default function ShopContent() {
   const { loading } = useLoading();
   const [productsInCart, updateProductsInCart] = useOutletContext();
 
-  if (loading)
-    return (
-      <ThreeDots
-        visible={true}
-        height="80"
-        width="80"
-        color="#5a9592"
-        radius="9"
-        ariaLabel="three-dots-loading"
-        wrapperStyle={{}}
-        wrapperClass="loader"
-      />
-    );
+  if (loading) return <SkeletonShop />;
 
   return (
     <section className={styles['shop-content']}>
