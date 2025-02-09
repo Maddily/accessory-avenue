@@ -4,6 +4,7 @@ import CartContent from './CartContent';
 import useLoading from '../../../../hooks/useLoading';
 import CartItem from '../CartItem/CartItem';
 import CartFooter from '../CartFooter/CartFooter';
+import SkeletonCart from '../SkeletonCart/SkeletonCart';
 import { useOutletContext } from 'react-router-dom';
 
 vi.mock('../CartItem/CartItem');
@@ -12,14 +13,13 @@ CartItem.mockImplementation(() => <tr data-testid="cart-item"></tr>);
 vi.mock('../CartFooter/CartFooter');
 CartFooter.mockImplementation(() => <div data-testid="cart-footer"></div>);
 
-vi.mock('react-loader-spinner', () => ({
-  ThreeDots: vi.fn(() => <div data-testid="loading-animation"></div>),
-}));
-
 vi.mock('../../../../hooks/useLoading', () => ({
   __esModule: true,
   default: vi.fn(),
 }));
+
+vi.mock('../SkeletonCart/SkeletonCart');
+SkeletonCart.mockImplementation(() => <div data-testid="skeleton"></div>);
 
 vi.mock('react-router-dom', () => ({
   useOutletContext: vi.fn(() => [
@@ -41,15 +41,22 @@ describe('CartContent', () => {
     render(<CartContent />);
   });
 
-  it('renders loading component', () => {
+  it('renders skeleton UI', () => {
     vi.mocked(useLoading).mockReturnValueOnce({
       loading: true,
     });
 
     render(<CartContent />);
 
-    const loadingComponent = screen.getByTestId('loading-animation');
-    expect(loadingComponent).toBeInTheDocument();
+    const skeleton = screen.getByTestId('skeleton');
+    expect(skeleton).toBeInTheDocument();
+  });
+
+  it('does not render skeleton UI when loading is false', () => {
+    render(<CartContent />);
+
+    const skeleton = screen.queryByTestId('skeleton');
+    expect(skeleton).toBeNull();
   });
 
   it('renders an appropriate message and home link when there are no products in cart', () => {

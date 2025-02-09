@@ -2,6 +2,7 @@ import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import FaqsContent from './FaqsContent';
 import FaqsGroup from '../FaqsGroup/FaqsGroup';
+import SkeletonFaq from '../SkeletonFaq/SkeletonFaq';
 import useLoading from '../../../../hooks/useLoading';
 
 vi.mock('../../../../hooks/useLoading', () => ({
@@ -9,12 +10,11 @@ vi.mock('../../../../hooks/useLoading', () => ({
   default: vi.fn(),
 }));
 
-vi.mock('react-loader-spinner', () => ({
-  ThreeDots: vi.fn(() => <div data-testid="loading-animation"></div>),
-}));
-
 vi.mock('../FaqsGroup/FaqsGroup');
+vi.mock('../SkeletonFaq/SkeletonFaq');
+
 FaqsGroup.mockImplementation(() => <div data-testid="group"></div>);
+SkeletonFaq.mockImplementation(() => <div data-testid="skeleton"></div>);
 
 describe('FaqsContent', () => {
   const faqGroups = [
@@ -52,20 +52,20 @@ describe('FaqsContent', () => {
     render(<FaqsContent faqGroups={faqGroups} />);
   });
 
-  it('renders loading component', () => {
+  it('renders skeleton UI', () => {
     vi.mocked(useLoading).mockReturnValueOnce({
       loading: true,
     });
 
     render(<FaqsContent />);
 
-    const loadingComponent = screen.getByTestId('loading-animation');
-    expect(loadingComponent).toBeInTheDocument();
+    const skeleton = screen.getByTestId('skeleton');
+    expect(skeleton).toBeInTheDocument();
   });
 
-  it('does not render loading component when loading is false', () => {
-    const loadingComponent = screen.queryByTestId('loading-animation');
-    expect(loadingComponent).toBeNull();
+  it('does not render skeleton UI when loading is false', () => {
+    const skeleton = screen.queryByTestId('skeleton');
+    expect(skeleton).toBeNull();
   });
 
   it('renders FAQS heading', () => {

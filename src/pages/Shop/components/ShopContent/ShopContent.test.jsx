@@ -1,13 +1,10 @@
 import { vi, describe, it, expect, beforeEach } from 'vitest';
-import { render, screen , cleanup} from '@testing-library/react';
+import { render, screen, cleanup } from '@testing-library/react';
 import ShopContent from './ShopContent';
 import Product from '../Product/Product';
 import useShopContent from './useShopContent';
+import SkeletonShop from '../SkeletonShop/SkeletonShop';
 import useLoading from '../../../../hooks/useLoading';
-
-vi.mock('react-loader-spinner', () => ({
-  ThreeDots: vi.fn(() => <div data-testid="loading-animation"></div>),
-}));
 
 vi.mock('./useShopContent', () => ({
   __esModule: true,
@@ -30,7 +27,10 @@ vi.mock('react-router-dom', () => ({
 }));
 
 vi.mock('../Product/Product');
+vi.mock('../SkeletonShop/SkeletonShop');
+
 Product.mockImplementation(() => <div data-testid="product"></div>);
+SkeletonShop.mockImplementation(() => <div data-testid="skeleton"></div>);
 
 describe('ShopContent', () => {
   beforeEach(() => {
@@ -48,15 +48,15 @@ describe('ShopContent', () => {
     render(<ShopContent />);
   });
 
-  it('renders loading component', () => {
+  it('renders skeleton UI', () => {
     vi.mocked(useLoading).mockReturnValueOnce({
       loading: true,
     });
 
     render(<ShopContent />);
 
-    const loadingComponent = screen.getByTestId('loading-animation');
-    expect(loadingComponent).toBeInTheDocument();
+    const skeleton = screen.getByTestId('skeleton');
+    expect(skeleton).toBeInTheDocument();
   });
 
   it('renders a heading when not loading', () => {
