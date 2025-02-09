@@ -2,7 +2,7 @@ import styles from './FaqsContent.module.css';
 import FaqsGroup from '../FaqsGroup/FaqsGroup';
 import PropTypes from 'prop-types';
 import useLoading from '../../../../hooks/useLoading';
-import { ThreeDots } from 'react-loader-spinner';
+import SkeletonFaq from '../SkeletonFaq/SkeletonFaq';
 
 /**
  * Renders FAQS heading and groups.
@@ -12,21 +12,9 @@ import { ThreeDots } from 'react-loader-spinner';
 export default function FaqsContent({ faqGroups }) {
   const { loading } = useLoading();
 
-  if (loading)
-    return (
-      <ThreeDots
-        visible={true}
-        height="80"
-        width="80"
-        color="#5a9592"
-        radius="9"
-        ariaLabel="three-dots-loading"
-        wrapperStyle={{}}
-        wrapperClass="loader"
-      />
-    );
-
-  return (
+  return loading ? (
+    <SkeletonFaq />
+  ) : (
     <div className={styles['faq-content-container']}>
       <h1 className={styles['faq-heading']}>Frequently Asked Questions</h1>
       <div className={styles['groups']}>
