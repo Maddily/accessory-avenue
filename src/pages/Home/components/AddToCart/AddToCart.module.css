@@ -11,9 +11,9 @@
 }
 
 .cart:hover {
-  background: linear-gradient(120deg, #fbe4e6, #e4e1f9, #d2f5f1);
+  background: #fff;
 }
 
 .cart:active {
-  background: linear-gradient(120deg, #ffd0d3, #d6d0ff, #c8fffa);
+  background: rgba(255, 234, 236, 0.5);
 }
