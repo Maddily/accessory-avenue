@@ -5,7 +5,7 @@ import styles from './SkeletonHome.module.css';
  *
  * @returns {JSX.Element}
  */
-export default function Skeletonhome() {
+export default function SkeletonHome() {
   return (
     <div className={styles.container}>
       <div

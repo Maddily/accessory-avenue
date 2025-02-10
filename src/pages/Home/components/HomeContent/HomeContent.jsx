@@ -3,7 +3,7 @@ import FeaturedProducts from '../FeaturedProducts/FeaturedProducts';
 import Testimonials from '../Testimonials/Testimonials';
 import PromoBanner from '../PromoBanner/PromoBanner';
 import useLoading from '../../../../hooks/useLoading';
-import Skeletonhome from '../SkeletonHome/SkeletonHome';
+import SkeletonHome from '../SkeletonHome/SkeletonHome';
 
 /**
  * Renders components associated with home page.
@@ -14,7 +14,7 @@ export default function HomeContent() {
   const { loading } = useLoading();
 
   return loading ? (
-    <Skeletonhome />
+    <SkeletonHome />
   ) : (
     <>
       <Hero />
