@@ -1,10 +1,10 @@
-# The Accessory Avenue
+# Accessory Avenue
 
 This is an SPA for a mock store selling phone accessories, built with React and Vite.
 
-## How to Access The Accessory Avenue
+## How to Access Accessory Avenue
 
-The Accessory Avenue is hosted on Cloudflare Pages. You can access it [here](https://the-accessory-avenue.pages.dev/).
+Accessory Avenue is hosted on Cloudflare Pages. You can access it [here](https://the-accessory-avenue.pages.dev/).
 
 ## Features
 
