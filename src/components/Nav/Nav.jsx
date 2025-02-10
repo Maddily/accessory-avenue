@@ -1,4 +1,4 @@
-import logo from '../../assets/images/logo.jpg';
+import logo from '../../assets/images/logo.png';
 import styles from './Nav.module.css';
 import NavButton from '../NavButton/NavButton';
 import Icon from '@mdi/react';
