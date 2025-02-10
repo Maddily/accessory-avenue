@@ -8,11 +8,18 @@ import styles from './SkeletonFaq.module.css';
 export default function SkeletonFaq() {
   return (
     <div className={styles.container}>
-      <div className={styles.heading + ' ' + styles.skeleton}></div>
+      <div
+        aria-label="skeleton-heading"
+        className={styles.heading + ' ' + styles.skeleton}
+      ></div>
       {Array(6)
         .fill(null)
         .map((_, index) => (
-          <div key={index} className={styles['skeleton-group']}>
+          <div
+            aria-label="skeleton-group"
+            key={index}
+            className={styles['skeleton-group']}
+          >
             <div
               className={styles['skeleton-title'] + ' ' + styles.skeleton}
             ></div>
