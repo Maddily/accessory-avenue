@@ -75,7 +75,7 @@ export default function useFooter() {
 
   const footerSections = [
     {
-      heading: 'the accessory avenue',
+      heading: 'accessory avenue',
       data: contactDetails.map((contactDetail) => (
         <ContactDetail
           key={contactDetail.label}

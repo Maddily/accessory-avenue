@@ -22,7 +22,7 @@ export default function Footer() {
         ))}
       </div>
       <p aria-label="copyright statement" className={styles.copyright}>
-        &#169; {new Date().getFullYear()} The Accessory Avenue. All rights
+        &#169; {new Date().getFullYear()} Accessory Avenue. All rights
         reserved.
       </p>
     </footer>
