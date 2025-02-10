@@ -16,6 +16,6 @@ describe('SkeletonShop', () => {
   it('renders six skeleton products', () => {
     const products = screen.getAllByLabelText('skeleton-product');
 
-    expect(products.length).toEqual(6);
+    expect(products.length).toEqual(8);
   });
 });

@@ -13,7 +13,7 @@ export default function SkeletonShop() {
         className={styles['skeleton-heading']}
       ></div>
       <div className={styles['products']}>
-        {Array(6)
+        {Array(8)
           .fill(null)
           .map((_, index) => (
             <div
