@@ -8,11 +8,20 @@ import styles from './SkeletonShop.module.css';
 export default function SkeletonShop() {
   return (
     <section className={styles['shop-content']}>
-      <div className={styles['skeleton-heading']}></div>
+      <div
+        aria-label="skeleton-heading"
+        className={styles['skeleton-heading']}
+      ></div>
       <div className={styles['products']}>
-        {Array(14).fill(null).map((_, index) => (
-          <div key={index} className={styles['skeleton-product']}></div>
-        ))}
+        {Array(6)
+          .fill(null)
+          .map((_, index) => (
+            <div
+              key={index}
+              aria-label="skeleton-product"
+              className={styles['skeleton-product']}
+            ></div>
+          ))}
       </div>
     </section>
   );
