@@ -21,7 +21,7 @@ describe('Footer', () => {
 
   it('renders contact section', () => {
     const heading = screen.getByRole('heading', {
-      name: /the accessory avenue/i,
+      name: /accessory avenue/i,
     });
     expect(heading).toBeInTheDocument();
 
