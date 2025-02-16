@@ -5,7 +5,6 @@ import useScreenResize from './hooks/useScreenResize';
 import Nav from './components/Nav/Nav';
 import Menu from './components/Menu/Menu';
 import Footer from './components/Footer/Footer';
-import { useCallback } from 'react';
 import './styles/normalize.css';
 import './styles/App.css';
 
@@ -25,7 +24,7 @@ function App() {
     <>
       <Nav
         menuOpen={menuOpen}
-        menuOpenSetter={useCallback((value) => setMenuOpen(value), [])}
+        setMenuOpen={setMenuOpen}
         productsInCart={productsInCart}
       />
       {menuOpen && <Menu />}

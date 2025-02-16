@@ -5,12 +5,12 @@ import { useEffect } from 'react';
  * When the location changes, i.e. when the route changes,
  * the menu is closed, if it's open.
  *
- * @param {function} menuOpenSetter - Calls setMenuOpen state setter.
+ * @param {function} setMenuOpen - Sets menuOpen state.
  */
-export default function useNav(menuOpenSetter) {
+export default function useNav(setMenuOpen) {
   const location = useLocation();
 
   useEffect(() => {
-    menuOpenSetter(false);
-  }, [location, menuOpenSetter]);
+    setMenuOpen(false);
+  }, [location, setMenuOpen]);
 }
