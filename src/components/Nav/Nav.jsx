@@ -12,11 +12,11 @@ import useNav from './useNav';
  * Renders a nav contaning the logo, nav links and cart button.
  *
  * @param {boolean} menuOpen - Indicates if the dropdown menu is open.
- * @param {function(boolean)} menuOpenSetter - Sets menuOpen state.
+ * @param {function(boolean)} setMenuOpen - Sets menuOpen state.
  * @returns {JSX.Element}
  */
-export default function Nav({ menuOpen, menuOpenSetter, productsInCart }) {
-  useNav(menuOpenSetter);
+export default function Nav({ menuOpen, setMenuOpen, productsInCart }) {
+  useNav(setMenuOpen);
 
   return (
     <nav aria-label="header navigation" className={styles.nav}>
@@ -41,7 +41,7 @@ export default function Nav({ menuOpen, menuOpenSetter, productsInCart }) {
           <button
             className={styles.x}
             onClick={() => {
-              menuOpenSetter(false);
+              setMenuOpen(false);
             }}
           >
             <Icon
@@ -56,7 +56,7 @@ export default function Nav({ menuOpen, menuOpenSetter, productsInCart }) {
           <button
             className={styles['menu-icon']}
             onClick={() => {
-              menuOpenSetter(true);
+              setMenuOpen(true);
             }}
           >
             <Icon
@@ -75,6 +75,6 @@ export default function Nav({ menuOpen, menuOpenSetter, productsInCart }) {
 
 Nav.propTypes = {
   menuOpen: PropTypes.bool,
-  menuOpenSetter: PropTypes.func,
+  setMenuOpen: PropTypes.func,
   productsInCart: PropTypes.array,
 };
