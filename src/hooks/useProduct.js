@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import quantityReducer from '../pages/Shop/components/Product/quantityReducer';
+import quantityReducer from './quantityReducer';
 
 /**
  * Manages the quantity of a product and defines handlers to update
