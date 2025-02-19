@@ -1,6 +1,6 @@
 import styles from './AddToCart.module.css';
 import { useOutletContext } from 'react-router-dom';
-import useProduct from '../../../Shop/components/Product/useProduct';
+import useProduct from '../../../../hooks/useProduct';
 import PropTypes from 'prop-types';
 
 /**

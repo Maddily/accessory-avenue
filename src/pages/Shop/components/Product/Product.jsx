@@ -1,4 +1,4 @@
-import useProduct from './useProduct';
+import useProduct from '../../../../hooks/useProduct';
 import PropTypes from 'prop-types';
 import Stars from '../../../../components/Stars/Stars';
 import QuantityInCart from '../QuantityInCart/QuantityInCart';

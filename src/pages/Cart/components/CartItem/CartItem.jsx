@@ -1,6 +1,6 @@
 import ProductQuantity from '../ProductQuantity/ProductQuantity';
 import { useOutletContext } from 'react-router-dom';
-import useProduct from '../../../Shop/components/Product/useProduct';
+import useProduct from '../../../../hooks/useProduct';
 import styles from './CartItem.module.css';
 import PropTypes from 'prop-types';
 
