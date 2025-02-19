@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useReducer } from 'react';
+import quantityReducer from '../pages/Shop/components/Product/quantityReducer';
 
 /**
  * Manages the quantity of a product and defines handlers to update
@@ -26,7 +27,7 @@ export default function useProduct({
   isFeaturedProduct = false,
   currentQuantity = 0,
 }) {
-  const [quantity, setQuantity] = useState(currentQuantity);
+  const [quantity, dispatch] = useReducer(quantityReducer, currentQuantity);
   let updatedProduct = { id, imageUrl, title, rating, price, quantity };
 
   /**
@@ -38,17 +39,12 @@ export default function useProduct({
     if (e.type === 'change') {
       const value = +e.target.value;
 
-      if (value >= 0) {
-        setQuantity(value);
-      } else {
-        setQuantity(0);
-      }
+      dispatch({
+        type: 'change_quantity',
+        value: e.target.value,
+      });
 
-      /**
-       * if currentQuantity prop is given, this is the cart page.
-       * quantity state and productsInCart are updated in a different
-       * manner in this case.
-       */
+      // if currentQuantity prop is given, then this is the cart page where productsInCart state is updated upon quantity change.
       if (currentQuantity > 0) {
         if (value > 0) {
           callUpdateProductsInCart(value);
@@ -64,11 +60,7 @@ export default function useProduct({
     const step = e.target.closest('button')?.dataset.step;
 
     if (step === 'down') {
-      /**
-       * if currentQuantity prop is given, this is the cart page.
-       * quantity state and productsInCart are updated in a different
-       * manner in this case.
-       */
+      // if currentQuantity prop is given, then this is the cart page where productsInCart state is updated upon quantity change.
       if (currentQuantity > 0) {
         if (quantity > 1) {
           callUpdateProductsInCart(quantity - 1);
@@ -77,20 +69,20 @@ export default function useProduct({
         }
       }
 
-      quantity > 0 && setQuantity((quantity) => quantity - 1);
+      dispatch({
+        type: 'decrement_quantity',
+      });
     }
 
     if (step === 'up') {
-      /**
-       * if currentQuantity prop is given, this is the cart page.
-       * quantity state and productsInCart are updated in a different
-       * manner in this case.
-       */
+      // if currentQuantity prop is given, then this is the cart page where productsInCart state is updated upon quantity change.
       if (currentQuantity > 0) {
         callUpdateProductsInCart(quantity + 1);
       }
 
-      setQuantity((quantity) => quantity + 1);
+      dispatch({
+        type: 'increment_quantity',
+      });
     }
   }
 
@@ -114,24 +106,23 @@ export default function useProduct({
 
   // Adds a product to the cart.
   function addToCartHandler() {
-    if (quantity === 0) {
-      if (!isFeaturedProduct) {
-        return;
-      }
+    if (quantity === 0 && !isFeaturedProduct) {
+      return;
+    }
+
+    // The quantity is added to `updatedProduct` and the state can be safely reset after adding a product to the cart.
+    dispatch({
+      type: 'remove_quantity',
+    });
+
+    // If this is a featured product rendered in the home page, where the quantity can't be specified with an input field, make the quantity 1.
+    if (isFeaturedProduct) {
+      updatedProduct.quantity = 1;
     }
 
     const existingProduct = productsInCart.find(
       (productInCart) => productInCart.id === id
     );
-
-    /**
-     * If this is a featured product rendered in the
-     * home page, where the quantity can't be specified
-     * with an input field, make the quantity 1.
-     */
-    if (isFeaturedProduct) {
-      updatedProduct.quantity = 1;
-    }
 
     // If product is in the cart, update its quantity
     if (existingProduct) {
@@ -147,14 +138,12 @@ export default function useProduct({
           return productInCart;
         })
       );
-      setQuantity(0);
+
       return;
     }
 
     // The product isn't in the cart, add it.
     updateProductsInCart([...productsInCart, updatedProduct]);
-
-    setQuantity(0);
   }
 
   // Removes a product from the cart.
