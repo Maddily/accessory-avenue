@@ -15,6 +15,13 @@ export default function useCart() {
     storedProductsInCart && setProductsInCart(JSON.parse(storedProductsInCart));
   }, []);
 
+  /**
+   * If `setProductsInCart` was returned instead of this function,
+   * `localStorage.setItem` would need to be called wherever
+   * `setProductsInCart` is called. By creating `updateProductsInCart`,
+   * Both `setProductsInCart` and `localStorage.setItem` calls
+   * are grouped in one place.
+   */
   const updateProductsInCart = function (products) {
     setProductsInCart(products);
     localStorage.setItem('productsInCart', JSON.stringify(products));
