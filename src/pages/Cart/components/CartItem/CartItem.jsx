@@ -11,12 +11,12 @@ import PropTypes from 'prop-types';
  * @returns {JSX.Element}
  */
 export default function CartItem({ productInCart }) {
-  const [productsInCart, updateProductsInCart] = useOutletContext();
+  const [productsInCart, dispatchCartAction] = useOutletContext();
   const currentQuantity = productInCart.quantity;
   const { quantity, updateQuantity } = useProduct({
     ...productInCart,
     productsInCart,
-    updateProductsInCart,
+    dispatchCartAction,
     currentQuantity,
   });
 
@@ -40,8 +40,7 @@ export default function CartItem({ productInCart }) {
           id={productInCart.id}
           title={productInCart.title}
           updateQuantity={updateQuantity}
-          productsInCart={productsInCart}
-          updateProductsInCart={updateProductsInCart}
+          dispatchCartAction={dispatchCartAction}
           quantity={quantity}
         />
       </td>
