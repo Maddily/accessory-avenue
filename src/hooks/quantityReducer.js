@@ -8,7 +8,7 @@
 export default function quantityReducer(quantity, action) {
   switch (action.type) {
     case 'change_quantity': {
-      const value = +action.value;
+      const value = action.value;
       return value >= 0 ? value : 0;
     }
     case 'decrement_quantity': {
