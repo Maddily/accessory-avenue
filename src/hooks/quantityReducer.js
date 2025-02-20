@@ -20,5 +20,8 @@ export default function quantityReducer(quantity, action) {
     case 'remove_quantity': {
       return 0;
     }
+    default: {
+      throw Error('Unknown action: ' + action.type);
+    }
   }
 }
