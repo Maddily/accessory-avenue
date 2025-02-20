@@ -10,7 +10,7 @@ import './styles/App.css';
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { productsInCart, updateProductsInCart } = useCart();
+  const { productsInCart, dispatchCartAction } = useCart();
 
   // If the screen is resized to 600px or wider, menuOpen is set to false (only if it's set to open).
   // This makes sure that if the screen is resized again below 600px, the menu is collapsed.
@@ -25,7 +25,7 @@ function App() {
       />
       {menuOpen && <Menu />}
       <Outlet
-        context={[productsInCart, updateProductsInCart]}
+        context={[productsInCart, dispatchCartAction]}
       />
       <Footer />
     </>
