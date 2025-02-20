@@ -12,7 +12,9 @@ import quantityReducer from './quantityReducer';
  * @param {number} rating - The rating of the product.
  * @param {number} price - The price of the product.
  * @param {array} productsInCart - The products added to cart.
- * @param {function} updateProductsInCart - Updates the products added to cart.
+ * @param {function} dispatchCartAction - Updates the products added to cart.
+ * @param {boolean} isFeaturedProduct - Indicates whether this product is a featured product in the home page.
+ * @param {number} currentQuantity - The current quantity of the product in the cart page.
  *
  * @returns quantity state and updateQuantity.
  */
@@ -23,94 +25,96 @@ export default function useProduct({
   rating,
   price,
   productsInCart,
-  updateProductsInCart,
+  dispatchCartAction,
   isFeaturedProduct = false,
   currentQuantity = 0,
 }) {
   const [quantity, dispatch] = useReducer(quantityReducer, currentQuantity);
-  let updatedProduct = { id, imageUrl, title, rating, price, quantity };
-
-  /**
-   * Updates the displayed product quantity when a user changes
-   * it before adding the product to the cart.
-   */
+  // Updates the displayed product quantity when a user changes it, before adding the product to the cart.
   function updateQuantity(e) {
     // If the quantity is entered in the input field.
     if (e.type === 'change') {
       const value = +e.target.value;
 
-      dispatch({
-        type: 'change_quantity',
-        value: e.target.value,
-      });
-
-      // if currentQuantity prop is given, then this is the cart page where productsInCart state is updated upon quantity change.
-      if (currentQuantity > 0) {
-        if (value > 0) {
-          callUpdateProductsInCart(value);
-        } else {
-          removeFromCart(id);
-        }
-      }
+      changeQuantity(value);
 
       return;
     }
 
-    // If the increase/decrease buttons are clicked.
+    // If the increase/decrease buttons are clicked, increment/decrement quantity.
     const step = e.target.closest('button')?.dataset.step;
 
-    if (step === 'down') {
-      // if currentQuantity prop is given, then this is the cart page where productsInCart state is updated upon quantity change.
-      if (currentQuantity > 0) {
-        if (quantity > 1) {
-          callUpdateProductsInCart(quantity - 1);
-        } else {
-          removeFromCart(id);
-        }
+    step === 'down' && decrementQuantity();
+
+    step === 'up' && incrementQuantity();
+  }
+
+  // Called when the quantity input is changed.
+  function changeQuantity(value) {
+    dispatch({
+      type: 'change_quantity',
+      value,
+    });
+
+    // if currentQuantity prop is given, then this is the cart page where productsInCart state is updated upon quantity change.
+    if (currentQuantity > 0) {
+      if (value > 0) {
+        dispatchCartAction({
+          type: 'update_product_quantity',
+          quantity: value,
+          productId: id,
+        });
+      } else {
+        removeFromCart(id);
       }
-
-      dispatch({
-        type: 'decrement_quantity',
-      });
-    }
-
-    if (step === 'up') {
-      // if currentQuantity prop is given, then this is the cart page where productsInCart state is updated upon quantity change.
-      if (currentQuantity > 0) {
-        callUpdateProductsInCart(quantity + 1);
-      }
-
-      dispatch({
-        type: 'increment_quantity',
-      });
     }
   }
 
-  /**
-   * A helper for the cart page that calls
-   * updateProductsInCart function, which, in turn,
-   * calls setProductsInCart to update productsInCart state.
-   *
-   * @param {number} newQuantity - The product's quantity after updating
-   */
-  function callUpdateProductsInCart(newQuantity) {
-    updateProductsInCart(
-      productsInCart.map((productInCart) => {
-        if (productInCart.id === id) {
-          return { ...updatedProduct, quantity: newQuantity };
-        }
-        return productInCart;
-      })
-    );
+  // Called when the "increase quantity" button is clicked.
+  function incrementQuantity() {
+    // if currentQuantity prop is given, then this is the cart page where productsInCart state is updated upon quantity change.
+    if (currentQuantity > 0) {
+      dispatchCartAction({
+        type: 'increment_product_quantity',
+        productId: id,
+      });
+    }
+
+    dispatch({
+      type: 'increment_quantity',
+    });
+  }
+
+  // Called when the "decrease quantity" button is clicked.
+  function decrementQuantity() {
+    // if currentQuantity prop is given, then this is the cart page where productsInCart state is updated upon quantity change.
+    if (currentQuantity > 0) {
+      if (quantity > 1) {
+        dispatchCartAction({
+          type: 'decrement_product_quantity',
+          productId: id,
+        });
+      } else {
+        removeFromCart(id);
+      }
+    }
+
+    dispatch({
+      type: 'decrement_quantity',
+    });
   }
 
   // Adds a product to the cart.
   function addToCartHandler() {
+    const updatedProduct = { id, imageUrl, title, rating, price, quantity };
+
+    // If the quantity is 0, there's nothing to add, provided that this isn't a featured product (home page).
+    // Featured products don't have a quantity, unlike products in the shop or cart pages.
     if (quantity === 0 && !isFeaturedProduct) {
       return;
     }
 
-    // The quantity is added to `updatedProduct` and the state can be safely reset after adding a product to the cart.
+    // The quantity is added to `updatedProduct` and the quantity state can be safely reset after adding the product to the cart.
     dispatch({
       type: 'remove_quantity',
     });
@@ -120,39 +124,41 @@ export default function useProduct({
       updatedProduct.quantity = 1;
     }
 
+    // If the product is in the cart, update its quantity.
     const existingProduct = productsInCart.find(
       (productInCart) => productInCart.id === id
     );
-
-    // If product is in the cart, update its quantity
     if (existingProduct) {
-      const existingProductQuantity = existingProduct.quantity;
-
-      updatedProduct.quantity += existingProductQuantity;
-
-      updateProductsInCart(
-        productsInCart.map((productInCart) => {
-          if (productInCart.id === id) {
-            return updatedProduct;
-          }
-          return productInCart;
-        })
-      );
-
+      updateExistingProduct(updatedProduct, existingProduct);
       return;
     }
 
     // The product isn't in the cart, add it.
-    updateProductsInCart([...productsInCart, updatedProduct]);
+    dispatchCartAction({
+      type: 'add_to_cart',
+      product: updatedProduct,
+    });
+  }
+
+  // Updates the quantity of a product already in the cart.
+  function updateExistingProduct(updatedProduct, existingProduct) {
+    const existingProductQuantity = existingProduct.quantity;
+
+    updatedProduct.quantity += existingProductQuantity;
+
+    dispatchCartAction({
+      type: 'update_product_quantity',
+      productId: id,
+      quantity: updatedProduct.quantity,
+    });
   }
 
   // Removes a product from the cart.
   function removeFromCart(id) {
-    const updatedProducts = productsInCart.filter(
-      (productInCart) => productInCart.id !== id
-    );
-
-    updateProductsInCart(updatedProducts);
+    dispatchCartAction({
+      type: 'remove_from_cart',
+      productId: id,
+    });
   }
 
   const quantityInCart =
