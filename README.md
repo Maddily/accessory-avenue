@@ -52,8 +52,8 @@ Accessory Avenue is hosted on Cloudflare Pages. You can access it [here](https:/
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/Maddily/shopping-cart.git
-   cd shopping-cart
+   git clone https://github.com/Maddily/accessory-avenue.git
+   cd accessory-avenue
    ```
 2. **Install Dependencies**:
    ```bash
