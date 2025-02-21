@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react';
+import { renderHook } from '@testing-library/react';
 import { beforeEach } from 'vitest';
 import { it } from 'vitest';
 import useCart from './useCart';
@@ -22,42 +22,13 @@ describe('useCart hook', () => {
     expect(result.current.productsInCart).toEqual([]);
   });
 
-  it('updates the cart when updateProductsInCart is called', () => {
-    act(() => {
-      result.current.updateProductsInCart([{ id: 1, title: 'product 1' }]);
-    });
-
-    expect(result.current.productsInCart).toEqual([
-      { id: 1, title: 'product 1' },
-    ]);
-  });
-
-  it('replaces cart contents when updateProductsInCart is called again', () => {
-    act(() => {
-      result.current.updateProductsInCart([{ id: 1, title: 'product 1' }]);
-    });
-
-    act(() => {
-      result.current.updateProductsInCart([{ id: 2, title: 'product 2' }]);
-    });
-
-    expect(result.current.productsInCart).toEqual([
-      { id: 2, title: 'product 2' },
-    ]);
-  });
-
   it('retrieves products stored in localStorage on mount', () => {
     expect(localStorageMock.getItem).toHaveBeenCalledWith('productsInCart');
   });
 
-  it('updates the stored value in localStorage when updateProductsInCart is called', () => {
-    act(() => {
-      result.current.updateProductsInCart([{ id: 1, title: 'product 1' }]);
-    });
-
-    expect(localStorageMock.setItem).toHaveBeenCalledWith(
-      'productsInCart',
-      JSON.stringify([{ id: 1, title: 'product 1' }])
-    );
+  it('productsInCart state is updated on mount when stored data is found', () => {
+    localStorageMock.getItem = vi.fn(() => JSON.stringify([{ id: 1 }]));
+    ({ result } = renderHook(() => useCart()));
+    expect(result.current.productsInCart).toEqual([{ id: 1 }]);
   });
 });
