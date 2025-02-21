@@ -1,12 +1,16 @@
-export default function useProductQuantity(
-  id,
-  productsInCart,
-  updateProductsInCart
-) {
+/**
+ * Creates a returns a function to delete a product from the cart.
+ *
+ * @param {number} id - The id of a product.
+ * @param {function} dispatchCartAction - Dispatches an action to update the cart.
+ * @returns A function to delete a product from the cart.
+ */
+export default function useProductQuantity(id, dispatchCartAction) {
   const deleteProduct = function () {
-    updateProductsInCart(
-      productsInCart.filter((productInCart) => productInCart.id !== id)
-    );
+    dispatchCartAction({
+      type: 'remove_from_cart',
+      productId: id,
+    });
   };
 
   return { deleteProduct };

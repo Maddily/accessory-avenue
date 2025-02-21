@@ -13,7 +13,7 @@ import SkeletonShop from '../SkeletonShop/SkeletonShop';
 export default function ShopContent() {
   const { products } = useShopContent();
   const { loading } = useLoading();
-  const [productsInCart, updateProductsInCart] = useOutletContext();
+  const [productsInCart, dispatchCartAction] = useOutletContext();
 
   if (loading) return <SkeletonShop />;
 
@@ -36,7 +36,7 @@ export default function ShopContent() {
                 rating={product.rating}
                 price={product.price}
                 productsInCart={productsInCart}
-                updateProductsInCart={updateProductsInCart}
+                dispatchCartAction={dispatchCartAction}
               />
             ))}
           </div>

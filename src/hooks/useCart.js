@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useReducer } from 'react';
+import productsInCartReducer from './productsInCartReducer';
 
 /**
  * Manages products in cart.
@@ -6,19 +7,21 @@ import { useState, useEffect } from 'react';
  * @returns productsInCart state and a function to update it.
  */
 export default function useCart() {
-  const [productsInCart, setProductsInCart] = useState([]);
+  const [productsInCart, dispatchCartAction] = useReducer(
+    productsInCartReducer,
+    []
+  );
 
   // On component mount, retrieve data from local storage
   useEffect(() => {
     const storedProductsInCart = localStorage.getItem('productsInCart');
 
-    storedProductsInCart && setProductsInCart(JSON.parse(storedProductsInCart));
+    storedProductsInCart &&
+      dispatchCartAction({
+        type: 'update_products_in_cart',
+        products: JSON.parse(storedProductsInCart),
+      });
   }, []);
 
-  const updateProductsInCart = function (products) {
-    setProductsInCart(products);
-    localStorage.setItem('productsInCart', JSON.stringify(products));
-  };
-
-  return { productsInCart, updateProductsInCart };
+  return { productsInCart, dispatchCartAction };
 }

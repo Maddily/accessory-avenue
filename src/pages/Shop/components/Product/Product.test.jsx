@@ -2,12 +2,12 @@ import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { render, screen, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Product from './Product';
-import useProduct from './useProduct';
+import useProduct from '../../../../hooks/useProduct';
 import Stars from '../../../../components/Stars/Stars';
 import ProductQuantity from '../ProductQuantity/ProductQuantity';
 import QuantityInCart from '../QuantityInCart/QuantityInCart';
 
-vi.mock('./useProduct');
+vi.mock('../../../../hooks/useProduct');
 vi.mock('../../../../components/Stars/Stars');
 vi.mock('../ProductQuantity/ProductQuantity');
 vi.mock('../QuantityInCart/QuantityInCart');
@@ -32,7 +32,7 @@ describe('Product', () => {
     rating: 5,
     price: 10,
     productsInCart: [{ id: 2 }, { id: 3 }],
-    updateProductsInCart: vi.fn(),
+    dispatchCartAction: vi.fn(),
   };
 
   const useProductMock = {
