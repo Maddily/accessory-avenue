@@ -2,9 +2,9 @@ import { vi, describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import AddToCart from './AddToCart';
-import useProduct from '../../../Shop/components/Product/useProduct';
+import useProduct from '../../../../hooks/useProduct';
 
-vi.mock('../../../Shop/components/Product/useProduct');
+vi.mock('../../../../hooks/useProduct');
 
 vi.mock('react-router-dom', () => ({
   useOutletContext: vi.fn(() => [
