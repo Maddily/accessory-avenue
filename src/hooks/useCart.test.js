@@ -1,8 +1,6 @@
 import { renderHook } from '@testing-library/react';
-import { beforeEach } from 'vitest';
-import { it } from 'vitest';
+import { it, vi, describe, expect, beforeEach } from 'vitest';
 import useCart from './useCart';
-import { vi, describe, expect } from 'vitest';
 
 describe('useCart hook', () => {
   let result;
