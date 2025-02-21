@@ -1,10 +1,10 @@
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import CartItem from './CartItem';
-import useProduct from '../../../Shop/components/Product/useProduct';
+import useProduct from '../../../../hooks/useProduct';
 import ProductQuantity from '../ProductQuantity/ProductQuantity';
 
-vi.mock('../../../Shop/components/Product/useProduct');
+vi.mock('../../../../hooks/useProduct');
 vi.mock('../ProductQuantity/ProductQuantity');
 
 ProductQuantity.mockImplementation(() => (
