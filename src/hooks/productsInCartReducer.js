@@ -8,45 +8,69 @@
 export default function productsInCartReducer(productsInCart, action) {
   switch (action.type) {
     case 'update_products_in_cart': {
-      localStorage.setItem('productsInCart', JSON.stringify(action.products));
+      updateStoredProducts(action.products);
       return action.products;
     }
     case 'update_product_quantity': {
-      return productsInCart.map((productInCart) => {
+      const updatedProducts = productsInCart.map((productInCart) => {
         if (productInCart.id === action.productId) {
           return { ...productInCart, quantity: action.quantity };
         }
         return productInCart;
       });
+
+      updateStoredProducts(updatedProducts);
+
+      return updatedProducts;
     }
     case 'increment_product_quantity': {
-      return productsInCart.map((productInCart) => {
+      const updatedProducts = productsInCart.map((productInCart) => {
         if (productInCart.id === action.productId) {
           return { ...productInCart, quantity: productInCart.quantity + 1 };
         }
         return productInCart;
       });
+
+      updateStoredProducts(updatedProducts);
+
+      return updatedProducts;
     }
     case 'decrement_product_quantity': {
-      return productsInCart.map((productInCart) => {
+      const updatedProducts = productsInCart.map((productInCart) => {
         if (productInCart.id === action.productId) {
           return { ...productInCart, quantity: productInCart.quantity - 1 };
         }
         return productInCart;
       });
+
+      updateStoredProducts(updatedProducts);
+
+      return updatedProducts;
     }
     case 'add_to_cart': {
-      return [...productsInCart, action.product];
+      const updatedProducts = [...productsInCart, action.product];
+
+      updateStoredProducts(updatedProducts);
+
+      return updatedProducts;
     }
     case 'remove_from_cart': {
-      return productsInCart.filter((productInCart) => {
+      const updatedProducts = productsInCart.filter((productInCart) => {
         if (productInCart.id !== action.productId) {
           return productInCart;
         }
       });
+
+      updateStoredProducts(updatedProducts);
+
+      return updatedProducts;
     }
     default: {
       throw Error('Unknown action: ' + action.type);
     }
   }
+}
+
+function updateStoredProducts(products) {
+  localStorage.setItem('productsInCart', JSON.stringify(products));
 }
