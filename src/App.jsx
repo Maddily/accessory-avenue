@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
+import { ProductsContext, DispatchCartContext } from './contexts';
 import useCart from './hooks/useCart';
 import useScreenResize from './hooks/useScreenResize';
 import Nav from './components/Nav/Nav';
@@ -23,10 +24,12 @@ function App() {
         setMenuOpen={setMenuOpen}
         productsInCart={productsInCart}
       />
-      {menuOpen && <Menu />}
-      <Outlet
-        context={[productsInCart, dispatchCartAction]}
-      />
+      <ProductsContext.Provider value={productsInCart}>
+        <DispatchCartContext.Provider value={dispatchCartAction}>
+          {menuOpen && <Menu />}
+          <Outlet />
+        </DispatchCartContext.Provider>
+      </ProductsContext.Provider>
       <Footer />
     </>
   );
