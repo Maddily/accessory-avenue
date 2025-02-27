@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '@mdi/react';
 import { mdiCart } from '@mdi/js';
@@ -11,7 +12,7 @@ import styles from './Cart.module.css';
  * @param {number} noOfProductsInCart - The number of products added to the cart.
  * @returns {JSX.Element}
  */
-export default function Cart({ noOfProductsInCart }) {
+const Cart = memo(function Cart({ noOfProductsInCart }) {
   return (
     <Link
       aria-label={`cart button. There are ${noOfProductsInCart} items added to the cart`}
@@ -27,8 +28,10 @@ export default function Cart({ noOfProductsInCart }) {
       </span>
     </Link>
   );
-}
+});
 
 Cart.propTypes = {
   noOfProductsInCart: PropTypes.number,
 };
+
+export default Cart;
