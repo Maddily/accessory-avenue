@@ -2,7 +2,6 @@ import styles from './ShopContent.module.css';
 import Product from '../Product/Product';
 import useShopContent from './useShopContent';
 import useLoading from '../../../../hooks/useLoading';
-import { useOutletContext } from 'react-router-dom';
 import SkeletonShop from '../SkeletonShop/SkeletonShop';
 
 /**
@@ -13,7 +12,6 @@ import SkeletonShop from '../SkeletonShop/SkeletonShop';
 export default function ShopContent() {
   const { products } = useShopContent();
   const { loading } = useLoading();
-  const [productsInCart, dispatchCartAction] = useOutletContext();
 
   if (loading) return <SkeletonShop />;
 
@@ -35,8 +33,6 @@ export default function ShopContent() {
                 title={product.title}
                 rating={product.rating}
                 price={product.price}
-                productsInCart={productsInCart}
-                dispatchCartAction={dispatchCartAction}
               />
             ))}
           </div>
