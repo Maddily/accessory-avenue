@@ -1,7 +1,10 @@
+import { memo } from 'react';
 import Icon from '@mdi/react';
 import { mdilMinusCircle, mdilPlusCircle } from '@mdi/light-js';
 import PropTypes from 'prop-types';
 import styles from './ProductQuantity.module.css';
+
+const MemoizedIcon = memo(Icon);
 
 /**
  * Renders an input field for quantity input along
@@ -32,7 +35,7 @@ export default function ProductQuantity({
         aria-label={'decrease quantity of ' + title}
         data-productid={id}
       >
-        <Icon
+        <MemoizedIcon
           title={'decrease quantity of ' + title}
           className={styles['minus']}
           path={mdilMinusCircle}
@@ -57,7 +60,7 @@ export default function ProductQuantity({
         aria-label={'increase quantity of ' + title}
         data-productid={id}
       >
-        <Icon
+        <MemoizedIcon
           title={'increase quantity of ' + title}
           className={styles['plus']}
           path={mdilPlusCircle}
