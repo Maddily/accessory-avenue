@@ -1,6 +1,9 @@
+import { memo } from 'react';
 import styles from './CartFooter.module.css';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+
+const MemoizedLink = memo(Link);
 
 /**
  * Renders the estimated total and check out button.
@@ -20,9 +23,9 @@ export default function CartFooter({ total }) {
       >
         Taxes, Discounts and shipping calculated at checkout
       </p>
-      <Link className={styles.checkout} to="#">
+      <MemoizedLink className={styles.checkout} to="#">
         Check out
-      </Link>
+      </MemoizedLink>
     </div>
   );
 }
