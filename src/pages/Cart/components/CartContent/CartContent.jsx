@@ -1,4 +1,5 @@
-import { useOutletContext } from 'react-router-dom';
+import { useContext } from 'react';
+import { ProductsContext } from '../../../../contexts';
 import CartItem from '../CartItem/CartItem';
 import useLoading from '../../../../hooks/useLoading';
 import CartFooter from '../CartFooter/CartFooter';
@@ -16,7 +17,7 @@ import styles from './CartContent.module.css';
  */
 export default function CartContent() {
   const { loading } = useLoading();
-  const [productsInCart] = useOutletContext();
+  const productsInCart = useContext(ProductsContext);
   const total = useCartContent(productsInCart);
 
   return loading && productsInCart ? (
