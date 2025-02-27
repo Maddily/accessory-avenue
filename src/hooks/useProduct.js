@@ -1,4 +1,5 @@
-import { useReducer } from 'react';
+import { useReducer, useContext } from 'react';
+import { DispatchCartContext } from '../contexts';
 import quantityReducer from './quantityReducer';
 
 /**
@@ -11,9 +12,6 @@ import quantityReducer from './quantityReducer';
  * @param {string} title - The title of the product.
  * @param {number} rating - The rating of the product.
  * @param {number} price - The price of the product.
- * @param {array} productsInCart - The products added to cart.
- * @param {function} dispatchCartAction - Updates the products added to cart.
- * @param {boolean} isFeaturedProduct - Indicates whether this product is a featured product in the home page.
  * @param {number} currentQuantity - The current quantity of the product in the cart page.
  *
  * @returns quantity state and updateQuantity.
@@ -25,11 +23,12 @@ export default function useProduct({
   rating,
   price,
   productsInCart,
-  dispatchCartAction,
   isFeaturedProduct = false,
   currentQuantity = 0,
 }) {
   const [quantity, dispatch] = useReducer(quantityReducer, currentQuantity);
+  const dispatchCartAction = useContext(DispatchCartContext);
+
   // Updates the displayed product quantity when a user changes it, before adding the product to the cart.
   function updateQuantity(e) {
     // If the quantity is entered in the input field.
