@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import ProductQuantity from '../ProductQuantity/ProductQuantity';
 import useProduct from '../../../../hooks/useProduct';
 import styles from './CartItem.module.css';
@@ -9,7 +10,7 @@ import PropTypes from 'prop-types';
  * @param {object} productInCart - The data of a product added to the cart.
  * @returns {JSX.Element}
  */
-export default function CartItem({ productInCart }) {
+const CartItem = memo(function CartItem({ productInCart }) {
   const currentQuantity = productInCart.quantity;
   const { quantity, updateQuantity } = useProduct({
     ...productInCart,
@@ -47,8 +48,18 @@ export default function CartItem({ productInCart }) {
       </td>
     </tr>
   );
-}
+}, arePropsEqual);
 
 CartItem.propTypes = {
   productInCart: PropTypes.object,
 };
+
+/**
+ * Returns true if the quantity of the old productInCart prop
+ * equals the quantity of the new productInCart prop, else false.
+ */
+function arePropsEqual(oldProps, newProps) {
+  return oldProps.productInCart.quantity === newProps.productInCart.quantity;
+}
+
+export default CartItem;
