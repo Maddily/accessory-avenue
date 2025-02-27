@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import Icon from '@mdi/react';
 import { mdiCart } from '@mdi/js';
+import PropTypes from 'prop-types';
 import styles from './Cart.module.css';
 
 /**
  * Renders a cart icon that links to the cart page
  * and displays the number of items in the cart.
  *
- * @param {array} productsInCart - The product objects added to cart.
+ * @param {number} noOfProductsInCart - The number of products added to the cart.
  * @returns {JSX.Element}
  */
 export default function Cart({ noOfProductsInCart }) {
