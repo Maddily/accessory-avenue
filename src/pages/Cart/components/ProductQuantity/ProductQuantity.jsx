@@ -5,6 +5,8 @@ import { mdilMinusCircle, mdilPlusCircle, mdilDelete } from '@mdi/light-js';
 import PropTypes from 'prop-types';
 import styles from './ProductQuantity.module.css';
 
+const MemoizedIcon = memo(Icon);
+
 /**
  * Renders an input field for quantity input along
  * with two buttons to decrease/increase the quantity,
@@ -38,7 +40,7 @@ const ProductQuantity = memo(function ProductQuantity({
           aria-label={'decrease quantity of ' + title}
           data-productid={id}
         >
-          <Icon
+          <MemoizedIcon
             title={'decrease quantity of ' + title}
             className={styles['minus']}
             path={mdilMinusCircle}
@@ -63,7 +65,7 @@ const ProductQuantity = memo(function ProductQuantity({
           aria-label={'increase quantity of ' + title}
           data-productid={id}
         >
-          <Icon
+          <MemoizedIcon
             title={'increase quantity of ' + title}
             className={styles['plus']}
             path={mdilPlusCircle}
@@ -72,7 +74,11 @@ const ProductQuantity = memo(function ProductQuantity({
         </button>
       </div>
       <button className={styles.delete} onClick={deleteProduct}>
-        <Icon path={mdilDelete} size={0.95} title={'delete' + ' ' + title} />
+        <MemoizedIcon
+          path={mdilDelete}
+          size={0.95}
+          title={'delete' + ' ' + title}
+        />
       </button>
     </div>
   );
