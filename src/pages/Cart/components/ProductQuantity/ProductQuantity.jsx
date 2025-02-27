@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import useProductQuantity from './useProductQuantity';
 import Icon from '@mdi/react';
 import { mdilMinusCircle, mdilPlusCircle, mdilDelete } from '@mdi/light-js';
@@ -15,7 +16,7 @@ import styles from './ProductQuantity.module.css';
  * @param {number} quantity - The quantity of the product added to the cart.
  * @returns {JSX.Element}
  */
-export default function ProductQuantity({
+const ProductQuantity = memo(function ProductQuantity({
   id,
   title,
   updateQuantity,
@@ -75,7 +76,7 @@ export default function ProductQuantity({
       </button>
     </div>
   );
-}
+});
 
 ProductQuantity.propTypes = {
   id: PropTypes.number,
@@ -83,3 +84,4 @@ ProductQuantity.propTypes = {
   updateQuantity: PropTypes.func,
   quantity: PropTypes.number,
 };
+export default ProductQuantity;
