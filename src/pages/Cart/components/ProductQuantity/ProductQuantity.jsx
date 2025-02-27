@@ -12,7 +12,6 @@ import styles from './ProductQuantity.module.css';
  * @param {number} id - The id of a product.
  * @param {string} title - The title of a product.
  * @param {function} updateQuantity - A function to update the quantity.
- * @param {function} dispatchCartAction - dispatches an action to update the cart.
  * @param {number} quantity - The quantity of the product added to the cart.
  * @returns {JSX.Element}
  */
@@ -20,10 +19,9 @@ export default function ProductQuantity({
   id,
   title,
   updateQuantity,
-  dispatchCartAction,
   quantity,
 }) {
-  const { deleteProduct } = useProductQuantity(id, dispatchCartAction);
+  const { deleteProduct } = useProductQuantity(id);
 
   return (
     <div className={styles['quantity-container']}>
@@ -83,6 +81,5 @@ ProductQuantity.propTypes = {
   id: PropTypes.number,
   title: PropTypes.string,
   updateQuantity: PropTypes.func,
-  dispatchCartAction: PropTypes.func,
   quantity: PropTypes.number,
 };
