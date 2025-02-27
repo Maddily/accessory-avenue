@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import logo from '../../assets/images/logo.png';
 import styles from './Nav.module.css';
 import NavButton from '../NavButton/NavButton';
@@ -14,7 +15,7 @@ import useNav from './useNav';
  * @param {function(boolean)} setMenuOpen - Sets menuOpen state.
  * @returns {JSX.Element}
  */
-export default function Nav({ menuOpen, setMenuOpen }) {
+const Nav = memo(function Nav({ menuOpen, setMenuOpen }) {
   useNav(setMenuOpen);
 
   return (
@@ -67,10 +68,11 @@ export default function Nav({ menuOpen, setMenuOpen }) {
       )}
     </nav>
   );
-}
+});
 
 Nav.propTypes = {
   menuOpen: PropTypes.bool,
   setMenuOpen: PropTypes.func,
 };
 
+export default Nav;
