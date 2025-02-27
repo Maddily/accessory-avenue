@@ -15,6 +15,7 @@ export default function CartItem({ productInCart }) {
     ...productInCart,
     currentQuantity,
   });
+  const total = (productInCart.quantity * productInCart.price).toFixed(2);
 
   return (
     <tr key={productInCart.id} className={styles['cart-item']}>
@@ -31,7 +32,7 @@ export default function CartItem({ productInCart }) {
         </p>
       </td>
       <td aria-label="total price" className={styles['total1-data']}>
-        ${(productInCart.quantity * productInCart.price).toFixed(2)}
+        ${total}
       </td>
       <td className={styles['quantity-data']}>
         <ProductQuantity
@@ -42,7 +43,7 @@ export default function CartItem({ productInCart }) {
         />
       </td>
       <td aria-label="total price" className={styles['total2-data']}>
-        ${(productInCart.quantity * productInCart.price).toFixed(2)}
+        ${total}
       </td>
     </tr>
   );
