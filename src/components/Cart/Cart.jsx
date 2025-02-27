@@ -19,7 +19,7 @@ const Cart = memo(function Cart({ noOfProductsInCart }) {
       to="/cart"
       className={styles.cart}
     >
-      <Icon title="Go to cart" color="#fff" path={mdiCart} size={1.2} />
+      <Icon title="Go to cart" color="#fff" path={mdiCart} size={1} />
       <span
         aria-label="number of items in cart"
         className={styles['cart-number']}
