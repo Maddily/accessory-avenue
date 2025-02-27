@@ -22,8 +22,6 @@ export default function useProduct({
   title,
   rating,
   price,
-  productsInCart,
-  isFeaturedProduct = false,
   currentQuantity = 0,
 }) {
   const [quantity, dispatch] = useReducer(quantityReducer, currentQuantity);
@@ -107,9 +105,8 @@ export default function useProduct({
   function addToCartHandler() {
     const updatedProduct = { id, imageUrl, title, rating, price, quantity };
 
-    // If the quantity is 0, there's nothing to add, provided that this isn't a featured product (home page).
-    // Featured products don't have a quantity, unlike products in the shop or cart pages.
-    if (quantity === 0 && !isFeaturedProduct) {
+    // If the quantity is 0, there's nothing to add.
+    if (quantity === 0) {
       return;
     }
 
@@ -118,37 +115,9 @@ export default function useProduct({
       type: 'remove_quantity',
     });
 
-    // If this is a featured product rendered in the home page, where the quantity can't be specified with an input field, make the quantity 1.
-    if (isFeaturedProduct) {
-      updatedProduct.quantity = 1;
-    }
-
-    // If the product is in the cart, update its quantity.
-    const existingProduct = productsInCart.find(
-      (productInCart) => productInCart.id === id
-    );
-    if (existingProduct) {
-      updateExistingProduct(updatedProduct, existingProduct);
-      return;
-    }
-
-    // The product isn't in the cart, add it.
     dispatchCartAction({
       type: 'add_to_cart',
       product: updatedProduct,
-    });
-  }
-
-  // Updates the quantity of a product already in the cart.
-  function updateExistingProduct(updatedProduct, existingProduct) {
-    const existingProductQuantity = existingProduct.quantity;
-
-    updatedProduct.quantity += existingProductQuantity;
-
-    dispatchCartAction({
-      type: 'update_product_quantity',
-      productId: id,
-      quantity: updatedProduct.quantity,
     });
   }
 
