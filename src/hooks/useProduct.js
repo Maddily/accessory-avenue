@@ -161,15 +161,10 @@ export default function useProduct({
     });
   }
 
-  const quantityInCart =
-    productsInCart.find((productInCart) => productInCart.id === id)?.quantity ||
-    0;
-
   return {
     quantity,
     updateQuantity,
     addToCartHandler,
     removeFromCart,
-    quantityInCart,
   };
 }
