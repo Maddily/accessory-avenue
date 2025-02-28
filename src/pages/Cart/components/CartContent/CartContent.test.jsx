@@ -1,14 +1,15 @@
+import * as React from 'react';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import CartContent from './CartContent';
 import useLoading from '../../../../hooks/useLoading';
-import CartItem from '../CartItem/CartItem';
 import CartFooter from '../CartFooter/CartFooter';
 import SkeletonCart from '../SkeletonCart/SkeletonCart';
-import { useOutletContext } from 'react-router-dom';
 
-vi.mock('../CartItem/CartItem');
-CartItem.mockImplementation(() => <tr data-testid="cart-item"></tr>);
+vi.mock('../CartItem/CartItem', () => ({
+  __esModule: true,
+  default: vi.fn(() => <tr data-testid="cart-item"></tr>),
+}));
 
 vi.mock('../CartFooter/CartFooter');
 CartFooter.mockImplementation(() => <div data-testid="cart-footer"></div>);
@@ -22,15 +23,19 @@ vi.mock('../SkeletonCart/SkeletonCart');
 SkeletonCart.mockImplementation(() => <div data-testid="skeleton"></div>);
 
 vi.mock('react-router-dom', () => ({
-  useOutletContext: vi.fn(() => [
-    [
+  Link: vi.fn(({ to, children }) => <a href={to}>{children}</a>),
+}));
+
+vi.mock('react', async (importOriginal) => {
+  const actualReact = await importOriginal();
+  return {
+    ...actualReact,
+    useContext: () => [
       { id: 1, name: 'product1' },
       { id: 2, name: 'product2' },
     ],
-    vi.fn(),
-  ]),
-  Link: vi.fn(({ to, children }) => <a href={to}>{children}</a>),
-}));
+  };
+});
 
 describe('CartContent', () => {
   beforeEach(() => {
@@ -60,8 +65,8 @@ describe('CartContent', () => {
   });
 
   it('renders an appropriate message and home link when there are no products in cart', () => {
-    vi.mocked(useOutletContext).mockReturnValueOnce([[], vi.fn()]);
-
+    vi.spyOn(React, 'useContext').mockReturnValueOnce([]);
+    cleanup();
     render(<CartContent />);
 
     const heading = screen.getByRole('heading', {
@@ -109,10 +114,8 @@ describe('CartContent', () => {
   });
 
   it('does not render a cart footer when there are no products added to the cart', () => {
+    vi.spyOn(React, 'useContext').mockReturnValueOnce([]);
     cleanup();
-
-    vi.mocked(useOutletContext).mockReturnValueOnce([[], vi.fn()]);
-
     render(<CartContent />);
 
     const cartFooter = screen.queryByTestId('cart-footer');
