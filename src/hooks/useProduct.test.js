@@ -11,11 +11,6 @@ describe('useProduct', () => {
     title: 'product title',
     rating: 4,
     price: 99,
-    productsInCart: [
-      { id: 1, quantity: 1 },
-      { id: 2, quantity: 2 },
-    ],
-    dispatchCartAction: vi.fn(),
   };
 
   beforeEach(() => {
@@ -32,20 +27,6 @@ describe('useProduct', () => {
     act(() => updateQuantity({ type: 'change', target: { value: 5 } }));
 
     expect(result.current.quantity).toEqual(5);
-  });
-
-  it('returns the quantity of the product in the cart when the quantity is changed in productsInCart', () => {
-    ({ result } = renderHook(() =>
-      useProduct({
-        ...args,
-        productsInCart: [
-          { id: 1, quantity: 5 },
-          { id: 2, quantity: 2 },
-        ],
-      })
-    ));
-
-    expect(result.current.quantityInCart).toEqual(5);
   });
 
   it('updates the quantity when the decrement button is clicked', () => {
@@ -86,20 +67,6 @@ describe('useProduct', () => {
     });
 
     expect(result.current.quantity).toEqual(4);
-  });
-
-  it('does not add a product to the cart if the quantity is 0', () => {
-    ({ result } = renderHook(() =>
-      useProduct({
-        ...args,
-        productsInCart: [{ id: 2, quantity: 2 }],
-      })
-    ));
-
-    const addToCartHandler = result.current.addToCartHandler;
-    act(() => addToCartHandler());
-
-    expect(result.current.quantityInCart).toEqual(0);
   });
 
   it('removes the displayed quantity after adding the product to the cart', () => {
