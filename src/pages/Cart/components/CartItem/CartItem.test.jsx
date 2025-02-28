@@ -11,16 +11,6 @@ ProductQuantity.mockImplementation(() => (
   <div data-testid="product quantity"></div>
 ));
 
-vi.mock('react-router-dom', () => ({
-  useOutletContext: vi.fn(() => [
-    [
-      { id: 1, name: 'product1' },
-      { id: 2, name: 'product2' },
-    ],
-    vi.fn(),
-  ]),
-}));
-
 describe('CartItem', () => {
   const productInCart = {
     id: 1,
