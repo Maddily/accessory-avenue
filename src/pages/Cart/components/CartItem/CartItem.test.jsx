@@ -5,7 +5,10 @@ import useProduct from '../../../../hooks/useProduct';
 import ProductQuantity from '../ProductQuantity/ProductQuantity';
 
 vi.mock('../../../../hooks/useProduct');
-vi.mock('../ProductQuantity/ProductQuantity');
+vi.mock('../ProductQuantity/ProductQuantity', () => ({
+  __esModule: true,
+  default: vi.fn(() => <div data-testid="product quantity"></div>),
+}));
 
 ProductQuantity.mockImplementation(() => (
   <div data-testid="product quantity"></div>
