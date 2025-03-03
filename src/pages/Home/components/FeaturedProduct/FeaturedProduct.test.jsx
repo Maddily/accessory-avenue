@@ -2,21 +2,23 @@ import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import FeaturedProduct from './FeaturedProduct';
-import Stars from '../../../../components/Stars/Stars';
 import AddToCart from '../AddToCart/AddToCart';
 
-vi.mock('../../../../components/Stars/Stars');
+vi.mock('../../../../components/Stars/Stars', () => ({
+  __esModule: true,
+  default: vi.fn(() => (
+    <>
+      <span data-testid="star">star</span>
+      <span data-testid="star">star</span>
+      <span data-testid="star">star</span>
+      <span data-testid="star">star</span>
+      <span data-testid="star">star</span>
+    </>
+  )),
+}));
+
 vi.mock('../AddToCart/AddToCart');
 
-Stars.mockImplementation(() => (
-  <>
-    <span data-testid="star">star</span>
-    <span data-testid="star">star</span>
-    <span data-testid="star">star</span>
-    <span data-testid="star">star</span>
-    <span data-testid="star">star</span>
-  </>
-));
 AddToCart.mockImplementation(() => <button data-testid="add-to-cart"></button>);
 
 describe('FeaturedProduct', () => {
