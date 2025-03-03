@@ -1,8 +1,11 @@
+import { memo } from 'react';
 import useProductQuantity from './useProductQuantity';
 import Icon from '@mdi/react';
 import { mdilMinusCircle, mdilPlusCircle, mdilDelete } from '@mdi/light-js';
 import PropTypes from 'prop-types';
 import styles from './ProductQuantity.module.css';
+
+const MemoizedIcon = memo(Icon);
 
 /**
  * Renders an input field for quantity input along
@@ -12,18 +15,16 @@ import styles from './ProductQuantity.module.css';
  * @param {number} id - The id of a product.
  * @param {string} title - The title of a product.
  * @param {function} updateQuantity - A function to update the quantity.
- * @param {function} dispatchCartAction - dispatches an action to update the cart.
  * @param {number} quantity - The quantity of the product added to the cart.
  * @returns {JSX.Element}
  */
-export default function ProductQuantity({
+const ProductQuantity = memo(function ProductQuantity({
   id,
   title,
   updateQuantity,
-  dispatchCartAction,
   quantity,
 }) {
-  const { deleteProduct } = useProductQuantity(id, dispatchCartAction);
+  const { deleteProduct } = useProductQuantity(id);
 
   return (
     <div className={styles['quantity-container']}>
@@ -39,7 +40,7 @@ export default function ProductQuantity({
           aria-label={'decrease quantity of ' + title}
           data-productid={id}
         >
-          <Icon
+          <MemoizedIcon
             title={'decrease quantity of ' + title}
             className={styles['minus']}
             path={mdilMinusCircle}
@@ -64,7 +65,7 @@ export default function ProductQuantity({
           aria-label={'increase quantity of ' + title}
           data-productid={id}
         >
-          <Icon
+          <MemoizedIcon
             title={'increase quantity of ' + title}
             className={styles['plus']}
             path={mdilPlusCircle}
@@ -73,16 +74,20 @@ export default function ProductQuantity({
         </button>
       </div>
       <button className={styles.delete} onClick={deleteProduct}>
-        <Icon path={mdilDelete} size={0.95} title={'delete' + ' ' + title} />
+        <MemoizedIcon
+          path={mdilDelete}
+          size={0.95}
+          title={'delete' + ' ' + title}
+        />
       </button>
     </div>
   );
-}
+});
 
 ProductQuantity.propTypes = {
   id: PropTypes.number,
   title: PropTypes.string,
   updateQuantity: PropTypes.func,
-  dispatchCartAction: PropTypes.func,
   quantity: PropTypes.number,
 };
+export default ProductQuantity;

@@ -1,7 +1,7 @@
 import styles from './AddToCart.module.css';
-import { useOutletContext } from 'react-router-dom';
-import useProduct from '../../../../hooks/useProduct';
 import PropTypes from 'prop-types';
+import { DispatchCartContext } from '../../../../contexts';
+import { useContext } from 'react';
 
 /**
  * Renders a cart button.
@@ -9,16 +9,22 @@ import PropTypes from 'prop-types';
  * @returns {JSX.Element}
  */
 export default function AddToCart({ product }) {
-  const [productsInCart, dispatchCartAction] = useOutletContext();
-  const { addToCartHandler } = useProduct({
-    ...product,
-    productsInCart,
-    dispatchCartAction,
-    isFeaturedProduct: true,
-  });
+  const dispatchCartAction = useContext(DispatchCartContext);
+
+  function addToCart() {
+    dispatchCartAction({
+      type: 'add_featured_product_to_cart',
+      product,
+    });
+  }
 
   return (
-    <button onClick={addToCartHandler} type="button" className={styles.cart} aria-label='add to cart'>
+    <button
+      onClick={addToCart}
+      type="button"
+      className={styles.cart}
+      aria-label="add to cart"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"

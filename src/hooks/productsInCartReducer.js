@@ -48,7 +48,18 @@ export default function productsInCartReducer(productsInCart, action) {
       return updatedProducts;
     }
     case 'add_to_cart': {
-      const updatedProducts = [...productsInCart, action.product];
+      const updatedProducts = getUpdatedProducts(
+        productsInCart,
+        action,
+        action.product.quantity
+      );
+
+      updateStoredProducts(updatedProducts);
+
+      return updatedProducts;
+    }
+    case 'add_featured_product_to_cart': {
+      const updatedProducts = getUpdatedProducts(productsInCart, action, 1);
 
       updateStoredProducts(updatedProducts);
 
@@ -71,6 +82,44 @@ export default function productsInCartReducer(productsInCart, action) {
   }
 }
 
+/**
+ * Stores cart products in local storage.
+ *
+ * @param {array} products - The products added to the cart.
+ */
 function updateStoredProducts(products) {
   localStorage.setItem('productsInCart', JSON.stringify(products));
+}
+
+/**
+ * Returns an array of updated products after adding a product or increasing
+ * the quantity of one.
+ *
+ * @param {array} productsInCart - The products added to the cart.
+ * @param {object} action - The action to be taken.
+ * @param {number} quantity - The quantity of the product to be added to the cart.
+ * @returns The products in the cart, updated by adding a product to the cart or by
+ * increasing the quantity of one already in the cart.
+ */
+function getUpdatedProducts(productsInCart, action, quantity) {
+  let updatedProducts;
+
+  const productInCart = productsInCart.find(
+    (product) => product.id === action.product.id
+  );
+
+  if (productInCart) {
+    const updatedQuantity = productInCart.quantity + quantity;
+
+    updatedProducts = productsInCart.map((product) => {
+      if (product.id === action.product.id) {
+        return { ...product, quantity: updatedQuantity };
+      }
+      return product;
+    });
+  } else {
+    updatedProducts = [...productsInCart, { ...action.product, quantity }];
+  }
+
+  return updatedProducts;
 }

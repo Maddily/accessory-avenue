@@ -2,10 +2,20 @@
   display: flex;
   align-items: center;
   text-decoration: none;
+  position: absolute;
+  right: 30px;
+  top: 13px;
+  z-index: 100;
 }
 
 .cart-number {
   color: #fff;
   text-align: center;
   font-size: 0.7rem;
+}
+
+@media (min-width: 600px) {
+  .cart {
+    top: 27px;
+  }
 }

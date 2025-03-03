@@ -2,32 +2,24 @@ import { vi, describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import AddToCart from './AddToCart';
-import useProduct from '../../../../hooks/useProduct';
 
-vi.mock('../../../../hooks/useProduct');
+const dispatchCartActionMock = vi.fn();
 
-vi.mock('react-router-dom', () => ({
-  useOutletContext: vi.fn(() => [
-    [
-      { id: 1, name: 'product1' },
-      { id: 2, name: 'product2' },
-    ],
-    vi.fn(),
-  ]),
-}));
+vi.mock('react', async (importOriginal) => {
+  const actualReact = await importOriginal();
+  return {
+    ...actualReact,
+    useContext: () => dispatchCartActionMock,
+  };
+});
 
 describe('AddToCart', () => {
   const product = {
     id: 1,
     title: 'cable',
   };
-  const useProductMock = {
-    addToCartHandler: vi.fn(),
-  };
 
   it('renders a button that, when clicked, adds its associated item to the cart', async () => {
-    useProduct.mockReturnValue(useProductMock);
-
     const user = userEvent.setup();
 
     render(<AddToCart product={product} />);
@@ -37,6 +29,9 @@ describe('AddToCart', () => {
 
     await user.click(button);
 
-    expect(useProductMock.addToCartHandler).toHaveBeenCalled();
+    expect(dispatchCartActionMock).toHaveBeenCalledWith({
+      type: 'add_featured_product_to_cart',
+      product,
+    });
   });
 });

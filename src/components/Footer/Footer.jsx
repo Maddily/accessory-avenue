@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import useFooter from './useFooter';
 import styles from './Footer.module.css';
 
@@ -6,7 +7,7 @@ import styles from './Footer.module.css';
  *
  * @returns {JSX.Element}
  */
-export default function Footer() {
+const Footer = memo(function Footer() {
   const { footerSections } = useFooter();
 
   return (
@@ -22,9 +23,10 @@ export default function Footer() {
         ))}
       </div>
       <p aria-label="copyright statement" className={styles.copyright}>
-        &#169; {new Date().getFullYear()} Accessory Avenue. All rights
-        reserved.
+        &#169; {new Date().getFullYear()} Accessory Avenue. All rights reserved.
       </p>
     </footer>
   );
-}
+});
+
+export default Footer;

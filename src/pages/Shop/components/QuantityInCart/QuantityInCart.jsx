@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { ProductsContext } from '../../../../contexts';
 import styles from './QuantityInCart.module.css';
 import PropTypes from 'prop-types';
 
@@ -6,11 +8,16 @@ import PropTypes from 'prop-types';
  * and a button to remove the product from the cart.
  *
  * @param {number} id - The id of the product.
- * @param {number} quantityInCart - The quantity of the product added to the cart.
  * @param {function} removeFromCart - Removes the product from the cart.
  * @returns {JSX.Element}
  */
-export default function QuantityInCart({ id, quantityInCart, removeFromCart }) {
+export default function QuantityInCart({ id, removeFromCart }) {
+  const productsInCart = useContext(ProductsContext);
+
+  const quantityInCart =
+    productsInCart.find((productInCart) => productInCart.id === id)?.quantity ||
+    0;
+
   return (
     quantityInCart > 0 && (
       <p aria-label="quantity in cart" className={styles['quantity-in-cart']}>
@@ -29,6 +36,5 @@ export default function QuantityInCart({ id, quantityInCart, removeFromCart }) {
 
 QuantityInCart.propTypes = {
   id: PropTypes.number,
-  quantityInCart: PropTypes.number,
   removeFromCart: PropTypes.func,
 };

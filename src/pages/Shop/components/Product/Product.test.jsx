@@ -3,16 +3,17 @@ import { render, screen, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Product from './Product';
 import useProduct from '../../../../hooks/useProduct';
-import Stars from '../../../../components/Stars/Stars';
 import ProductQuantity from '../ProductQuantity/ProductQuantity';
 import QuantityInCart from '../QuantityInCart/QuantityInCart';
 
 vi.mock('../../../../hooks/useProduct');
-vi.mock('../../../../components/Stars/Stars');
 vi.mock('../ProductQuantity/ProductQuantity');
 vi.mock('../QuantityInCart/QuantityInCart');
 
-Stars.mockImplementation(() => <div data-testid="stars"></div>);
+vi.mock('../../../../components/Stars/Stars', () => ({
+  __esModule: true,
+  default: vi.fn(() => <div data-testid="stars"></div>),
+}));
 
 ProductQuantity.mockImplementation(() => (
   <div data-testid="product quantity"></div>
@@ -40,7 +41,6 @@ describe('Product', () => {
     updateQuantity: vi.fn(),
     addToCartHandler: vi.fn(),
     removeFromCart: vi.fn(),
-    quantityInCart: 0,
   };
 
   beforeEach(() => {
@@ -108,7 +108,6 @@ describe('Product', () => {
     expect(QuantityInCart).toHaveBeenCalledWith(
       expect.objectContaining({
         id: props.id,
-        quantityInCart: useProductMock.quantityInCart,
         removeFromCart: useProductMock.removeFromCart,
       }),
       {}

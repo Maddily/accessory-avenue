@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
+import { ProductsContext, DispatchCartContext } from './contexts';
 import useCart from './hooks/useCart';
 import useScreenResize from './hooks/useScreenResize';
 import Nav from './components/Nav/Nav';
+import Cart from './components/Cart/Cart';
 import Menu from './components/Menu/Menu';
 import Footer from './components/Footer/Footer';
 import './styles/normalize.css';
@@ -18,15 +20,14 @@ function App() {
 
   return (
     <>
-      <Nav
-        menuOpen={menuOpen}
-        setMenuOpen={setMenuOpen}
-        productsInCart={productsInCart}
-      />
-      {menuOpen && <Menu />}
-      <Outlet
-        context={[productsInCart, dispatchCartAction]}
-      />
+      <Nav menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <ProductsContext.Provider value={productsInCart}>
+        <DispatchCartContext.Provider value={dispatchCartAction}>
+          <Cart noOfProductsInCart={productsInCart.length} />
+          {menuOpen && <Menu />}
+          <Outlet />
+        </DispatchCartContext.Provider>
+      </ProductsContext.Provider>
       <Footer />
     </>
   );

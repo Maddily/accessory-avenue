@@ -8,17 +8,12 @@ import styles from './Product.module.css';
 /**
  * Renders a product's details.
  *
- * @param {object} props - product and cart data.
+ * @param {object} props - product data.
  * @returns {JSX.Element}
  */
 export default function Product(props) {
-  const {
-    quantity,
-    updateQuantity,
-    addToCartHandler,
-    removeFromCart,
-    quantityInCart,
-  } = useProduct(props);
+  const { quantity, updateQuantity, addToCartHandler, removeFromCart } =
+    useProduct(props);
   const { imageUrl, title, rating, price } = props;
 
   return (
@@ -57,11 +52,7 @@ export default function Product(props) {
       >
         Add to cart
       </button>
-      <QuantityInCart
-        id={props.id}
-        quantityInCart={quantityInCart}
-        removeFromCart={removeFromCart}
-      />
+      <QuantityInCart id={props.id} removeFromCart={removeFromCart} />
     </article>
   );
 }

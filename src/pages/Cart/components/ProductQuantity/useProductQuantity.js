@@ -1,3 +1,6 @@
+import { useContext } from 'react';
+import { DispatchCartContext } from '../../../../contexts';
+
 /**
  * Creates a returns a function to delete a product from the cart.
  *
@@ -5,7 +8,9 @@
  * @param {function} dispatchCartAction - Dispatches an action to update the cart.
  * @returns A function to delete a product from the cart.
  */
-export default function useProductQuantity(id, dispatchCartAction) {
+export default function useProductQuantity(id) {
+  const dispatchCartAction = useContext(DispatchCartContext);
+
   const deleteProduct = function () {
     dispatchCartAction({
       type: 'remove_from_cart',

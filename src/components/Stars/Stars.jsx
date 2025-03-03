@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Icon from '@mdi/react';
 import { mdiStar, mdiStarHalfFull, mdiStarOutline } from '@mdi/js';
 import PropTypes from 'prop-types';
@@ -9,7 +10,7 @@ import PropTypes from 'prop-types';
  * @param {string} title - A product's title
  * @returns {JSX.Element}
  */
-export default function Stars({ rating, title }) {
+const Stars = memo(function Stars({ rating, title }) {
   let rtng = rating;
 
   const ratingArray = [0, 0, 0, 0, 0].map((x) => {
@@ -54,7 +55,7 @@ export default function Stars({ rating, title }) {
             return (
               <Icon
                 aria-label="empty star"
-                color='gold'
+                color="gold"
                 key={i + title}
                 path={mdiStarOutline}
                 size={0.9}
@@ -64,9 +65,11 @@ export default function Stars({ rating, title }) {
       })}
     </>
   );
-}
+});
 
 Stars.propTypes = {
   rating: PropTypes.number,
   title: PropTypes.string,
 };
+
+export default Stars;

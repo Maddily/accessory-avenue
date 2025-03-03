@@ -3,15 +3,12 @@ import { render, screen, cleanup } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Nav from './Nav';
 import NavButton from '../NavButton/NavButton';
-import Cart from '../Cart/Cart';
 
 vi.mock('../NavButton/NavButton');
-vi.mock('../Cart/Cart');
 
 NavButton.mockImplementation(() => (
   <button data-testid="navButton">Nav button</button>
 ));
-Cart.mockImplementation(() => <button data-testid="cart">Cart</button>);
 
 describe('Nav', () => {
   beforeEach(() => {
@@ -82,11 +79,5 @@ describe('Nav', () => {
 
     expect(menuButton).toBeNull();
     expect(closeButton).toBeInTheDocument();
-  });
-
-  it('renders a cart button', () => {
-    const cartButton = screen.getByTestId('cart');
-
-    expect(cartButton).toBeInTheDocument();
   });
 });
