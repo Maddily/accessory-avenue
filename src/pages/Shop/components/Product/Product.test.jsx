@@ -41,7 +41,6 @@ describe('Product', () => {
     updateQuantity: vi.fn(),
     addToCartHandler: vi.fn(),
     removeFromCart: vi.fn(),
-    quantityInCart: 0,
   };
 
   beforeEach(() => {
@@ -109,7 +108,6 @@ describe('Product', () => {
     expect(QuantityInCart).toHaveBeenCalledWith(
       expect.objectContaining({
         id: props.id,
-        quantityInCart: useProductMock.quantityInCart,
         removeFromCart: useProductMock.removeFromCart,
       }),
       {}
