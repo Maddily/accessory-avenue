@@ -14,7 +14,7 @@ export default function AddToCart({ product }) {
   function addToCart() {
     dispatchCartAction({
       type: 'add_featured_product_to_cart',
-      product: { ...product },
+      product,
     });
   }
 
