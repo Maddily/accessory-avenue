@@ -3,12 +3,23 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import QuantityInCart from './QuantityInCart';
 
+vi.mock('react', async (importOriginal) => {
+  const actualReact = await importOriginal();
+  return {
+    ...actualReact,
+    useContext: () => [
+      { id: 1, name: 'product1', quantity: 5 },
+      { id: 2, name: 'product2', quantity: 2 },
+    ],
+  };
+});
+
 describe('QuantityInCart', () => {
   const props = {
     id: 1,
-    quantityInCart: 5,
     removeFromCart: vi.fn(),
   };
+
   it('Displays the quantity added to cart when quantityInCart is above 0', () => {
     render(<QuantityInCart {...props} />);
 
