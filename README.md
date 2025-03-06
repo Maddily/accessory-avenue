@@ -22,8 +22,6 @@ Accessory Avenue is hosted on Cloudflare Pages. You can access it [here](https:/
 
 * **React** - For building the user interface with reusable components.
 
-* **React Router** - For routing between the different views of the SPA.
-
 * **JavaScript** - The core language for the application logic.
 
 * **HTML & CSS** - For structuring and styling the application.
