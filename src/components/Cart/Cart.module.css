@@ -19,3 +19,9 @@
     top: 27px;
   }
 }
+
+@media (min-width: 1000px) {
+  .cart {
+    right: 60px;
+  }
+}
