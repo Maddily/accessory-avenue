@@ -29,6 +29,7 @@
 
 .footer-section:last-of-type {
   border-bottom: none;
+  align-items: center;
 }
 
 .footer-heading {
